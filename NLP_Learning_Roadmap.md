@@ -1,9 +1,9 @@
 # NLP Learning Roadmap: Foundation to Advanced
+
 ### A Hands-On, LinkedIn-Documented Journey Through Natural Language Processing
 
 ---
 
-> **About this plan**
 > This roadmap takes you from the very first principles of text processing all the way to fine-tuning large language models. Each phase is designed to be hands-on: you implement concepts from scratch before using libraries, apply them to real data, and document your learning publicly on LinkedIn. The journey spans approximately **20–22 weeks** at a sustainable pace of 8–12 hours per week.
 
 ---
@@ -11,18 +11,18 @@
 ## Table of Contents
 
 1. [How to Use This Roadmap](#how-to-use-this-roadmap)
-2. [Toolkit & Environment Setup](#toolkit--environment-setup)
-3. [Phase 1 — Tokenization & Text Preprocessing](#phase-1--tokenization--text-preprocessing)
-4. [Phase 2 — Bag of Words & TF-IDF](#phase-2--bag-of-words--tf-idf)
-5. [Phase 3 — Word Embeddings: CBOW & Skip-gram](#phase-3--word-embeddings-cbow--skip-gram)
+2. [Toolkit &amp; Environment Setup](#toolkit--environment-setup)
+3. [Phase 1 — Tokenization &amp; Text Preprocessing](#phase-1--tokenization--text-preprocessing)
+4. [Phase 2 — Bag of Words &amp; TF-IDF](#phase-2--bag-of-words--tf-idf)
+5. [Phase 3 — Word Embeddings: CBOW &amp; Skip-gram](#phase-3--word-embeddings-cbow--skip-gram)
 6. [Phase 4 — Classical NLP Tasks](#phase-4--classical-nlp-tasks)
-7. [Phase 5 — RNNs, LSTMs & Sequence Models](#phase-5--rnns-lstms--sequence-models)
-8. [Phase 6 — Attention Mechanism & Transformers](#phase-6--attention-mechanism--transformers)
-9. [Phase 7 — BERT, GPT & Pre-trained Models](#phase-7--bert-gpt--pre-trained-models)
-10. [Phase 8 — RAG, Prompting & Fine-tuning](#phase-8--rag-prompting--fine-tuning)
+7. [Phase 5 — RNNs, LSTMs &amp; Sequence Models](#phase-5--rnns-lstms--sequence-models)
+8. [Phase 6 — Attention Mechanism &amp; Transformers](#phase-6--attention-mechanism--transformers)
+9. [Phase 7 — BERT, GPT &amp; Pre-trained Models](#phase-7--bert-gpt--pre-trained-models)
+10. [Phase 8 — RAG, Prompting &amp; Fine-tuning](#phase-8--rag-prompting--fine-tuning)
 11. [LinkedIn Content Strategy](#linkedin-content-strategy)
-12. [Portfolio & GitHub Structure](#portfolio--github-structure)
-13. [Resources & References](#resources--references)
+12. [Portfolio &amp; GitHub Structure](#portfolio--github-structure)
+13. [Resources &amp; References](#resources--references)
 
 ---
 
@@ -44,14 +44,14 @@ Follow this execution pattern for **every phase**:
 
 ### Core Libraries by Phase
 
-| Phase | Libraries to Install |
-|---|---|
-| Phases 1–2 (Text basics) | `nltk`, `spacy`, `regex`, `scikit-learn`, `pandas`, `numpy` |
-| Phase 3 (Embeddings) | `gensim`, `fasttext`, `matplotlib`, `plotly` |
-| Phases 4 (Classical NLP) | `textblob`, `vaderSentiment`, `pyspellchecker` |
-| Phases 5–6 (Deep learning) | `torch`, `tensorflow`, `keras` |
-| Phase 7 (Pre-trained models) | `transformers`, `datasets`, `tokenizers`, `evaluate` |
-| Phase 8 (Advanced) | `langchain`, `peft`, `trl`, `sentence-transformers`, `faiss-cpu` |
+| Phase                        | Libraries to Install                                                       |
+| ---------------------------- | -------------------------------------------------------------------------- |
+| Phases 1–2 (Text basics)    | `nltk`, `spacy`, `regex`, `scikit-learn`, `pandas`, `numpy`    |
+| Phase 3 (Embeddings)         | `gensim`, `fasttext`, `matplotlib`, `plotly`                       |
+| Phases 4 (Classical NLP)     | `textblob`, `vaderSentiment`, `pyspellchecker`                       |
+| Phases 5–6 (Deep learning)  | `torch`, `tensorflow`, `keras`                                       |
+| Phase 7 (Pre-trained models) | `transformers`, `datasets`, `tokenizers`, `evaluate`               |
+| Phase 8 (Advanced)           | `langchain`, `peft`, `trl`, `sentence-transformers`, `faiss-cpu` |
 
 ### What to Set Up Before Starting
 
@@ -75,15 +75,15 @@ Tokenization is the very first step in every NLP pipeline. Before any model can 
 
 ### Core Concepts to Master
 
-| Concept | What to Understand |
-|---|---|
-| Word tokenization | How to split text into individual words; why whitespace alone is not enough |
-| Sentence tokenization | How to detect sentence boundaries correctly (abbreviations, ellipsis, quotes) |
-| Subword tokenization (BPE) | How rare and unknown words are handled by splitting into smaller sub-units |
-| Stopword removal | What stopwords are, when to remove them, and when not to |
-| Stemming | How suffix-chopping reduces words to approximate roots (fast but lossy) |
-| Lemmatization | How morphological analysis reduces words to their dictionary base form |
-| Regex text cleaning | How to use patterns to strip HTML, URLs, mentions, and special characters |
+| Concept                    | What to Understand                                                            |
+| -------------------------- | ----------------------------------------------------------------------------- |
+| Word tokenization          | How to split text into individual words; why whitespace alone is not enough   |
+| Sentence tokenization      | How to detect sentence boundaries correctly (abbreviations, ellipsis, quotes) |
+| Subword tokenization (BPE) | How rare and unknown words are handled by splitting into smaller sub-units    |
+| Stopword removal           | What stopwords are, when to remove them, and when not to                      |
+| Stemming                   | How suffix-chopping reduces words to approximate roots (fast but lossy)       |
+| Lemmatization              | How morphological analysis reduces words to their dictionary base form        |
+| Regex text cleaning        | How to use patterns to strip HTML, URLs, mentions, and special characters     |
 
 ### How to Structure the From-Scratch Implementation
 
@@ -138,15 +138,15 @@ After tokenizing text, you need to convert it into numbers that a model can cons
 
 ### Core Concepts to Master
 
-| Concept | What to Understand |
-|---|---|
-| One-hot encoding | Why representing each word as a single `1` in a large vector is wasteful and limited |
-| Bag of Words (BoW) | How a document becomes a count vector over a fixed vocabulary |
-| N-grams | How bigrams and trigrams partially recover local word order within BoW |
-| TF-IDF | How term frequency is balanced against how common a word is across all documents |
-| Vocabulary building | How to decide which words to include (min frequency, max features, stopwords) |
-| Sparse matrix representation | Why storing only non-zero values is essential at scale |
-| Cosine similarity | How to measure similarity between two document vectors |
+| Concept                      | What to Understand                                                                     |
+| ---------------------------- | -------------------------------------------------------------------------------------- |
+| One-hot encoding             | Why representing each word as a single `1` in a large vector is wasteful and limited |
+| Bag of Words (BoW)           | How a document becomes a count vector over a fixed vocabulary                          |
+| N-grams                      | How bigrams and trigrams partially recover local word order within BoW                 |
+| TF-IDF                       | How term frequency is balanced against how common a word is across all documents       |
+| Vocabulary building          | How to decide which words to include (min frequency, max features, stopwords)          |
+| Sparse matrix representation | Why storing only non-zero values is essential at scale                                 |
+| Cosine similarity            | How to measure similarity between two document vectors                                 |
 
 ### How to Structure the From-Scratch Implementation
 
@@ -198,17 +198,17 @@ Word embeddings solve the core failure of BoW: every word is unrelated to every 
 
 ### Core Concepts to Master
 
-| Concept | What to Understand |
-|---|---|
-| Distributional hypothesis | Words that appear in similar contexts have similar meanings — the theoretical foundation |
-| Context window | The number of surrounding words used to define context; how window size shapes the embedding space |
-| CBOW architecture | How the model predicts a target word from the average of its context word vectors |
-| Skip-gram architecture | How the model predicts each context word individually from the target word |
-| Negative sampling | How training is made efficient by comparing real pairs against randomly sampled noise |
-| Word2Vec | The landmark model that made dense embeddings practical |
-| GloVe | How co-occurrence statistics across the entire corpus are used as an alternative to local context |
-| FastText | How character n-grams within words enable handling of rare and misspelled words |
-| t-SNE / PCA visualization | How high-dimensional vectors are projected into 2D for visual inspection |
+| Concept                   | What to Understand                                                                                 |
+| ------------------------- | -------------------------------------------------------------------------------------------------- |
+| Distributional hypothesis | Words that appear in similar contexts have similar meanings — the theoretical foundation          |
+| Context window            | The number of surrounding words used to define context; how window size shapes the embedding space |
+| CBOW architecture         | How the model predicts a target word from the average of its context word vectors                  |
+| Skip-gram architecture    | How the model predicts each context word individually from the target word                         |
+| Negative sampling         | How training is made efficient by comparing real pairs against randomly sampled noise              |
+| Word2Vec                  | The landmark model that made dense embeddings practical                                            |
+| GloVe                     | How co-occurrence statistics across the entire corpus are used as an alternative to local context  |
+| FastText                  | How character n-grams within words enable handling of rare and misspelled words                    |
+| t-SNE / PCA visualization | How high-dimensional vectors are projected into 2D for visual inspection                           |
 
 ### How to Structure the From-Scratch Implementation
 
@@ -269,17 +269,17 @@ With a text representation in hand, you can now build practical systems. This ph
 
 ### Core Concepts to Master
 
-| Concept | What to Understand |
-|---|---|
-| Text classification | How to assign a label to a document using a pipeline of vectorization + classifier |
-| Naïve Bayes | How Bayes' theorem and feature independence create a probabilistic text classifier |
-| SVM for text | Why high-dimensional sparse text vectors make SVMs particularly effective |
-| Sentiment analysis | The difference between lexicon-based (rule-driven) and ML-based (data-driven) approaches |
-| VADER | How a human-curated sentiment lexicon handles social media text and negation |
-| Auto-correction | How edit distance quantifies how different two strings are and how it powers spelling correction |
-| Named Entity Recognition | How models identify and classify names, places, and organizations in text |
-| POS tagging | How grammatical role labels are assigned to each token |
-| Evaluation metrics | Precision, recall, F1 score, and when accuracy alone is misleading |
+| Concept                  | What to Understand                                                                               |
+| ------------------------ | ------------------------------------------------------------------------------------------------ |
+| Text classification      | How to assign a label to a document using a pipeline of vectorization + classifier               |
+| Naïve Bayes             | How Bayes' theorem and feature independence create a probabilistic text classifier               |
+| SVM for text             | Why high-dimensional sparse text vectors make SVMs particularly effective                        |
+| Sentiment analysis       | The difference between lexicon-based (rule-driven) and ML-based (data-driven) approaches         |
+| VADER                    | How a human-curated sentiment lexicon handles social media text and negation                     |
+| Auto-correction          | How edit distance quantifies how different two strings are and how it powers spelling correction |
+| Named Entity Recognition | How models identify and classify names, places, and organizations in text                        |
+| POS tagging              | How grammatical role labels are assigned to each token                                           |
+| Evaluation metrics       | Precision, recall, F1 score, and when accuracy alone is misleading                               |
 
 ### How to Structure the From-Scratch Implementations
 
@@ -334,17 +334,17 @@ Classical NLP models treat every word as independent. But language is deeply seq
 
 ### Core Concepts to Master
 
-| Concept | What to Understand |
-|---|---|
-| Recurrent Neural Network (RNN) | How a network feeds its own hidden state back as input at each time step |
-| Vanishing gradient problem | Why gradients shrink exponentially over long sequences, making early steps impossible to learn |
-| Exploding gradient problem | The opposite pathology — and why gradient clipping is the standard fix |
-| LSTM forget gate | How the gate learns what information to erase from memory at each step |
-| LSTM input gate | How the gate controls what new information to write into memory |
-| LSTM output gate | How the gate controls what portion of memory to expose as the hidden state |
-| GRU | How two gates (reset and update) replace LSTM's three gates with fewer parameters |
-| Bidirectional RNN | How processing the sequence in both directions gives each token access to future context |
-| Sequence-to-Sequence | How an encoder compresses the input sequence and a decoder generates the output sequence |
+| Concept                        | What to Understand                                                                             |
+| ------------------------------ | ---------------------------------------------------------------------------------------------- |
+| Recurrent Neural Network (RNN) | How a network feeds its own hidden state back as input at each time step                       |
+| Vanishing gradient problem     | Why gradients shrink exponentially over long sequences, making early steps impossible to learn |
+| Exploding gradient problem     | The opposite pathology — and why gradient clipping is the standard fix                        |
+| LSTM forget gate               | How the gate learns what information to erase from memory at each step                         |
+| LSTM input gate                | How the gate controls what new information to write into memory                                |
+| LSTM output gate               | How the gate controls what portion of memory to expose as the hidden state                     |
+| GRU                            | How two gates (reset and update) replace LSTM's three gates with fewer parameters              |
+| Bidirectional RNN              | How processing the sequence in both directions gives each token access to future context       |
+| Sequence-to-Sequence           | How an encoder compresses the input sequence and a decoder generates the output sequence       |
 
 ### How to Structure the From-Scratch Implementation
 
@@ -399,18 +399,18 @@ Attention is the single most important idea in modern NLP. Instead of compressin
 
 ### Core Concepts to Master
 
-| Concept | What to Understand |
-|---|---|
-| Query, Key, Value | The three projections of the input that define what you are looking for, what is available, and what you retrieve |
-| Scaled dot-product attention | How Q×Kᵀ scores are scaled by √d_k, passed through softmax, and used to weight the Values |
-| Why the scaling factor? | How large dot products push softmax into saturation, killing gradients — and why √d_k fixes this |
-| Multi-head attention | How running attention in parallel with different learned projections captures different relationship types |
-| Self-attention | How every token in a sequence attends to every other token in the same sequence |
-| Cross-attention | How the decoder attends to encoder outputs in a full encoder-decoder transformer |
-| Positional encoding | Why positional information must be injected explicitly (transformers have no built-in sequence order) |
-| Feed-forward sublayer | The position-wise MLP that follows attention in each transformer layer |
-| Add & Norm (Residual connections) | How skip connections prevent gradient vanishing in deep transformers |
-| Causal masking | How the decoder prevents any position from attending to future positions during training |
+| Concept                           | What to Understand                                                                                                |
+| --------------------------------- | ----------------------------------------------------------------------------------------------------------------- |
+| Query, Key, Value                 | The three projections of the input that define what you are looking for, what is available, and what you retrieve |
+| Scaled dot-product attention      | How Q×Kᵀ scores are scaled by √d_k, passed through softmax, and used to weight the Values                      |
+| Why the scaling factor?           | How large dot products push softmax into saturation, killing gradients — and why √d_k fixes this                |
+| Multi-head attention              | How running attention in parallel with different learned projections captures different relationship types        |
+| Self-attention                    | How every token in a sequence attends to every other token in the same sequence                                   |
+| Cross-attention                   | How the decoder attends to encoder outputs in a full encoder-decoder transformer                                  |
+| Positional encoding               | Why positional information must be injected explicitly (transformers have no built-in sequence order)             |
+| Feed-forward sublayer             | The position-wise MLP that follows attention in each transformer layer                                            |
+| Add & Norm (Residual connections) | How skip connections prevent gradient vanishing in deep transformers                                              |
+| Causal masking                    | How the decoder prevents any position from attending to future positions during training                          |
 
 ### How to Structure the From-Scratch Implementation
 
@@ -464,18 +464,18 @@ BERT and GPT are the two paradigms of modern NLP: encoder-only for understanding
 
 ### Core Concepts to Master
 
-| Concept | What to Understand |
-|---|---|
-| Transfer learning in NLP | How pre-training on large unlabelled corpora creates representations that transfer to downstream tasks |
-| Masked Language Modeling (MLM) | How BERT is trained to predict randomly masked tokens using bidirectional context |
-| Next Sentence Prediction (NSP) | How BERT is additionally trained to classify whether two sentences follow each other |
-| Bidirectional vs causal attention | Why BERT can see the full sequence but GPT can only see past tokens |
-| Causal Language Modeling (CLM) | How GPT is trained to predict the next token given all previous tokens |
-| WordPiece tokenization | The subword algorithm used by BERT; how the `[CLS]`, `[SEP]`, and `[PAD]` special tokens work |
-| Fine-tuning | How a pre-trained model is adapted to a specific task by adding a small task head and training end-to-end |
-| Zero-shot inference | Using a pre-trained model for a task it was never explicitly trained on, via prompt design |
-| Few-shot inference | Providing a small number of demonstrations in the prompt as implicit task specification |
-| DistilBERT / RoBERTa / ALBERT | Variants that improve on the original BERT through distillation, robustness, or parameter sharing |
+| Concept                           | What to Understand                                                                                        |
+| --------------------------------- | --------------------------------------------------------------------------------------------------------- |
+| Transfer learning in NLP          | How pre-training on large unlabelled corpora creates representations that transfer to downstream tasks    |
+| Masked Language Modeling (MLM)    | How BERT is trained to predict randomly masked tokens using bidirectional context                         |
+| Next Sentence Prediction (NSP)    | How BERT is additionally trained to classify whether two sentences follow each other                      |
+| Bidirectional vs causal attention | Why BERT can see the full sequence but GPT can only see past tokens                                       |
+| Causal Language Modeling (CLM)    | How GPT is trained to predict the next token given all previous tokens                                    |
+| WordPiece tokenization            | The subword algorithm used by BERT; how the `[CLS]`, `[SEP]`, and `[PAD]` special tokens work       |
+| Fine-tuning                       | How a pre-trained model is adapted to a specific task by adding a small task head and training end-to-end |
+| Zero-shot inference               | Using a pre-trained model for a task it was never explicitly trained on, via prompt design                |
+| Few-shot inference                | Providing a small number of demonstrations in the prompt as implicit task specification                   |
+| DistilBERT / RoBERTa / ALBERT     | Variants that improve on the original BERT through distillation, robustness, or parameter sharing         |
 
 ### How to Structure the Conceptual Understanding
 
@@ -539,19 +539,19 @@ The final phase brings everything together into production-ready NLP systems. Re
 
 ### Core Concepts to Master
 
-| Concept | What to Understand |
-|---|---|
-| Retrieval-Augmented Generation (RAG) | How a retrieval step fetches relevant documents at query time and includes them in the LLM prompt |
-| Vector databases | How embeddings are stored and searched efficiently using approximate nearest-neighbour indices |
-| Semantic search vs keyword search | How embedding-based similarity differs from TF-IDF; when each approach wins |
-| FAISS | How Facebook's Approximate Nearest Neighbour library enables fast similarity search at scale |
-| Sentence transformers | How models like `all-MiniLM-L6-v2` map whole sentences to single dense vectors |
-| Prompt engineering | The systematic craft of writing input text that reliably steers model behaviour |
-| Chain-of-Thought (CoT) | How including step-by-step reasoning in a prompt improves accuracy on multi-step tasks |
-| Role prompting | How framing the model as an expert persona changes output style and accuracy |
-| LoRA (Low-Rank Adaptation) | How large weight matrices are approximated by the product of two smaller matrices, dramatically reducing trainable parameters |
-| PEFT | The broader family of parameter-efficient fine-tuning methods |
-| BLEU, ROUGE, BERTScore | What each metric measures, what it misses, and when to use each |
+| Concept                              | What to Understand                                                                                                            |
+| ------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------- |
+| Retrieval-Augmented Generation (RAG) | How a retrieval step fetches relevant documents at query time and includes them in the LLM prompt                             |
+| Vector databases                     | How embeddings are stored and searched efficiently using approximate nearest-neighbour indices                                |
+| Semantic search vs keyword search    | How embedding-based similarity differs from TF-IDF; when each approach wins                                                   |
+| FAISS                                | How Facebook's Approximate Nearest Neighbour library enables fast similarity search at scale                                  |
+| Sentence transformers                | How models like `all-MiniLM-L6-v2` map whole sentences to single dense vectors                                              |
+| Prompt engineering                   | The systematic craft of writing input text that reliably steers model behaviour                                               |
+| Chain-of-Thought (CoT)               | How including step-by-step reasoning in a prompt improves accuracy on multi-step tasks                                        |
+| Role prompting                       | How framing the model as an expert persona changes output style and accuracy                                                  |
+| LoRA (Low-Rank Adaptation)           | How large weight matrices are approximated by the product of two smaller matrices, dramatically reducing trainable parameters |
+| PEFT                                 | The broader family of parameter-efficient fine-tuning methods                                                                 |
+| BLEU, ROUGE, BERTScore               | What each metric measures, what it misses, and when to use each                                                               |
 
 ### How to Structure the RAG Pipeline
 
@@ -576,6 +576,7 @@ Prompt engineering is empirical. Design a structured ablation study:
 Define a fixed evaluation set of 50 questions with known correct answers. For each question, test at least 4 prompt variants: zero-shot (question only), few-shot (2–3 examples before the question), chain-of-thought (add "let's think step by step"), and role-prompted (add "you are an expert in X"). Measure accuracy for each variant. Build a table showing how accuracy changes across variants and across question types.
 
 Key principles to test empirically:
+
 - Does adding more few-shot examples always help, or is there a point of diminishing returns?
 - Does chain-of-thought help on factual recall questions, or only on reasoning questions?
 - Does the order of few-shot examples matter?
@@ -651,12 +652,12 @@ Every post should follow this five-part structure:
 
 ### Posting Cadence by Phase
 
-| Phase Range | Total Posts | Recommended Frequency |
-|---|---|---|
-| Phases 1–3 (Weeks 1–4) | 7–8 posts | Every 3–4 days |
-| Phases 4–5 (Weeks 5–10) | 7–8 posts | Every 3–4 days |
-| Phases 6–7 (Weeks 11–17) | 8–9 posts | Every 3 days |
-| Phase 8 (Weeks 18–22) | 5–6 posts | Every 3–5 days |
+| Phase Range                | Total Posts | Recommended Frequency |
+| -------------------------- | ----------- | --------------------- |
+| Phases 1–3 (Weeks 1–4)   | 7–8 posts  | Every 3–4 days       |
+| Phases 4–5 (Weeks 5–10)  | 7–8 posts  | Every 3–4 days       |
+| Phases 6–7 (Weeks 11–17) | 8–9 posts  | Every 3 days          |
+| Phase 8 (Weeks 18–22)     | 5–6 posts  | Every 3–5 days       |
 
 ### Series Anchoring Posts
 
@@ -727,12 +728,12 @@ The root `README.md` is your portfolio front page. It should contain:
 
 ### Essential Books
 
-| Book | Authors | Best Used For |
-|---|---|---|
-| Speech and Language Processing (3rd ed.) | Jurafsky & Martin | Comprehensive theoretical foundation — a reference, not a linear read |
-| Natural Language Processing with Python | Bird, Klein & Loper | Hands-on NLTK work in Phases 1–4 |
-| Deep Learning for NLP | Palash Goyal et al. | Bridge from classical to deep methods |
-| Transformers for Natural Language Processing | Denis Rothman | Practical Hugging Face implementation in Phases 6–8 |
+| Book                                         | Authors             | Best Used For                                                          |
+| -------------------------------------------- | ------------------- | ---------------------------------------------------------------------- |
+| Speech and Language Processing (3rd ed.)     | Jurafsky & Martin   | Comprehensive theoretical foundation — a reference, not a linear read |
+| Natural Language Processing with Python      | Bird, Klein & Loper | Hands-on NLTK work in Phases 1–4                                      |
+| Deep Learning for NLP                        | Palash Goyal et al. | Bridge from classical to deep methods                                  |
+| Transformers for Natural Language Processing | Denis Rothman       | Practical Hugging Face implementation in Phases 6–8                   |
 
 ### Papers to Read in Order
 
@@ -748,25 +749,25 @@ Read these papers at the phase they correspond to — not all at once at the sta
 
 ### Online Courses
 
-| Course | Platform | Best For |
-|---|---|---|
-| Stanford CS224N | YouTube (free) | Deep theoretical grounding in NLP |
-| Hugging Face NLP Course | huggingface.co (free) | Practical Phases 6–8 implementation |
-| fast.ai Practical Deep Learning | fast.ai (free) | Intuitive deep learning approach |
-| deeplearning.ai NLP Specialization | Coursera (paid) | Structured coverage of all phases |
+| Course                             | Platform              | Best For                             |
+| ---------------------------------- | --------------------- | ------------------------------------ |
+| Stanford CS224N                    | YouTube (free)        | Deep theoretical grounding in NLP    |
+| Hugging Face NLP Course            | huggingface.co (free) | Practical Phases 6–8 implementation |
+| fast.ai Practical Deep Learning    | fast.ai (free)        | Intuitive deep learning approach     |
+| deeplearning.ai NLP Specialization | Coursera (paid)       | Structured coverage of all phases    |
 
 ### Datasets by Phase
 
-| Dataset | Task | How to Load |
-|---|---|---|
-| SMS Spam Collection | Spam detection | Kaggle / UCI repository |
-| IMDB Reviews | Sentiment analysis | `load_dataset("imdb")` |
-| AG News | Topic classification | `load_dataset("ag_news")` |
-| 20 Newsgroups | Multi-class classification | `sklearn.datasets.fetch_20newsgroups` |
-| CoNLL-2003 | Named entity recognition | `load_dataset("conll2003")` |
-| Multi30k | English-French translation | `load_dataset("bentrevett/multi30k")` |
-| SQuAD v1.1 | Question answering | `load_dataset("rajpurkar/squad")` |
-| Alpaca | Instruction fine-tuning | `load_dataset("tatsu-lab/alpaca")` |
+| Dataset             | Task                       | How to Load                             |
+| ------------------- | -------------------------- | --------------------------------------- |
+| SMS Spam Collection | Spam detection             | Kaggle / UCI repository                 |
+| IMDB Reviews        | Sentiment analysis         | `load_dataset("imdb")`                |
+| AG News             | Topic classification       | `load_dataset("ag_news")`             |
+| 20 Newsgroups       | Multi-class classification | `sklearn.datasets.fetch_20newsgroups` |
+| CoNLL-2003          | Named entity recognition   | `load_dataset("conll2003")`           |
+| Multi30k            | English-French translation | `load_dataset("bentrevett/multi30k")` |
+| SQuAD v1.1          | Question answering         | `load_dataset("rajpurkar/squad")`     |
+| Alpaca              | Instruction fine-tuning    | `load_dataset("tatsu-lab/alpaca")`    |
 
 ### Useful Blogs and Websites
 
