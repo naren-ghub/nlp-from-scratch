@@ -1,0 +1,6 @@
+nltk
+spacy
+regex
+pandas
+numpy
+jupyterlab
