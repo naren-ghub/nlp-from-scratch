@@ -35,10 +35,8 @@ Raw text is highly unstructured and noisy. Computers cannot process sentences as
    ```bash
    jupyter lab
    ```
-3. Run the notebooks in order:
-   - `01_scratch_implementation.ipynb`: From-scratch algorithms.
-   - `02_library_implementation.ipynb`: Standard library implementations (`nltk`, `spaCy`, `tokenizers`).
-   - `03_exercises.ipynb`: Preprocessing datasets and comparison pipelines.
+3. Run the notebook:
+   - `01_tokenization_and_preprocessing.ipynb`: The comprehensive notebook containing scratch implementations, library comparisons, and hands-on exercises.
 
 ---
 
