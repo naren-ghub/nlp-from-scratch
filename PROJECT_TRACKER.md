@@ -9,9 +9,9 @@ This file serves as the official progress log for the NLP learning journey. It t
 | Phase | Title | Status | Start Date | End Date | LinkedIn Posts |
 |:---:|:---|:---:|:---:|:---:|:---|
 | **01** | [Tokenization & Preprocessing](./phase-01-tokenization/) | 🟢 Completed | 2026-06-23 | 2026-07-03 | *None* |
-| **02** | [Bag of Words & TF-IDF](./phase-02-bow-tfidf/) | 🟢 Completed | 2026-07-03 | 2026-07-03 | *None* |
-| **03** | [Word Embeddings: CBOW & Skip-gram](./phase-03-word-embeddings/) | 🟢 Completed | 2026-07-03 | 2026-07-03 | *None* |
-| **04** | [Classical NLP Tasks](./phase-04-classical-nlp/) | 🟡 In Progress | 2026-07-03 | *TBD* | *None* |
+| **02** | [Bag of Words & TF-IDF](./phase-02-bow-tfidf/) | 🟡 In Progress | 2026-07-03 | *TBD* | *None* |
+| **03** | Word Embeddings: CBOW & Skip-gram | ⚪ Not Started | *TBD* | *TBD* | *None* |
+| **04** | Classical NLP Tasks | ⚪ Not Started | *TBD* | *TBD* | *None* |
 | **05** | RNNs, LSTMs & Sequence Models | ⚪ Not Started | *TBD* | *TBD* | *None* |
 | **06** | Attention Mechanism & Transformers | ⚪ Not Started | *TBD* | *TBD* | *None* |
 | **07** | BERT, GPT & Pre-trained Models | ⚪ Not Started | *TBD* | *TBD* | *None* |

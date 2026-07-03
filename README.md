@@ -14,8 +14,8 @@ For each phase in this roadmap, I follow a strict execution pattern:
 
 | Phase | Description | Focus Areas | Status | LinkedIn Post |
 | :--- | :--- | :--- | :---: | :---: |
-| **01** | [Tokenization & Preprocessing](./phase-01-tokenization/) | Whitespace vs. Regex, Sentence splitting, Porter Stemmer from scratch, Byte Pair Encoding (BPE), spaCy & NLTK comparison | 🟡 In Progress | *TBD* |
-| **02** | Bag of Words & TF-IDF | Vocabulary builder, Vectorization, TF-IDF calculation, Cosine similarity | ⚪ Not Started | — |
+| **01** | [Tokenization & Preprocessing](./phase-01-tokenization/) | Whitespace vs. Regex, Sentence splitting, Porter Stemmer from scratch, Byte Pair Encoding (BPE), spaCy & NLTK comparison | 🟢 Completed | *TBD* |
+| **02** | [Bag of Words & TF-IDF](./phase-02-bow-tfidf/) | Vocabulary builder, Vectorization, TF-IDF calculation, Cosine similarity | 🟡 In Progress | — |
 | **03** | Word Embeddings: CBOW & Skip-gram | Word2Vec architecture, Softmax vs Negative Sampling, Gensim, FastText | ⚪ Not Started | — |
 | **04** | Classical NLP Tasks | Sentiment Analysis, Text Classification, Part-of-Speech tagging, Named Entity Recognition | ⚪ Not Started | — |
 | **05** | RNNs, LSTMs & Sequence Models | Recurrent units, Backpropagation through time (BPTT), LSTM gating, POS tagging with LSTMs | ⚪ Not Started | — |
