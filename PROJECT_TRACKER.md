@@ -9,7 +9,7 @@ This file serves as the official progress log for the NLP learning journey. It t
 | Phase | Title | Status | Start Date | End Date | LinkedIn Posts |
 |:---:|:---|:---:|:---:|:---:|:---|
 | **01** | [Tokenization & Preprocessing](./phase-01-tokenization/) | 🟢 Completed | 2026-06-23 | 2026-07-03 | *None* |
-| **02** | [Bag of Words & TF-IDF](./phase-02-bow-tfidf/) | 🟡 In Progress | 2026-07-03 | *TBD* | *None* |
+| **02** | [Bag of Words & TF-IDF](./phase-02-bow-tfidf/) | 🟢 Completed | 2026-07-03 | 2026-07-03 | *None* |
 | **03** | Word Embeddings: CBOW & Skip-gram | ⚪ Not Started | *TBD* | *TBD* | *None* |
 | **04** | Classical NLP Tasks | ⚪ Not Started | *TBD* | *TBD* | *None* |
 | **05** | RNNs, LSTMs & Sequence Models | ⚪ Not Started | *TBD* | *TBD* | *None* |
@@ -25,6 +25,7 @@ This file serves as the official progress log for the NLP learning journey. It t
 
 - **[2026-06-23]**: Journey initiated! Local Git repository set up, `.venv` created, Phase 1 directories and tracking files initialized.
 - **[2026-07-03]**: Phase 1 completed! Created comprehensive tutorial notebook covering Data Cleaning, Word Tokenization, Sentence Tokenization, Stopword Removal, Stemming, Lemmatization, and Full Pipeline Comparisons. Notebook executed successfully end-to-end.
+- **[2026-07-03]**: Phase 2 completed! Implemented One-Hot Encoding, Bag of Words representation, N-grams, TF-IDF calculation from scratch and library equivalent comparison, along with document pairwise Cosine Similarity matrix and Seaborn heatmap.
 
 ---
 
@@ -42,3 +43,15 @@ This file serves as the official progress log for the NLP learning journey. It t
   - Built a comprehensive tutorial notebook containing all 7 core preprocessing tasks.
   - Pre-cleaned messy real-world sentences, compared whitespace vs NLTK vs spaCy tokenization, evaluated Punkt sentence segmenter, demonstrated stopword removal limitations on negation, compared Porter vs Snowball stemmers, and POS-dependent spaCy lemmatization.
   - Executed the notebook end-to-end to embed all outputs correctly.
+
+### Week 2 (2026-07-03)
+*Focus: Phase 2 — Text Representation & Vectorization.*
+- **Planned Tasks**:
+  - Implement One-Hot encoding and vocabulary building.
+  - Explore Bag of Words (BoW) frequency count representation and sequence blind spots.
+  - Implement N-gram local context mapping to preserve negations.
+  - Calculate TF-IDF weights from scratch and compare with Scikit-Learn TfidfVectorizer.
+  - Calculate pairwise Cosine Similarity matrix and plot dynamic heatmap.
+- **Progress Notes**:
+  - Created a single structured notebook `01_bow_and_tfidf.ipynb` in the `phase-02-bow-tfidf` directory containing all Phase 2 tasks.
+  - Successfully executed and saved cell outputs. Created descriptive README documentation for the phase.

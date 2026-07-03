@@ -12,13 +12,12 @@ Raw text is highly unstructured and noisy. Computers cannot process sentences as
 
 ## 🔑 Key Concepts to Master
 
-1. **Word Tokenization**: Splitting text into individual word tokens. We study why simple whitespace-splitting fails on contractions, hyphens, and attached punctuation.
-2. **Sentence Tokenization**: Detecting sentence boundaries, handling abbreviations (e.g., `Dr.`, `e.g.`), quotes, and ellipsis.
-3. **Subword Tokenization (Byte Pair Encoding - BPE)**: Understanding how vocabulary is constructed by merging frequent character sequences to handle out-of-vocabulary (OOV) words.
+1. **Regex Text Cleaning**: Crafting regular expressions to clean URLs, HTML tags, handles, hashtags, and non-alphanumeric noise.
+2. **Word Tokenization**: Splitting text into individual word tokens. We study why simple whitespace-splitting fails on contractions, hyphens, and attached punctuation.
+3. **Sentence Tokenization**: Detecting sentence boundaries, handling abbreviations (e.g., `Dr.`, `e.g.`), quotes, and ellipsis.
 4. **Stopword Removal**: Filtering out highly frequent but low-information words, and recognizing when they should be preserved (e.g., in sentiment analysis).
 5. **Stemming**: Coarse suffix-stripping rules (like the Porter Stemmer) to reduce words to approximate roots.
-6. **Lemmatization**: Morphological analysis to reduce a word to its canonical dictionary base form (lemma) using lexical databases.
-7. **Regex Text Cleaning**: Crafting regular expressions to clean URLs, HTML tags, handles, hashtags, and non-alphanumeric noise.
+6. **Lemmatization**: Morphological analysis to reduce a word to its canonical dictionary base form (lemma) using lexical databases and POS-dependent contexts.
 
 ---
 
@@ -36,18 +35,19 @@ Raw text is highly unstructured and noisy. Computers cannot process sentences as
    jupyter lab
    ```
 3. Run the notebook:
-   - `01_tokenization_and_preprocessing.ipynb`: The comprehensive notebook containing scratch implementations, library comparisons, and hands-on exercises.
+   - `01_tokenization_and_preprocessing.ipynb`: The comprehensive notebook containing scratch implementations, library comparisons, and the full preprocessing pipeline.
 
 ---
 
-## 🧪 Exercise Findings
+## 🧪 Findings and Observations
 
-*To be updated upon completing the exercises.*
+* **Cleaning tradeoff**: Normalizing lowercase and stripping punctuation is lossy. It simplifies classification vocabulary but discards sentiment emphasis (`!!!`) and entity capitalization (`US` vs `us`).
+* **Negation failure**: Default stopword removal strips negation words like `not`, which flips the semantic meaning of negative sentences (e.g. "not good" -> "good"). Domain-specific lists are essential.
+* **Stem vs Lemma**: Stemming (Porter, Snowball) uses deterministic suffix-stripping rules and generates non-words (e.g. "studies" -> "studi"). Lemmatization uses morphological lookup and returns valid dictionary words but is computationally slower.
 
 ---
 
 ## 📚 Further Reading & Resources
 
 - [Speech and Language Processing (3rd ed. draft) by Dan Jurafsky and James H. Martin - Chapter 2: Regular Expressions, Text Normalization, Edit Distance](https://web.stanford.edu/~jurafsky/slp3/2.pdf)
-- [BPE original paper: Neural Machine Translation of Rare Words with Subword Units (Sennrich et al., 2015)](https://arxiv.org/abs/1508.07909)
 - [Porter Stemmer official documentation & algorithm details](https://tartarus.org/martin/PorterStemmer/)
