@@ -21,6 +21,3 @@ desktop.ini
 !**/data/.gitkeep
 **/outputs/*
 !**/outputs/.gitkeep
-
-# Exclude Phase 2 from git tracking (per user request)
-phase-02-bow-tfidf/

@@ -10,8 +10,8 @@ This file serves as the official progress log for the NLP learning journey. It t
 |:---:|:---|:---:|:---:|:---:|:---|
 | **01** | [Tokenization & Preprocessing](./phase-01-tokenization/) | 🟢 Completed | 2026-06-23 | 2026-07-03 | *None* |
 | **02** | [Bag of Words & TF-IDF](./phase-02-bow-tfidf/) | 🟢 Completed | 2026-07-03 | 2026-07-03 | *None* |
-| **03** | Word Embeddings: CBOW & Skip-gram | ⚪ Not Started | *TBD* | *TBD* | *None* |
-| **04** | Classical NLP Tasks | ⚪ Not Started | *TBD* | *TBD* | *None* |
+| **03** | [Word Embeddings: CBOW & Skip-gram](./phase-03-word-embeddings/) | 🟢 Completed | 2026-07-03 | 2026-07-03 | *None* |
+| **04** | [Classical NLP Tasks](./phase-04-classical-nlp/) | 🟡 In Progress | 2026-07-03 | *TBD* | *None* |
 | **05** | RNNs, LSTMs & Sequence Models | ⚪ Not Started | *TBD* | *TBD* | *None* |
 | **06** | Attention Mechanism & Transformers | ⚪ Not Started | *TBD* | *TBD* | *None* |
 | **07** | BERT, GPT & Pre-trained Models | ⚪ Not Started | *TBD* | *TBD* | *None* |
@@ -26,6 +26,7 @@ This file serves as the official progress log for the NLP learning journey. It t
 - **[2026-06-23]**: Journey initiated! Local Git repository set up, `.venv` created, Phase 1 directories and tracking files initialized.
 - **[2026-07-03]**: Phase 1 completed! Created comprehensive tutorial notebook covering Data Cleaning, Word Tokenization, Sentence Tokenization, Stopword Removal, Stemming, Lemmatization, and Full Pipeline Comparisons. Notebook executed successfully end-to-end.
 - **[2026-07-03]**: Phase 2 completed! Implemented One-Hot Encoding, Bag of Words representation, N-grams, TF-IDF calculation from scratch and library equivalent comparison, along with document pairwise Cosine Similarity matrix and Seaborn heatmap.
+- **[2026-07-03]**: Phase 3 completed! Implemented word-level synonym similarity gap demo, target-context sliding windows, trained and evaluated CBOW vs Skip-gram architectures from scratch, computed gender/semantic analogies, projected coordinates using PCA/t-SNE, and loaded pre-trained Wikipedia GloVe vectors for analogy testing.
 
 ---
 
@@ -55,3 +56,16 @@ This file serves as the official progress log for the NLP learning journey. It t
 - **Progress Notes**:
   - Created a single structured notebook `01_bow_and_tfidf.ipynb` in the `phase-02-bow-tfidf` directory containing all Phase 2 tasks.
   - Successfully executed and saved cell outputs. Created descriptive README documentation for the phase.
+
+### Week 3 (2026-07-03)
+*Focus: Phase 3 — Word Embeddings (CBOW & Skip-gram).*
+- **Planned Tasks**:
+  - Implement synonym semantic mismatch test in TF-IDF.
+  - Generate target-context sliding window training pairs.
+  - Train CBOW and Skip-gram configurations using Word2Vec and compare vectors.
+  - Perform analogy vector arithmetic and print syntactic/semantic queries.
+  - Reduce dimension sizes using PCA/t-SNE and plot word clustering.
+  - Load pre-trained Wiki GloVe embeddings and evaluate analogy accuracy.
+- **Progress Notes**:
+  - Created `01_word_embeddings.ipynb` in `phase-03-word-embeddings` directory.
+  - Executed the notebook end-to-end to save all plots, output matrices, and simulations. Created detailed README documentation.
