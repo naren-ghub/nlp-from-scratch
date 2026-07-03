@@ -1,67 +1,44 @@
 # NLP Learning Roadmap: Foundation to Advanced
-
-### A Hands-On, LinkedIn-Documented Journey Through Natural Language Processing
+### A Beginner-Friendly, Step-by-Step Jupyter Notebook Journey
 
 ---
 
-> This roadmap takes you from the very first principles of text processing all the way to fine-tuning large language models. Each phase is designed to be hands-on: you implement concepts from scratch before using libraries, apply them to real data, and document your learning publicly on LinkedIn. The journey spans approximately **20–22 weeks** at a sustainable pace of 8–12 hours per week.
+> **How to read this document**
+> Every phase is broken into tasks. Every task is broken into sequential steps. Each step tells you exactly **what to do**, **what to display** in your notebook output cell, and **what to infer** from what you see. Work through each step in order — never skip a display step, because reading outputs and building intuition from them is the entire point.
 
 ---
 
 ## Table of Contents
 
-1. [How to Use This Roadmap](#how-to-use-this-roadmap)
-2. [Toolkit &amp; Environment Setup](#toolkit--environment-setup)
-3. [Phase 1 — Tokenization &amp; Text Preprocessing](#phase-1--tokenization--text-preprocessing)
-4. [Phase 2 — Bag of Words &amp; TF-IDF](#phase-2--bag-of-words--tf-idf)
-5. [Phase 3 — Word Embeddings: CBOW &amp; Skip-gram](#phase-3--word-embeddings-cbow--skip-gram)
-6. [Phase 4 — Classical NLP Tasks](#phase-4--classical-nlp-tasks)
-7. [Phase 5 — RNNs, LSTMs &amp; Sequence Models](#phase-5--rnns-lstms--sequence-models)
-8. [Phase 6 — Attention Mechanism &amp; Transformers](#phase-6--attention-mechanism--transformers)
-9. [Phase 7 — BERT, GPT &amp; Pre-trained Models](#phase-7--bert-gpt--pre-trained-models)
-10. [Phase 8 — RAG, Prompting &amp; Fine-tuning](#phase-8--rag-prompting--fine-tuning)
-11. [LinkedIn Content Strategy](#linkedin-content-strategy)
-12. [Portfolio &amp; GitHub Structure](#portfolio--github-structure)
-13. [Resources &amp; References](#resources--references)
+1. [Environment Setup](#environment-setup)
+2. [Phase 1 — Tokenization & Text Preprocessing](#phase-1--tokenization--text-preprocessing)
+3. [Phase 2 — Bag of Words & TF-IDF](#phase-2--bag-of-words--tf-idf)
+4. [Phase 3 — Word Embeddings: CBOW & Skip-gram](#phase-3--word-embeddings-cbow--skip-gram)
+5. [Phase 4 — Classical NLP Tasks](#phase-4--classical-nlp-tasks)
+6. [Phase 5 — RNNs, LSTMs & Sequence Models](#phase-5--rnns-lstms--sequence-models)
+7. [Phase 6 — Attention Mechanism & Transformers](#phase-6--attention-mechanism--transformers)
+8. [Phase 7 — BERT, GPT & Pre-trained Models](#phase-7--bert-gpt--pre-trained-models)
+9. [Phase 8 — RAG, Prompting & Fine-tuning](#phase-8--rag-prompting--fine-tuning)
+10. [LinkedIn Content Strategy](#linkedin-content-strategy)
+11. [Portfolio & GitHub Structure](#portfolio--github-structure)
+12. [Resources & References](#resources--references)
 
 ---
 
-## How to Use This Roadmap
+## Environment Setup
 
-Follow this execution pattern for **every phase**:
+Install libraries phase by phase as you reach them. Do not install everything upfront.
 
-1. **Implement from scratch** — write the algorithm by hand in a Jupyter notebook before touching any library. This is where real understanding is built.
-2. **Reproduce with libraries** — replicate your scratch implementation using the standard ecosystem and compare outputs.
-3. **Apply to real data** — pick a dataset you personally find interesting (news, movie reviews, Tamil text, tweets). Familiar data accelerates intuition.
-4. **Document publicly** — write a LinkedIn post capturing what surprised you, what broke, and what you learned.
-5. **Commit to GitHub** — push the notebook to your portfolio repo under the relevant phase folder before moving on.
+| Phase | Libraries to Install |
+|---|---|
+| Phases 1–2 | `nltk`, `spacy`, `scikit-learn`, `pandas`, `numpy`, `matplotlib`, `seaborn` |
+| Phase 3 | `gensim`, `plotly` |
+| Phase 4 | `vaderSentiment`, `textblob`, `pyspellchecker` |
+| Phases 5–6 | `torch` |
+| Phase 7 | `transformers`, `datasets`, `evaluate` |
+| Phase 8 | `sentence-transformers`, `faiss-cpu`, `langchain`, `peft`, `trl` |
 
-> **Rule**: Do not skip phases to get to BERT faster. You cannot feel *why* attention matters until you have hit the limits of LSTM, and you cannot feel LSTM's value until you have lived through BoW's blindness to word order.
-
----
-
-## Toolkit & Environment Setup
-
-### Core Libraries by Phase
-
-| Phase                        | Libraries to Install                                                       |
-| ---------------------------- | -------------------------------------------------------------------------- |
-| Phases 1–2 (Text basics)    | `nltk`, `spacy`, `regex`, `scikit-learn`, `pandas`, `numpy`    |
-| Phase 3 (Embeddings)         | `gensim`, `fasttext`, `matplotlib`, `plotly`                       |
-| Phases 4 (Classical NLP)     | `textblob`, `vaderSentiment`, `pyspellchecker`                       |
-| Phases 5–6 (Deep learning)  | `torch`, `tensorflow`, `keras`                                       |
-| Phase 7 (Pre-trained models) | `transformers`, `datasets`, `tokenizers`, `evaluate`               |
-| Phase 8 (Advanced)           | `langchain`, `peft`, `trl`, `sentence-transformers`, `faiss-cpu` |
-
-### What to Set Up Before Starting
-
-Create a dedicated Python virtual environment to isolate your NLP project from your system Python. Name it clearly (e.g., `nlp-env`) and activate it every time you work on the roadmap. Install libraries phase by phase as you reach them rather than all at once — this forces you to understand what each library actually does.
-
-Download the NLTK data bundles (tokenizers, corpora, stopwords, POS taggers) as a one-time setup step. Download the spaCy English language model separately since it is a standalone download. Keep a `requirements.txt` file updated at the end of each phase so your environment is reproducible.
-
-### Jupyter Setup
-
-Use JupyterLab rather than classic Jupyter for a better experience. Organize each phase into its own notebook folder. Use markdown cells generously inside notebooks — the notebook itself should read like a mini-tutorial, not just raw code.
+After installing `nltk`, run a one-time download of all NLTK data packages. After installing `spacy`, download the English language model separately. Confirm both are working before starting Phase 1.
 
 ---
 
@@ -69,62 +46,218 @@ Use JupyterLab rather than classic Jupyter for a better experience. Organize eac
 
 **Duration:** Weeks 1–2 | **LinkedIn posts:** 2–3 | **Difficulty:** ⭐☆☆☆☆
 
-### What This Phase Is About
+### Overview
 
-Tokenization is the very first step in every NLP pipeline. Before any model can process text, the raw string must be broken into discrete units called tokens. This phase also covers the cleaning operations that sit alongside tokenization in production systems. Everything you build in later phases depends on getting this right.
+This is the entry point to every NLP pipeline. Raw text is messy — it contains HTML tags, URLs, punctuation, inconsistent casing, extra spaces, and noise. Before any model can process text, you must clean it and split it into meaningful units called tokens. Every downstream phase depends on this phase being done correctly.
 
-### Core Concepts to Master
+### Sequential Task Flow
 
-| Concept                    | What to Understand                                                            |
-| -------------------------- | ----------------------------------------------------------------------------- |
-| Word tokenization          | How to split text into individual words; why whitespace alone is not enough   |
-| Sentence tokenization      | How to detect sentence boundaries correctly (abbreviations, ellipsis, quotes) |
-| Subword tokenization (BPE) | How rare and unknown words are handled by splitting into smaller sub-units    |
-| Stopword removal           | What stopwords are, when to remove them, and when not to                      |
-| Stemming                   | How suffix-chopping reduces words to approximate roots (fast but lossy)       |
-| Lemmatization              | How morphological analysis reduces words to their dictionary base form        |
-| Regex text cleaning        | How to use patterns to strip HTML, URLs, mentions, and special characters     |
+```
+Raw Text → Data Cleaning → Word Tokenization → Sentence Tokenization
+        → Stopword Removal → Stemming → Lemmatization → Comparison
+```
 
-### How to Structure the From-Scratch Implementation
+---
 
-Before opening any library, build a basic tokenizer yourself using nothing but Python string operations and the `re` (regex) module. The goal is not to build something production-ready — it is to understand exactly where the hard cases live.
+### Task 1 — Data Cleaning
 
-Start with the simplest possible version: split on whitespace. Then deliberately break it with tricky examples — contractions (`don't`, `I'm`), hyphenated words (`state-of-the-art`), punctuation attached to words (`NLP.`), and sentences without spaces after periods (`Hello.World`). Each failure teaches you something the library handles silently.
+**Objective:** Transform raw, noisy text into a clean, normalized string ready for tokenization.
 
-Once you have identified all the edge cases, implement a more robust version using `re.findall` with a pattern that captures word characters and apostrophes separately from punctuation. Then implement a simple sentence tokenizer using punctuation-based splitting and observe where it fails (e.g., `Dr. Smith went to Washington.`).
+---
 
-For stemming, implement the first few rules of the Porter Stemmer by hand — strip `-ing`, `-ed`, `-ly` suffixes with basic conditions. Compare your output to the full Porter Stemmer and note where your simplification goes wrong.
+#### Step 1 — Load raw text
+- **What to do:** Collect 5–10 sentences of messy real-world text. Include at least one sentence with a URL, one with HTML tags, one with numbers, one with special characters, and one in ALL CAPS.
+- **Display in notebook:** Print the raw text exactly as loaded — every piece of noise visible.
+- **Infer from output:** Identify every type of noise present. Write a comment in your notebook listing each one. This list becomes your cleaning checklist.
 
-### How to Structure the Library Implementation
+---
 
-After your scratch version, replicate everything using `nltk` and `spacy`. Work through these steps in order:
+#### Step 2 — Lowercase the text
+- **What to do:** Convert the entire text string to lowercase.
+- **Display in notebook:** Print the original text and the lowercased version side by side.
+- **Infer from output:** Observe that `NLP`, `nlp`, and `Nlp` now all look the same. Note that this is not always desirable — `US` (country) and `us` (pronoun) are now identical. Record this as a known limitation.
 
-Tokenize the same test sentences with both `nltk.word_tokenize` and `spacy` and compare their outputs. Pay attention to how they handle the hard cases you found earlier. Then move to stopword removal using `nltk.corpus.stopwords` — note that the default English stopword list is opinionated and you may want to customise it for your domain.
+---
 
-Run both the Porter Stemmer and the Snowball Stemmer on the same set of words. Then use spaCy's lemmatizer on the same words. Build a comparison table with three columns: original word, stem, lemma. The differences will reveal each method's philosophy.
+#### Step 3 — Remove HTML tags
+- **What to do:** Use a regex pattern to strip anything that looks like an HTML tag (text enclosed in `< >`).
+- **Display in notebook:** Print a before/after pair for a sentence that contained an HTML tag.
+- **Infer from output:** Confirm that the tag structure is gone but the text content between tags is preserved.
 
-Finally, explore `tokenizers` from Hugging Face to see byte-pair encoding in action on a sample corpus. You will revisit this more deeply in Phase 7, but seeing subword tokenization at this stage creates a useful reference point.
+---
 
-### Hands-On Exercises
+#### Step 4 — Remove URLs
+- **What to do:** Use a regex pattern to remove `http://`, `https://`, and `www.` URLs entirely.
+- **Display in notebook:** Print before/after for a URL-containing sentence.
+- **Infer from output:** Observe that URLs add no semantic meaning to most NLP tasks and removing them reduces vocabulary noise.
 
-1. **Multi-language tokenization** — Tokenize text in English and one Indian language (e.g., Tamil or Hindi). Note precisely where whitespace-based splitting fails for non-Latin scripts. Explore `indicnlp` for Indian languages.
-2. **Stemming vs Lemmatization comparison** — Run both on 50 diverse sentences and build a comparison table. Count how many stems produce non-dictionary words (over-stemming) vs how many lemmas miss the expected form (under-lemmatization).
-3. **Noisy social media text** — Take 100 tweets from a public dataset. Write a preprocessing pipeline that removes URLs, `@mentions`, `#` symbols, and emojis while preserving the actual words. Document every decision you made.
-4. **BPE from scratch** — Implement the Byte Pair Encoding merge algorithm iteratively using character-level frequency counts. Start with individual characters as your vocabulary and run 20 merge operations. Observe which character pairs get merged first.
-5. **Pipeline comparison** — Run the same 20 sentences through spaCy, NLTK, and your own tokenizer. Build a table of disagreements. Investigate each disagreement and explain who is correct and why.
+---
 
-### LinkedIn Post Angles
+#### Step 5 — Remove special characters and punctuation
+- **What to do:** Strip all characters that are not letters, digits, or spaces using a regex substitution.
+- **Display in notebook:** Print the text before and after this step. Also print a sorted list of every unique character that was removed.
+- **Infer from output:** Notice that punctuation like `!` and `?` carried some sentiment signal (exclamation marks in positive text). Record that this step may discard useful signals — a tradeoff to revisit in Phase 4.
 
-- "I tokenized my first sentence today — here's why splitting text on whitespace is not as simple as it sounds." Include a side-by-side table of the same sentence tokenized three different ways.
-- "Stemming chops. Lemmatization understands. I ran both on 100 words and the results surprised me." Show the most interesting disagreements between the two approaches.
-- "I tried tokenizing Tamil text with an English tokenizer. Here's what broke immediately, and the lesson it taught me about language assumptions in NLP."
+---
 
-### Key Takeaways
+#### Step 6 — Remove extra whitespace
+- **What to do:** Collapse multiple consecutive spaces, tabs, and newlines into a single space. Strip leading and trailing whitespace.
+- **Display in notebook:** Print a final cleaned version of all 5–10 sentences.
+- **Infer from output:** The text should now be clean, lowercase, and uniform. Compare it to your original raw text. This cleaned version is what enters the tokenizer.
 
-- Tokenization is language-dependent and domain-dependent. There is no universal tokenizer.
-- Lemmatization requires a POS tag to resolve ambiguity correctly (`lead` the metal vs `lead` the verb).
-- Subword tokenization is what modern models like BERT and GPT use. Every future phase builds on this.
-- Cleaning decisions made here ripple through every downstream model. Garbage in, garbage out.
+---
+
+### Task 2 — Word Tokenization
+
+**Objective:** Split a cleaned sentence into a list of individual word tokens.
+
+---
+
+#### Step 1 — Tokenize by whitespace splitting (scratch approach)
+- **What to do:** Split the cleaned sentence using Python's built-in `.split()` method.
+- **Display in notebook:** Print the resulting list of tokens and its length.
+- **Infer from output:** This works for clean text. Now test it on `"it's a state-of-the-art model"` — observe how contractions and hyphenated words are handled (or mishandled).
+
+---
+
+#### Step 2 — Tokenize with NLTK `word_tokenize`
+- **What to do:** Apply NLTK's `word_tokenize` function to the same sentences.
+- **Display in notebook:** Print the token list side by side with the whitespace-split version from Step 1.
+- **Infer from output:** NLTK correctly splits `it's` into `it` and `'s`, and handles punctuation as separate tokens. Count how many tokens differ between the two approaches.
+
+---
+
+#### Step 3 — Tokenize with spaCy
+- **What to do:** Process the same sentences using spaCy's `nlp()` pipeline and extract tokens.
+- **Display in notebook:** Print the spaCy token list, and for each token also print its `.is_punct` and `.is_space` attributes.
+- **Infer from output:** Compare spaCy's output to NLTK's. Note which tokenizer you prefer for which sentence types. There is no universally correct answer.
+
+---
+
+#### Step 4 — Test on edge cases
+- **What to do:** Run all three tokenizers on these deliberate edge cases: a URL that wasn't removed, an email address, a number like `1,000.00`, and a sentence ending with `...`.
+- **Display in notebook:** Print a table with the input and each tokenizer's output.
+- **Infer from output:** Identify which tokenizer handles each edge case best. This builds intuition for why production pipelines often combine or customize tokenizers.
+
+---
+
+### Task 3 — Sentence Tokenization
+
+**Objective:** Split a paragraph or document into individual sentences.
+
+---
+
+#### Step 1 — Split on period (scratch approach)
+- **What to do:** Split a paragraph on the `.` character.
+- **Display in notebook:** Print the resulting sentence list.
+- **Infer from output:** Notice that abbreviations like `Dr.` and `U.S.A.` break the simple period split incorrectly. List every sentence where the split went wrong.
+
+---
+
+#### Step 2 — Use NLTK `sent_tokenize`
+- **What to do:** Apply NLTK's `sent_tokenize` on the same paragraph.
+- **Display in notebook:** Print the sentence list with index numbers. Print the count of sentences detected.
+- **Infer from output:** NLTK's Punkt tokenizer handles abbreviations much better. Identify any remaining errors — these are the hard cases (dialogue with `"`, ellipsis, etc.).
+
+---
+
+#### Step 3 — Compare sentence counts on a longer document
+- **What to do:** Take a 3–5 paragraph news article. Run both methods and count detected sentences.
+- **Display in notebook:** Print the sentence count from each method and the sentences where they disagree.
+- **Infer from output:** Quantify the error rate of the naive period-split. This motivates using a trained tokenizer for real applications.
+
+---
+
+### Task 4 — Stopword Removal
+
+**Objective:** Filter out high-frequency, low-information words that add noise to representations.
+
+---
+
+#### Step 1 — Inspect the stopword list
+- **What to do:** Load NLTK's English stopword list and print it.
+- **Display in notebook:** Print all stopwords sorted alphabetically. Print the total count.
+- **Infer from output:** Read through the list. Notice it includes words like `not`, `no`, and `nor`. Removing these would eliminate negation signals. Record this as an important caveat.
+
+---
+
+#### Step 2 — Remove stopwords from a tokenized sentence
+- **What to do:** Filter out any token that appears in the stopword set from a tokenized sentence.
+- **Display in notebook:** Print the original token list, the filtered token list, and a list of exactly which tokens were removed.
+- **Infer from output:** Count the reduction in tokens. Observe that the remaining words are the content-bearing ones. Verify that the meaning is still roughly preserved.
+
+---
+
+#### Step 3 — Test on a negation example
+- **What to do:** Run stopword removal on `"this movie is not good at all"` and `"this movie is good"`.
+- **Display in notebook:** Print both outputs after stopword removal.
+- **Infer from output:** Both sentences produce nearly identical outputs after stopword removal, yet they mean opposite things. This is a critical failure mode — note it prominently in your notebook.
+
+---
+
+#### Step 4 — Customize the stopword list
+- **What to do:** Add domain-specific words to the stopword list (e.g., for movie reviews: `film`, `movie`, `watch`). Also remove `not` from the default list to preserve negation.
+- **Display in notebook:** Show the custom stopword list. Apply it to 5 sample sentences and print the results.
+- **Infer from output:** Stopword lists should always be domain-tailored. The default list is a starting point, not a final answer.
+
+---
+
+### Task 5 — Stemming
+
+**Objective:** Reduce words to their approximate root form by removing suffixes.
+
+---
+
+#### Step 1 — Apply Porter Stemmer
+- **What to do:** Run Porter Stemmer on a diverse list of 20 words (include verb forms, comparative adjectives, and gerunds).
+- **Display in notebook:** Print a two-column table: original word | stem.
+- **Infer from output:** Notice that some stems are not real words (e.g., `argument` → `argument`, `studies` → `studi`). This is called over-stemming. Count how many stems are not valid English words.
+
+---
+
+#### Step 2 — Apply Snowball Stemmer
+- **What to do:** Run Snowball Stemmer on the exact same 20 words.
+- **Display in notebook:** Add a third column to the table: Snowball stem.
+- **Infer from output:** Compare Porter vs Snowball. Snowball is generally more conservative and produces fewer non-words. Identify the words where they disagree.
+
+---
+
+### Task 6 — Lemmatization
+
+**Objective:** Reduce words to their true dictionary base form using linguistic analysis.
+
+---
+
+#### Step 1 — Apply spaCy lemmatizer
+- **What to do:** Process the same 20 words using spaCy. Extract the `.lemma_` attribute from each token.
+- **Display in notebook:** Add a fourth column to the comparison table from Task 5: lemma.
+- **Infer from output:** Lemmas are always real dictionary words. Compare to the stems — notice that `studies` → `study`, `better` → `good`, `was` → `be`.
+
+---
+
+#### Step 2 — Observe POS dependency
+- **What to do:** Run spaCy on the word `lead` in two sentences: `"He will lead the team"` and `"The pipe is made of lead"`. Extract the lemma and POS tag for the word `lead` in each.
+- **Display in notebook:** Print the lemma and POS for `lead` in both sentences.
+- **Infer from output:** The lemma is the same word but the POS tag differs (verb vs noun). This shows that lemmatization uses grammatical context — it cannot be applied to isolated words without context.
+
+---
+
+### Task 7 — Full Comparison: Raw → Clean → Tokens → No Stopwords → Stemmed → Lemmatized
+
+**Objective:** See the complete preprocessing pipeline in one view.
+
+---
+
+#### Step 1 — Run the full pipeline
+- **What to do:** Take 3 sentences through every step: raw text → lowercase & clean → word tokens → remove stopwords → stem → lemmatize.
+- **Display in notebook:** Print the text at each stage for all 3 sentences. Format it as a pipeline table with one row per stage.
+- **Infer from output:** Read each row and observe how the text transforms. Ask yourself: at which stage was information lost? At which stage was noise removed? This question has no single right answer — it depends on the task.
+
+---
+
+**LinkedIn Post Ideas for Phase 1**
+- "I ran the same 100 words through stemming and lemmatization. Here's the comparison table — and the cases where stemming produces non-words that would break a vocabulary."
+- "Removing stopwords deleted the word 'not' from my sentence and flipped its meaning. Here's why the default stopword list is dangerous for sentiment analysis."
 
 ---
 
@@ -132,59 +265,151 @@ Finally, explore `tokenizers` from Hugging Face to see byte-pair encoding in act
 
 **Duration:** Weeks 2–3 | **LinkedIn posts:** 2 | **Difficulty:** ⭐⭐☆☆☆
 
-### What This Phase Is About
+### Overview
 
-After tokenizing text, you need to convert it into numbers that a model can consume. Bag of Words and TF-IDF are the classical approaches. They discard word order entirely but are surprisingly effective for many classification and retrieval tasks — and understanding their limitations is what motivates everything that comes in Phase 3 and beyond.
+After preprocessing, text must become numbers. BoW and TF-IDF are the simplest and most widely used methods. They discard word order entirely but remain competitive on many classification and retrieval tasks. More importantly, understanding their limitations is what motivates every representation method that follows.
 
-### Core Concepts to Master
+### Sequential Task Flow
 
-| Concept                      | What to Understand                                                                     |
-| ---------------------------- | -------------------------------------------------------------------------------------- |
-| One-hot encoding             | Why representing each word as a single `1` in a large vector is wasteful and limited |
-| Bag of Words (BoW)           | How a document becomes a count vector over a fixed vocabulary                          |
-| N-grams                      | How bigrams and trigrams partially recover local word order within BoW                 |
-| TF-IDF                       | How term frequency is balanced against how common a word is across all documents       |
-| Vocabulary building          | How to decide which words to include (min frequency, max features, stopwords)          |
-| Sparse matrix representation | Why storing only non-zero values is essential at scale                                 |
-| Cosine similarity            | How to measure similarity between two document vectors                                 |
+```
+Preprocessed Text → One-Hot Encoding → Bag of Words → N-grams
+                 → TF Computation → IDF Computation → TF-IDF
+                 → Cosine Similarity → Classification Baseline
+```
 
-### How to Structure the From-Scratch Implementation
+---
 
-Build everything from first principles using only Python dictionaries and lists. Start by building a vocabulary from a small corpus of 5–10 sentences: collect all unique words, assign each an integer index, and store the mapping in a dictionary.
+### Task 1 — One-Hot Encoding
 
-Then implement a function that takes a tokenized document and your vocabulary and returns a count vector — a list of integers where each position corresponds to a word in the vocabulary and each value is how many times that word appears. Apply this to every document in your corpus and store the result as a list of lists. This is your BoW matrix.
+**Objective:** Represent each word as a binary vector before moving to richer representations.
 
-Next implement TF-IDF from the mathematical definition. For each word in a document, compute its term frequency (count in document divided by total words in document). Then compute the inverse document frequency for each word in the vocabulary (log of total documents divided by documents containing that word). Multiply TF × IDF for each term. Compare your output to the library version and debug any discrepancies — they will teach you about edge cases like smoothing and normalization.
+---
 
-For n-grams, modify your vocabulary builder to generate consecutive word pairs (bigrams) in addition to single words, and observe how dramatically the vocabulary size grows.
+#### Step 1 — Build a vocabulary
+- **What to do:** Take a corpus of 5–6 short sentences. Collect all unique words and assign each an integer index in alphabetical order.
+- **Display in notebook:** Print the full vocabulary dictionary (word → index). Print the vocabulary size.
+- **Infer from output:** Even with 5 sentences, the vocabulary is already large relative to the number of words in any single sentence. This sparsity will become important.
 
-### How to Structure the Library Implementation
+---
 
-Use `scikit-learn`'s `CountVectorizer` and `TfidfVectorizer`. Go through these experiments in sequence:
+#### Step 2 — Create one-hot vectors
+- **What to do:** For each word in the vocabulary, create a vector of all zeros with a single 1 at the word's index position.
+- **Display in notebook:** Print the one-hot vector for 5 different words. Also print the vector length.
+- **Infer from output:** Every word vector has exactly the same length (vocabulary size) and the same number of ones (exactly 1). The cosine similarity between any two different word vectors is zero — no two words are related to each other at all. This is the fundamental limitation of one-hot encoding.
 
-Fit `CountVectorizer` on a corpus of at least 20 documents and inspect the learned vocabulary. Experiment with `max_features`, `min_df`, and `max_df` parameters and observe how they prune the vocabulary. Fit `TfidfVectorizer` with `ngram_range=(1, 2)` and compare the resulting feature space to unigram-only.
+---
 
-The most important exercise here: print the sparse matrix as a dense array and read it visually. Understand what each row and column means. Then compute pairwise cosine similarity between all document vectors and build a similarity matrix. Visualize it as a heatmap.
+### Task 2 — Bag of Words
 
-### Hands-On Exercises
+**Objective:** Represent a document as a count of how many times each vocabulary word appears.
 
-1. **Document similarity search** — Embed 20 news articles using TF-IDF and compute pairwise cosine similarity. Build a similarity matrix heatmap. Identify the most and least similar pairs and verify the result makes intuitive sense.
-2. **BoW classification benchmark** — Train a Multinomial Naïve Bayes classifier on the 20 Newsgroups dataset using BoW vectors. Measure accuracy as you vary vocabulary size (100, 500, 1000, 5000, 10000 words). Plot the accuracy curve and find the point of diminishing returns.
-3. **N-gram impact study** — Train the same classifier with unigrams only, bigrams only, and unigrams+bigrams. Compare accuracy and training time. Note when bigrams help (short texts) vs hurt (sparse data).
-4. **TF-IDF top-term extraction** — For each document in a corpus, list the top 5 words by TF-IDF score. Verify that the extracted terms are genuinely descriptive of the document's content.
-5. **Vocabulary analysis** — Take a domain-specific corpus (e.g., cricket match reports). Build a TF-IDF vocabulary and compare the top 50 terms against a general English corpus. Observe how domain specificity shifts the vocabulary.
+---
 
-### LinkedIn Post Angles
+#### Step 1 — Build the BoW matrix from scratch
+- **What to do:** For each sentence in your corpus, create a count vector: for each vocabulary word, count how many times it appears in that sentence.
+- **Display in notebook:** Print the full BoW matrix as a table where rows are documents and columns are vocabulary words. Show the actual count values inside each cell.
+- **Infer from output:** Most cells are zero — the matrix is sparse. Each row is a document's "fingerprint." Words that appear in multiple documents have non-zero values in multiple rows.
 
-- "BoW treats every document like a bag — no order, no context. 'Dog bites man' and 'Man bites dog' look identical. Here's a visual showing when that matters and when it doesn't."
-- "I built a TF-IDF similarity heatmap of 20 news articles. The visualization immediately shows which articles cover the same topic — no model, no labels, just math."
+---
 
-### Key Takeaways
+#### Step 2 — Reproduce with scikit-learn `CountVectorizer`
+- **What to do:** Fit `CountVectorizer` on the same corpus and transform all documents.
+- **Display in notebook:** Print the feature names (vocabulary) and the dense matrix. Confirm it matches your scratch version exactly.
+- **Infer from output:** The library handles vocabulary building, indexing, and vectorization automatically. Your scratch version proved you understand what it is doing internally.
 
-- BoW loses all word order — this is a fundamental limitation, not a bug to fix.
-- TF-IDF is still used in production search engines and outperforms raw BoW for most retrieval tasks.
-- Sparse matrices are essential: a vocabulary of 50,000 words with mostly-zero document vectors would be impossibly expensive as dense arrays.
-- N-grams partially recover local context but cause the feature space to explode. Use them carefully.
+---
+
+#### Step 3 — Demonstrate the word order blindness
+- **What to do:** Create two deliberately opposite sentences: `"the food was good not bad"` and `"the food was bad not good"`.
+- **Display in notebook:** Print the BoW vector for both sentences.
+- **Infer from output:** Both sentences produce identical BoW vectors despite having opposite meanings. Print this observation as a markdown cell conclusion. This is the most important limitation of BoW.
+
+---
+
+### Task 3 — N-grams
+
+**Objective:** Extend BoW to capture pairs and triples of consecutive words.
+
+---
+
+#### Step 1 — Generate bigrams manually
+- **What to do:** Take a tokenized sentence and generate all consecutive word pairs (bigrams) by sliding a window of size 2.
+- **Display in notebook:** Print the original token list and then the full list of bigrams extracted from it.
+- **Infer from output:** A sentence of N words produces N−1 bigrams. Notice that `"not good"` is now a single feature — this partially solves the negation problem from Phase 1.
+
+---
+
+#### Step 2 — Build bigram and trigram BoW
+- **What to do:** Use `CountVectorizer` with `ngram_range=(2,2)` for bigrams and `(3,3)` for trigrams on your corpus.
+- **Display in notebook:** Print the vocabulary size for unigrams, bigrams, and trigrams separately. Print a sample of 10 features from each.
+- **Infer from output:** The vocabulary explodes with n-grams. Trigrams are so specific that most features appear only once. Print the ratio: (unique bigrams) / (unique unigrams) and (unique trigrams) / (unique unigrams).
+
+---
+
+#### Step 3 — Compare unigram vs bigram representation
+- **What to do:** Use `ngram_range=(1,2)` to get both unigrams and bigrams combined.
+- **Display in notebook:** Print the total feature count. Print the 5 most frequent and 5 least frequent features.
+- **Infer from output:** Most bigrams are very sparse — they appear in very few documents. Sparse features add noise more than signal for small datasets. Record this tradeoff.
+
+---
+
+### Task 4 — TF-IDF
+
+**Objective:** Weight word importance by frequency within a document balanced against frequency across all documents.
+
+---
+
+#### Step 1 — Compute Term Frequency (TF) from scratch
+- **What to do:** For a single document, count each word and divide by the total number of words in that document.
+- **Display in notebook:** Print a table: word | raw count | TF score. Sort by TF descending.
+- **Infer from output:** Common words like `the` and `is` have high TF. TF alone rewards common words, which is not useful.
+
+---
+
+#### Step 2 — Compute Inverse Document Frequency (IDF) from scratch
+- **What to do:** For each word in your vocabulary, compute IDF as the log of (total documents / number of documents containing the word). Use your full corpus.
+- **Display in notebook:** Print a table: word | document frequency | IDF score. Sort by IDF descending.
+- **Infer from output:** Words that appear in every document (like `the`) get a very low IDF. Words that appear in only one document get a high IDF. IDF rewards rarity.
+
+---
+
+#### Step 3 — Compute TF-IDF
+- **What to do:** Multiply TF × IDF for every word in every document.
+- **Display in notebook:** Print the full TF-IDF matrix as a table. Highlight the top 3 scoring words per document row.
+- **Infer from output:** The highest TF-IDF words for each document are the ones that are both frequent in that document and rare across the corpus — these are the "characteristic" words of each document.
+
+---
+
+#### Step 4 — Reproduce with `TfidfVectorizer`
+- **What to do:** Apply scikit-learn's `TfidfVectorizer` to the same corpus. Extract the top 5 TF-IDF words per document.
+- **Display in notebook:** Print the top-5 words and their scores for each document. Compare to your scratch version.
+- **Infer from output:** The library adds L2 normalization by default (row vectors sum to 1). Note this difference from your scratch version. The ranking of words should still match.
+
+---
+
+### Task 5 — Cosine Similarity
+
+**Objective:** Measure how similar two documents are using their TF-IDF vectors.
+
+---
+
+#### Step 1 — Compute cosine similarity between two documents
+- **What to do:** Implement cosine similarity from scratch: dot product of two vectors divided by the product of their magnitudes.
+- **Display in notebook:** Compute and print the cosine similarity between every pair of documents in your corpus.
+- **Infer from output:** Similarity ranges from 0 (nothing in common) to 1 (identical). Verify intuitively: documents on similar topics should score higher than documents on different topics.
+
+---
+
+#### Step 2 — Visualize the similarity matrix as a heatmap
+- **What to do:** Compute a full pairwise similarity matrix and plot it as a heatmap using `seaborn`.
+- **Display in notebook:** Show the heatmap with document labels on both axes and similarity values in cells.
+- **Infer from output:** The diagonal is always 1.0 (a document is identical to itself). Off-diagonal cells reveal clusters of related documents. Identify the most and least similar pair.
+
+---
+
+**LinkedIn Post Ideas for Phase 2**
+- "BoW treats 'food was good not bad' and 'food was bad not good' as identical vectors. Here's the proof — and why this is the fundamental limitation of the most used text representation method."
+- "I built a TF-IDF heatmap of 20 news articles. The visualization shows topic clusters without any labels — just math."
 
 ---
 
@@ -192,70 +417,178 @@ The most important exercise here: print the sparse matrix as a dense array and r
 
 **Duration:** Weeks 3–4 | **LinkedIn posts:** 3 | **Difficulty:** ⭐⭐⭐☆☆
 
-### What This Phase Is About
+### Overview
 
-Word embeddings solve the core failure of BoW: every word is unrelated to every other word. In embedding space, `king` and `queen` are neighbours. `Paris` and `France` are related in exactly the same way `Berlin` and `Germany` are. This is where NLP starts to feel like magic — and understanding how these representations are learned is fundamental to everything that follows.
+BoW and TF-IDF treat every word as unrelated to every other word. Word embeddings fix this by placing words in a continuous vector space where distance reflects meaning. `king` and `queen` are neighbours. `Paris` and `London` are neighbours. This phase teaches you how those embeddings are learned.
 
-### Core Concepts to Master
+### Sequential Task Flow
 
-| Concept                   | What to Understand                                                                                 |
-| ------------------------- | -------------------------------------------------------------------------------------------------- |
-| Distributional hypothesis | Words that appear in similar contexts have similar meanings — the theoretical foundation          |
-| Context window            | The number of surrounding words used to define context; how window size shapes the embedding space |
-| CBOW architecture         | How the model predicts a target word from the average of its context word vectors                  |
-| Skip-gram architecture    | How the model predicts each context word individually from the target word                         |
-| Negative sampling         | How training is made efficient by comparing real pairs against randomly sampled noise              |
-| Word2Vec                  | The landmark model that made dense embeddings practical                                            |
-| GloVe                     | How co-occurrence statistics across the entire corpus are used as an alternative to local context  |
-| FastText                  | How character n-grams within words enable handling of rare and misspelled words                    |
-| t-SNE / PCA visualization | How high-dimensional vectors are projected into 2D for visual inspection                           |
+```
+Motivation (BoW limits) → Corpus Preparation → CBOW (concept + train)
+                       → Skip-gram (concept + train) → Vector Inspection
+                       → Analogy Testing → Visualization (PCA → t-SNE)
+                       → Pre-trained GloVe comparison
+```
 
-### How to Structure the From-Scratch Implementation
+---
 
-The goal of building Word2Vec from scratch is to understand the two weight matrices at the heart of the model — not to build something you would use in production.
+### Task 1 — Motivation: Why BoW Is Not Enough
 
-Start by building a vocabulary from a small corpus and assigning each word an integer index. Then initialize two matrices randomly: an input embedding matrix (one row per word) and an output embedding matrix (one row per word). These are the parameters the model will learn.
+**Objective:** Build the intuition that motivates dense vector representations.
 
-For the Skip-gram version: for each word in the corpus, treat it as the center word and generate training pairs with each word within the context window. For each (center, context) pair, do a forward pass — look up the center word's row in the input matrix, multiply by the output matrix, apply softmax to get a probability distribution over the vocabulary, and compute the cross-entropy loss against the context word.
+---
 
-Walk through the backward pass manually: compute the gradient of the loss with respect to the output matrix rows and the input matrix row for the center word. Apply gradient descent to update both matrices. Do this for dozens of (center, context) pairs and then inspect the learned vectors — are similar words becoming closer in vector space?
+#### Step 1 — Show BoW cosine similarity for synonyms
+- **What to do:** Compute the cosine similarity between the BoW vectors for `"I love NLP"` and `"I enjoy NLP"`.
+- **Display in notebook:** Print the similarity score.
+- **Infer from output:** The score is near zero or exactly zero because `love` and `enjoy` are different vocabulary entries with no shared tokens. Yet they mean nearly the same thing. BoW cannot capture this.
 
-For CBOW, the architecture is reversed: average the input embedding vectors for all context words, then predict the center word from that average. Implement this second and compare how the two architectures differ in their training dynamics.
+---
 
-### How to Structure the Library Implementation
+#### Step 2 — Show what we want embeddings to do
+- **What to do:** Write a markdown cell explaining the target: after training embeddings, the cosine similarity between the vectors for `love` and `enjoy` should be high, and between `love` and `table` should be low.
+- **Display in notebook:** This is a conceptual cell — no code output. Draw or sketch the 2D idea manually on paper and photograph it for your LinkedIn post.
+- **Infer from output:** This motivates the next three tasks. Every embedding technique is an attempt to achieve this geometric relationship.
 
-Use `gensim`'s `Word2Vec` class. Train both CBOW (`sg=0`) and Skip-gram (`sg=1`) models on the same corpus, controlling for vocabulary size, embedding dimension, window size, and number of training epochs.
+---
 
-After training, explore the embedding space through three lenses:
+### Task 2 — Corpus Preparation
 
-First, use `most_similar` to find nearest neighbours for specific words. Test words from different semantic categories (countries, professions, sports) and verify that neighbours are semantically coherent.
+**Objective:** Prepare tokenized, cleaned text in the format that Word2Vec expects.
 
-Second, test vector arithmetic. The classic `king − man + woman ≈ queen` analogy is the canonical test. Design 10 of your own analogy triples based on your domain and measure how often the arithmetic produces the correct answer.
+---
 
-Third, visualize. Extract vectors for 50–100 words, reduce to 2D using PCA (fast, linear) and then t-SNE (slower, non-linear but reveals cluster structure). Color-code words by semantic category and observe whether the clusters align with human intuition.
+#### Step 1 — Prepare and inspect the corpus
+- **What to do:** Take a text corpus of at least 50 sentences (use a downloaded dataset or a domain-specific text file). Tokenize and clean each sentence into a list of lowercase words. Store as a list of lists.
+- **Display in notebook:** Print the first 5 tokenized sentences. Print the total vocabulary size and the total number of tokens.
+- **Infer from output:** The vocabulary size relative to the corpus size is important. If you have 200 unique words in 50 sentences, embeddings will be low quality — you need at least tens of thousands of tokens for meaningful embeddings.
 
-Also load pre-trained GloVe vectors and compare them to your trained-from-scratch Word2Vec on the same analogy tests. The pre-trained model will almost certainly win — this is the motivation for transfer learning in Phase 7.
+---
 
-### Hands-On Exercises
+#### Step 2 — Inspect the context windows
+- **What to do:** For a window size of 2, manually list all (center word, context word) pairs from the first 3 sentences.
+- **Display in notebook:** Print each pair in the format `(center, context)`.
+- **Infer from output:** Count the total pairs from just 3 sentences. This is the training data that CBOW and Skip-gram learn from. The same pair appearing many times means those words co-occur frequently — the model will learn to place them near each other in embedding space.
 
-1. **Train on a real corpus** — Download the text8 dataset or a Wikipedia dump. Train Word2Vec. Design and test at least 15 analogy triplets. Document which analogies work, which fail, and hypothesize why.
-2. **CBOW vs Skip-gram comparison** — Train both on the same corpus. For 20 query words, list the top 5 most similar words from each model. Which model performs better on rare words? Which trains faster?
-3. **t-SNE cluster exploration** — Project 500 word vectors using t-SNE. Color-code them by 5 semantic categories you define (e.g., animals, countries, sports, technology, emotions). Measure how cleanly the clusters separate.
-4. **Out-of-vocabulary handling** — Deliberately test a list of misspelled words and invented compound words on Word2Vec (which will fail for OOV) vs FastText (which uses character n-grams). Document the difference.
-5. **Domain-specific embeddings** — Train Word2Vec on a domain-specific corpus (e.g., cricket commentary, medical abstracts, Tamil news). Compare the nearest neighbours for domain terms against pre-trained general embeddings. When do domain-specific embeddings win?
+---
 
-### LinkedIn Post Angles
+### Task 3 — CBOW (Continuous Bag of Words)
 
-- "king − man + woman = queen. I ran this analogy on my own trained Word2Vec model. Here's what the vector arithmetic actually looks like — and the 3 cases where it failed completely."
-- "CBOW vs Skip-gram: I trained both and compared them on 20 query words. Here's the visual difference in their embedding spaces and the rule for when to use each."
-- "I visualized 500 word vectors with t-SNE. Countries clustered together. Animals clustered together. Verbs clustered together — and nobody told the model what a 'category' was."
+**Objective:** Understand and train the CBOW architecture, which predicts a center word from its context.
 
-### Key Takeaways
+---
 
-- Word2Vec is a representation, not a model for downstream tasks. You feed its outputs into classifiers, not use it to classify directly.
-- Skip-gram works better on small data and rare words. CBOW is faster to train on large corpora.
-- The vector arithmetic emerges from the distributional hypothesis — not from any explicit supervision.
-- Pre-trained embeddings (GloVe, FastText) are almost always better than training from scratch unless your domain is very specialized.
+#### Step 1 — Understand the CBOW architecture (conceptual)
+- **What to do:** Write a markdown cell describing CBOW's input and output. Input: the average of all context word vectors. Output: a probability distribution over the vocabulary. The target: the center word.
+- **Display in notebook:** Draw or paste a diagram of the CBOW architecture. Label the input layer (context words), averaging operation, hidden layer, and output softmax.
+- **Infer from output:** CBOW is fast because averaging context vectors is cheap. But averaging loses the order of context words — it treats `"NLP is fun"` the same as `"fun is NLP"` from the center word's perspective.
+
+---
+
+#### Step 2 — Train CBOW using Gensim
+- **What to do:** Train a `Word2Vec` model with `sg=0` (CBOW mode) on your corpus. Set `vector_size=50`, `window=3`, `min_count=1`, `epochs=100`.
+- **Display in notebook:** Print the vocabulary size learned by the model. Print the shape of the embedding matrix.
+- **Infer from output:** Every word in the vocabulary now has a 50-dimensional vector. The model chose these vectors to maximize its ability to predict center words from context — that is the only training signal.
+
+---
+
+#### Step 3 — Inspect word vectors
+- **What to do:** Print the embedding vector for 3 specific words: a common word, a rare word, and a domain-specific term.
+- **Display in notebook:** Print the 50 numbers for each word. Then print the minimum, maximum, and mean value across each vector.
+- **Infer from output:** The raw numbers are not directly interpretable — they only become meaningful through their relationships to other vectors. This is why the next steps (similarity and analogy) are needed.
+
+---
+
+#### Step 4 — Find most similar words
+- **What to do:** Use `model.wv.most_similar()` to find the 5 most similar words to at least 5 different query words in your vocabulary.
+- **Display in notebook:** Print a table: query word | top 5 similar words with similarity scores.
+- **Infer from output:** Are the similar words semantically related? For a small corpus the results may be poor — note this and explain why (insufficient training data). For a larger corpus you should see meaningful semantic clusters.
+
+---
+
+### Task 4 — Skip-gram
+
+**Objective:** Train the Skip-gram architecture and compare it directly to CBOW.
+
+---
+
+#### Step 1 — Understand the Skip-gram architecture (conceptual)
+- **What to do:** Write a markdown cell describing Skip-gram. Input: a single center word vector. Output: a probability distribution over the vocabulary for each context position. Target: each surrounding context word individually.
+- **Display in notebook:** Draw the Skip-gram diagram contrasting with the CBOW diagram from the previous task.
+- **Infer from output:** Skip-gram treats each (center, context) pair as a separate training example — it generates more training signal per word, especially for rare words. This is why Skip-gram tends to produce better embeddings for rare vocabulary.
+
+---
+
+#### Step 2 — Train Skip-gram using Gensim
+- **What to do:** Train the same `Word2Vec` with `sg=1` (Skip-gram mode) using identical hyperparameters to the CBOW model.
+- **Display in notebook:** Print the vocabulary size and confirm it matches the CBOW model (same corpus).
+- **Infer from output:** The model structures are identical — only the training objective differs. The learned vectors should encode different aspects of word similarity.
+
+---
+
+#### Step 3 — Head-to-head comparison
+- **What to do:** Query `most_similar` for the same 5 words on both models. Build a side-by-side comparison.
+- **Display in notebook:** Print a table with query word, CBOW top-3 similar, Skip-gram top-3 similar.
+- **Infer from output:** Identify at least 2 words where the models give clearly different neighbours. For which model do the neighbours make more semantic sense to you? Note that for small corpora the difference may be subtle — the real difference shows at scale.
+
+---
+
+### Task 5 — Vector Arithmetic and Analogies
+
+**Objective:** Demonstrate that semantic relationships are encoded as geometric directions in embedding space.
+
+---
+
+#### Step 1 — Compute the classic king analogy
+- **What to do:** Using your Skip-gram model, compute `king − man + woman` using vector arithmetic. Find the word with the highest cosine similarity to the resulting vector.
+- **Display in notebook:** Print the computed vector's most similar words and their scores.
+- **Infer from output:** If your corpus is large enough, `queen` should appear near the top. If not (small corpus), acknowledge why: analogies require sufficient co-occurrence data to encode relational directions reliably.
+
+---
+
+#### Step 2 — Design and test your own analogies
+- **What to do:** Design 10 analogy pairs relevant to your corpus domain. Test each one.
+- **Display in notebook:** Print a results table: analogy question | expected answer | model's top-1 answer | ✓ or ✗.
+- **Infer from output:** Calculate your accuracy: (correct analogies) / 10. Analyse the failures — are they due to vocabulary gaps, insufficient training data, or genuinely unexpected relationships?
+
+---
+
+### Task 6 — Visualization
+
+**Objective:** Project high-dimensional word vectors into 2D to visually verify semantic clustering.
+
+---
+
+#### Step 1 — PCA projection
+- **What to do:** Select 30–50 words across at least 4 semantic categories (e.g., countries, sports, verbs, adjectives). Extract their vectors and apply PCA to project to 2 dimensions.
+- **Display in notebook:** Plot a scatter plot with word labels. Color-code points by category.
+- **Infer from output:** PCA is linear and fast. Observe whether same-category words cluster together. If clusters are not clear, note that PCA may collapse important non-linear structure.
+
+---
+
+#### Step 2 — t-SNE projection
+- **What to do:** Apply t-SNE to the same word vectors with `n_components=2`, `perplexity=10` (adjust for small vocabulary).
+- **Display in notebook:** Plot the t-SNE scatter plot with the same color-coding as the PCA plot. Display both plots side by side.
+- **Infer from output:** t-SNE reveals local cluster structure more clearly than PCA. Clusters that were overlapping in PCA may separate. Note that t-SNE is non-deterministic — re-running gives a different layout, but clusters should remain stable.
+
+---
+
+### Task 7 — Pre-trained GloVe vs Trained from Scratch
+
+**Objective:** Understand when to use pre-trained embeddings vs training your own.
+
+---
+
+#### Step 1 — Load GloVe vectors and test the same analogies
+- **What to do:** Download `glove.6B.50d.txt`. Load the vectors for the words in your analogy test set and run the same 10 analogies.
+- **Display in notebook:** Print the analogy results for GloVe alongside your trained model results.
+- **Infer from output:** GloVe (trained on 6 billion tokens) almost certainly outperforms your trained-from-scratch model. Record the accuracy gap. This is the core argument for transfer learning — which becomes the entire theme of Phase 7.
+
+---
+
+**LinkedIn Post Ideas for Phase 3**
+- "king − man + woman = queen. Here's the vector arithmetic on my trained model — and the 3 cases where the analogy completely broke down."
+- "I visualized 300 word vectors with t-SNE. Sports terms clustered together. Countries clustered together. Nobody told the model what a category was — it emerged from the training data."
 
 ---
 
@@ -263,64 +596,200 @@ Also load pre-trained GloVe vectors and compare them to your trained-from-scratc
 
 **Duration:** Weeks 5–7 | **LinkedIn posts:** 4–5 | **Difficulty:** ⭐⭐⭐☆☆
 
-### What This Phase Is About
+### Overview
 
-With a text representation in hand, you can now build practical systems. This phase covers the bread-and-butter NLP tasks that power real production systems today — spam filters, sentiment dashboards, search autocorrect, and named entity taggers. You will also encounter your first proper ML training loops and evaluation metrics.
+With text representations available, you can now build real NLP applications. This phase covers the most common production NLP tasks: text classification, sentiment analysis, auto-correction, named entity recognition, and POS tagging. You will also learn how to properly evaluate a model and analyse its errors.
 
-### Core Concepts to Master
+### Sequential Task Flow
 
-| Concept                  | What to Understand                                                                               |
-| ------------------------ | ------------------------------------------------------------------------------------------------ |
-| Text classification      | How to assign a label to a document using a pipeline of vectorization + classifier               |
-| Naïve Bayes             | How Bayes' theorem and feature independence create a probabilistic text classifier               |
-| SVM for text             | Why high-dimensional sparse text vectors make SVMs particularly effective                        |
-| Sentiment analysis       | The difference between lexicon-based (rule-driven) and ML-based (data-driven) approaches         |
-| VADER                    | How a human-curated sentiment lexicon handles social media text and negation                     |
-| Auto-correction          | How edit distance quantifies how different two strings are and how it powers spelling correction |
-| Named Entity Recognition | How models identify and classify names, places, and organizations in text                        |
-| POS tagging              | How grammatical role labels are assigned to each token                                           |
-| Evaluation metrics       | Precision, recall, F1 score, and when accuracy alone is misleading                               |
+```
+Text Classification (Naïve Bayes → SVM → Evaluation)
+→ Sentiment Analysis (Lexicon-based → ML-based → Comparison)
+→ Auto-correction (Edit Distance → Candidate Generation → Scoring)
+→ NER (spaCy pipeline → Visualization → Analysis)
+→ POS Tagging (Tagging → Dependency → Analysis)
+```
 
-### How to Structure the From-Scratch Implementations
+---
 
-**Auto-correction from scratch:** Start with the concept of edit distance. Implement the dynamic programming version of Levenshtein distance — a 2D matrix where each cell represents the minimum number of insertions, deletions, or substitutions needed to transform one string into another. Walk through a worked example on paper before implementing it.
+### Task 1 — Text Classification with Naïve Bayes
 
-Once you have edit distance working, build a simple spell corrector. Maintain a frequency dictionary built from a large corpus. Given a misspelled word, generate all words within edit distance 1 (one character operation away) and edit distance 2. Filter these candidates to only real words using your frequency dictionary. Return the candidate with the highest corpus frequency. Test it on 20 deliberately misspelled words.
+**Objective:** Build a classifier that assigns a category label to a text document.
 
-**Naïve Bayes from scratch:** Build a classifier that counts, for each class, how often each word appears. During prediction, multiply together the per-class probabilities of each word in the input document. Use log probabilities to avoid numerical underflow. Apply Laplace smoothing (add 1 to each word count) to handle words that appear in the test set but not the training set. Test it on a spam/ham classification task.
+---
 
-**Sentiment lexicon approach:** Build your own small sentiment lexicon by manually assigning +1 or -1 scores to 100 common opinion words. Write a scoring function that sums the scores of all matched words in a document. Handle negation by flipping the sign of any word that follows a negation word (`not`, `never`, `no`) within a 3-word window.
+#### Step 1 — Load and inspect the dataset
+- **What to do:** Load the SMS Spam Collection dataset (or 20 Newsgroups). Print the first 10 samples with their labels.
+- **Display in notebook:** Print the class distribution as a bar chart. Print the average document length per class.
+- **Infer from output:** Check if classes are balanced. An imbalanced dataset means accuracy is a misleading metric — note this and plan to use F1.
 
-### How to Structure the Library Implementations
+---
 
-For **text classification**: build a scikit-learn Pipeline that chains a TfidfVectorizer with a classifier (try Naïve Bayes, Logistic Regression, and Linear SVM). Fit the pipeline, predict on a held-out test set, and print the full classification report. Compare all three classifiers on the same dataset.
+#### Step 2 — Preprocess and vectorize
+- **What to do:** Apply your Phase 1 preprocessing pipeline to all documents. Then apply `TfidfVectorizer` with `max_features=5000`.
+- **Display in notebook:** Print the shape of the resulting feature matrix. Print the top 20 features by TF-IDF weight from each class (using class-wise average TF-IDF).
+- **Infer from output:** The top features per class should visually make sense — spam class should surface words like `free`, `win`, `prize`. This is a quick sanity check that vectorization is working.
 
-For **sentiment analysis**: run the same set of sentences through both your hand-built lexicon and VADER. Document the disagreements — VADER's output on the same sentences will often be better because it handles exclamation marks, capitalization, and emoticons. Then build a supervised sentiment classifier using TF-IDF + Logistic Regression on the IMDB dataset and compare its accuracy against VADER.
+---
 
-For **NER and POS tagging**: run spaCy on a set of news articles. Print every named entity with its label and the confidence score. Then print POS tags for the same text. Investigate at least 5 entity misclassifications — understanding why a model fails is more instructive than observing when it succeeds.
+#### Step 3 — Train and predict with Naïve Bayes
+- **What to do:** Split data 80/20 train/test. Train `MultinomialNB`. Predict on the test set.
+- **Display in notebook:** Print 10 random test examples with their true label, predicted label, and the model's confidence score.
+- **Infer from output:** Look for cases where the model is confidently wrong (high confidence + wrong label). These are the most interesting failures. Note them.
 
-### Hands-On Exercises
+---
 
-1. **Spam classifier comparison** — Train Naïve Bayes, Logistic Regression, and SVM on the SMS Spam Collection dataset. Compare their precision, recall, and F1 scores. Explain in plain language why precision matters more than recall in this specific task.
-2. **Custom sentiment lexicon benchmark** — Build a 200-word domain-specific sentiment lexicon for a chosen domain (e.g., movie reviews, product feedback, cricket commentary). Measure its accuracy against VADER on 100 in-domain sentences.
-3. **Auto-correction benchmark** — Test your Norvig-style spell corrector against `pyspellchecker` on 200 artificially corrupted words. Score by exact-match accuracy. Analyse the error types — which mistakes does your corrector handle well vs poorly?
-4. **NER entity frequency analysis** — Run spaCy NER on 50 news articles. Count entity frequency by type (PERSON, ORG, GPE, DATE). Build a bar chart of the top 20 entities per type. What does the distribution reveal about what the news covers?
-5. **Multi-class classification pipeline** — Use the AG News dataset (4 categories: politics, sports, business, technology). Train a TF-IDF + SVM pipeline. Visualize the confusion matrix and identify which categories are most often confused with each other.
-6. **Error analysis** — Pick any classifier from the above exercises. Pull out the 20 most confidently wrong predictions. For each one, write one sentence explaining why the model got it wrong. Patterns in errors reveal model limitations.
+#### Step 4 — Evaluate with classification report
+- **What to do:** Print the full `classification_report` from scikit-learn. Plot the confusion matrix as a heatmap.
+- **Display in notebook:** Show both. Annotate the confusion matrix cells with counts.
+- **Infer from output:** For a spam classifier, focus on False Negatives (spam predicted as ham — spam gets through) vs False Positives (ham predicted as spam — important email deleted). Which error is more costly? Write this as a markdown conclusion.
 
-### LinkedIn Post Angles
+---
 
-- "I built a spell corrector in Python — no ML, just probability theory and edit distance. Here's the intuition behind Peter Norvig's famous 21-line solution, explained simply."
-- "VADER vs a fine-tuned classifier for sentiment: I tested both on 500 tweets. Here are the cases where the rule-based approach actually wins."
-- "I ran NER on 50 news articles and counted every named entity. The most-mentioned PERSON surprised me. Here's the visualization."
-- "Naïve Bayes classifies text by multiplying probabilities together. The 'naïve' part is assuming every word is independent. Here's when that assumption is catastrophically wrong."
+### Task 2 — Upgrade to SVM and Compare
 
-### Key Takeaways
+**Objective:** See how a different classifier changes results on the same features.
 
-- Simple models with good features often beat complex models with poor features.
-- Precision and recall tell different stories — always choose your evaluation metric based on the cost of each type of mistake.
-- Lexicon-based approaches are fast, interpretable, and require no labelled data. ML approaches are more accurate but require labelled examples.
-- Error analysis on wrong predictions is the fastest way to improve a model.
+---
+
+#### Step 1 — Train Linear SVM
+- **What to do:** Train `LinearSVC` on the exact same train/test split and same TF-IDF features as the Naïve Bayes experiment.
+- **Display in notebook:** Print the classification report and confusion matrix for SVM.
+- **Infer from output:** Compare SVM vs Naïve Bayes accuracy and F1 side by side. SVM typically outperforms Naïve Bayes on text. Print the difference in F1 score and hypothesize why.
+
+---
+
+#### Step 2 — Error analysis
+- **What to do:** Find the 10 test examples where SVM is wrong but Naïve Bayes was right, and vice versa. Print these examples with both predictions.
+- **Display in notebook:** Print the disagreement cases.
+- **Infer from output:** Are there patterns in which model fails where? This is called error analysis — it is the most valuable debugging step in any NLP project.
+
+---
+
+### Task 3 — Sentiment Analysis: Lexicon-Based
+
+**Objective:** Classify text sentiment using a pre-scored word dictionary — no training data required.
+
+---
+
+#### Step 1 — Load VADER and inspect its scores
+- **What to do:** Load `SentimentIntensityAnalyzer` from NLTK. Print the sentiment scores for the words `good`, `bad`, `excellent`, `terrible`, `not bad`, `not good`.
+- **Display in notebook:** Print the compound, positive, negative, and neutral scores for each.
+- **Infer from output:** Observe that VADER scores phrases, not just individual words. `"not bad"` should score differently from `"bad"`. This is how it handles negation.
+
+---
+
+#### Step 2 — Score a diverse set of sentences
+- **What to do:** Run VADER on 20 sentences covering clear positive, clear negative, sarcastic, and mixed sentiment. Print the compound score and the derived label (positive if ≥ 0.05, negative if ≤ −0.05, neutral otherwise).
+- **Display in notebook:** Print a table: sentence | compound score | label.
+- **Infer from output:** Identify the sarcastic sentences. VADER typically fails on sarcasm. Record this as a known limitation.
+
+---
+
+#### Step 3 — Test VADER on domain-specific text
+- **What to do:** Run VADER on 10 domain-specific sentences (e.g., cricket commentary, product reviews, Tamil-style English text).
+- **Display in notebook:** Print the results.
+- **Infer from output:** VADER is trained on social media English. It may fail on formal or domain-specific language. Document the failure cases and explain why.
+
+---
+
+### Task 4 — Sentiment Analysis: ML-Based
+
+**Objective:** Compare a trained classifier against the lexicon approach.
+
+---
+
+#### Step 1 — Train TF-IDF + Logistic Regression
+- **What to do:** Use the IMDB dataset. Apply TF-IDF vectorization. Train `LogisticRegression`. Evaluate on the test set.
+- **Display in notebook:** Print the classification report. Print the 10 most positive-leaning and 10 most negative-leaning words according to the model's learned coefficients.
+- **Infer from output:** The coefficients reveal what words the model associates with each sentiment class. Do these words align with your intuition? Are any surprising?
+
+---
+
+#### Step 2 — Compare VADER vs ML classifier
+- **What to do:** Run both models on the same 50 test sentences. Mark each as agree or disagree.
+- **Display in notebook:** Print the agreement rate. Print the 10 sentences where they most strongly disagree.
+- **Infer from output:** The disagreements are the most instructive cases. For each disagreement, read the sentence and decide which model is right. This trains your intuition about when rule-based approaches outperform ML.
+
+---
+
+### Task 5 — Auto-Correction
+
+**Objective:** Build a spell corrector that finds the most likely intended word for a misspelled input.
+
+---
+
+#### Step 1 — Implement edit distance from scratch
+- **What to do:** Implement the Levenshtein edit distance algorithm using a 2D dynamic programming matrix. The matrix dimensions are `(len(word1)+1) × (len(word2)+1)`.
+- **Display in notebook:** Print the full DP matrix for the pair `("speling", "spelling")`. Annotate each cell with its value.
+- **Infer from output:** Read the final value (bottom-right cell) — this is the edit distance. Trace back through the matrix to identify exactly which operations were needed (insertion, deletion, substitution).
+
+---
+
+#### Step 2 — Generate edit-distance-1 candidates
+- **What to do:** For a misspelled word, generate all strings reachable by one insertion, one deletion, one substitution, or one transposition.
+- **Display in notebook:** Print the count of candidates generated. Print 20 random examples from the candidate set.
+- **Infer from output:** There are typically hundreds of edit-distance-1 candidates. Most are not real words. The next step is to filter to known words.
+
+---
+
+#### Step 3 — Filter to known words and score by frequency
+- **What to do:** Build a word frequency dictionary from a large corpus. Filter the candidates to only words that exist in the dictionary. Return the candidate with the highest frequency.
+- **Display in notebook:** Print the top 5 candidate words by frequency for each misspelled input.
+- **Infer from output:** Frequency-ranked candidates are usually correct because common words are misspelled more often than rare ones. Test on 20 misspellings and print a pass/fail column.
+
+---
+
+### Task 6 — Named Entity Recognition (NER)
+
+**Objective:** Identify and classify proper names, organizations, and places in text.
+
+---
+
+#### Step 1 — Run spaCy NER on a news article
+- **What to do:** Load a news article (at least 5 paragraphs). Run spaCy NER pipeline. Extract all entities with their labels and character positions.
+- **Display in notebook:** Print a table: entity text | entity label | explanation of label. Print the total entity count.
+- **Infer from output:** Read through the entities. Find at least 2 errors — cases where the model tagged something incorrectly or missed an obvious entity. Record the error type (wrong label vs missing entity).
+
+---
+
+#### Step 2 — Visualize with displacy
+- **What to do:** Use `spacy.displacy.render` to render the entity visualization inline in the notebook.
+- **Display in notebook:** The inline HTML visualization showing color-coded entity spans in context.
+- **Infer from output:** Reading the entities in context makes it much easier to evaluate the model. Which color-coded label seems most prone to errors in this article?
+
+---
+
+#### Step 3 — Frequency analysis across multiple articles
+- **What to do:** Run NER on 10 articles. Count total occurrences of each entity type (PERSON, ORG, GPE, DATE, MONEY).
+- **Display in notebook:** Plot a bar chart of entity type frequencies. Print the top 10 most mentioned entities by name (e.g., top 10 PERSON mentions).
+- **Infer from output:** Does the entity type distribution match the news domain (politics, sports, finance)? What does the distribution reveal about what the news corpus covers?
+
+---
+
+### Task 7 — POS Tagging
+
+**Objective:** Assign a grammatical role to each token in a sentence.
+
+---
+
+#### Step 1 — Tag a sentence
+- **What to do:** Run spaCy on 5 sentences and extract the `.text`, `.pos_`, and `.dep_` (dependency relation) for each token.
+- **Display in notebook:** Print a formatted table: token | POS tag | dependency | head word.
+- **Infer from output:** Find all nouns, all verbs, and all adjectives. Count each. Observe how POS changes meaning — `"book"` is a noun in one sentence and a verb in another.
+
+---
+
+#### Step 2 — Visualize the dependency tree
+- **What to do:** Use `spacy.displacy.render` with style `"dep"` to show the dependency parse tree.
+- **Display in notebook:** The inline dependency tree visualization.
+- **Infer from output:** Identify the root verb of the sentence (the top of the tree). Trace the subject → verb → object path. This is the backbone of the sentence's meaning.
+
+---
+
+**LinkedIn Post Ideas for Phase 4**
+- "I built a spell corrector from scratch using nothing but a frequency dictionary and edit distance. Here's the dynamic programming matrix visualized — and what the numbers mean."
+- "VADER and a trained classifier disagreed on 18% of my test sentences. Here are the 5 most interesting disagreements and what they reveal about both approaches."
 
 ---
 
@@ -328,64 +797,151 @@ For **NER and POS tagging**: run spaCy on a set of news articles. Print every na
 
 **Duration:** Weeks 8–10 | **LinkedIn posts:** 3–4 | **Difficulty:** ⭐⭐⭐⭐☆
 
-### What This Phase Is About
+### Overview
 
-Classical NLP models treat every word as independent. But language is deeply sequential — `not good` means the opposite of `good`, and the meaning of a word often depends on what came 10 words before it. This phase introduces recurrent architectures that process sequences step by step and maintain memory across the sequence. It also explains the training failure that motivated LSTM's invention.
+Classical NLP treats every word as independent. RNNs process text as a sequence, maintaining a memory state as they read each word. LSTMs extend RNNs with gated memory that selectively remembers and forgets — solving the training failure that made vanilla RNNs impractical for long sequences.
 
-### Core Concepts to Master
+### Sequential Task Flow
 
-| Concept                        | What to Understand                                                                             |
-| ------------------------------ | ---------------------------------------------------------------------------------------------- |
-| Recurrent Neural Network (RNN) | How a network feeds its own hidden state back as input at each time step                       |
-| Vanishing gradient problem     | Why gradients shrink exponentially over long sequences, making early steps impossible to learn |
-| Exploding gradient problem     | The opposite pathology — and why gradient clipping is the standard fix                        |
-| LSTM forget gate               | How the gate learns what information to erase from memory at each step                         |
-| LSTM input gate                | How the gate controls what new information to write into memory                                |
-| LSTM output gate               | How the gate controls what portion of memory to expose as the hidden state                     |
-| GRU                            | How two gates (reset and update) replace LSTM's three gates with fewer parameters              |
-| Bidirectional RNN              | How processing the sequence in both directions gives each token access to future context       |
-| Sequence-to-Sequence           | How an encoder compresses the input sequence and a decoder generates the output sequence       |
+```
+Motivation (BoW vs Sequence) → RNN Cell (manual unroll)
+→ Vanishing Gradient Demo → LSTM Architecture (gate by gate)
+→ LSTM Training (sentiment) → Gate Visualization
+→ GRU Comparison → Bidirectional LSTM
+```
 
-### How to Structure the From-Scratch Implementation
+---
 
-**RNN cell from scratch:** Start with a single RNN cell. It takes two inputs — the current word embedding and the previous hidden state — and produces one output: a new hidden state. The hidden state is computed by multiplying the concatenated input through a single weight matrix and applying tanh. Implement this cell and manually unroll it across a short sequence of 5 words.
+### Task 1 — Motivation: Why Sequences Matter
 
-To demonstrate the vanishing gradient problem, extend your manual unrolling to sequences of length 5, 25, and 50. After each forward pass, compute the gradient of the loss with respect to the hidden state at each time step and print those gradients. Observe how the gradient magnitude shrinks (or explodes) as you go further back in time. This is the core motivation for everything LSTM introduces.
+**Objective:** Prove empirically that BoW cannot handle sequence-dependent meaning.
 
-**LSTM cell from scratch:** Implement the four gate computations explicitly. At each time step, the LSTM takes the current input, the previous hidden state, and the previous cell state. It computes the forget gate (a sigmoid that decides what to erase from the cell state), the input gate (a sigmoid that decides what to update), a candidate vector (a tanh that computes the proposed new values), and the output gate (a sigmoid that decides what to expose as the hidden state). The new cell state is the element-wise sum of the gated old cell state and the gated candidate. The new hidden state is the output gate multiplied by the tanh of the new cell state.
+---
 
-Run the same gradient experiment on the LSTM and compare the gradient magnitude curves to the vanilla RNN. The LSTM's gradients should remain much more stable over long sequences.
+#### Step 1 — BoW failure on sequence-dependent examples
+- **What to do:** Create 5 pairs of sentences with identical word sets but different word order and different meanings (e.g., "dog bites man" / "man bites dog", "not good" / "good not").
+- **Display in notebook:** Print both BoW vectors for each pair side by side. Compute cosine similarity within each pair.
+- **Infer from output:** The similarity for opposite-meaning sentence pairs is near 1.0. Print this as a markdown conclusion: BoW is blind to word order, and word order can completely reverse meaning.
 
-### How to Structure the Library Implementation
+---
 
-Use PyTorch's `nn.RNN`, `nn.LSTM`, and `nn.GRU` modules. Build a sentiment classification model by stacking an embedding layer, an LSTM layer (with bidirectionality and multiple layers), a dropout layer, and a final linear classifier head.
+### Task 2 — The Recurrent Neural Network Cell
 
-Structure your training loop as a function that takes a dataloader, runs forward and backward passes with gradient clipping, and returns the average loss and accuracy for the epoch. Write a separate evaluation loop that runs without gradient computation. Train for 5–10 epochs and plot the train vs validation loss curves.
+**Objective:** Understand the RNN's hidden state mechanism by unrolling it manually.
 
-After training, extract the LSTM's hidden state at each time step for a specific sentence. Visualize how the hidden state representation evolves as the model reads each word. This gives intuition about what information the model is retaining.
+---
 
-For Seq2Seq, build a minimal encoder-decoder where the encoder is an LSTM that produces a context vector (the final hidden state), and the decoder is another LSTM that takes the context vector and generates output tokens one by one. Use this on a simple character-level toy translation task.
+#### Step 1 — Concept: the hidden state
+- **What to do:** Write a markdown cell explaining the hidden state. At each time step, the RNN takes two inputs: the current word embedding and the previous hidden state. It produces one output: a new hidden state. The hidden state carries memory across the sequence.
+- **Display in notebook:** Draw a diagram of one unrolled RNN step — input word + previous hidden state → weight matrix → tanh → new hidden state.
+- **Infer from output:** The hidden state at step T theoretically encodes everything the model has seen from step 1 to T. The next task shows why "theoretically" is the key word.
 
-### Hands-On Exercises
+---
 
-1. **Vanishing gradient experiment** — Train a vanilla RNN on sequences of length 5, 25, and 100. After each backward pass, record the gradient norm at each time step. Plot the gradient norm decay curve for all three sequence lengths on the same graph.
-2. **Gate activation visualization** — After training an LSTM sentiment classifier, extract the forget gate activation values for each token in a test sentence. Visualize them as a heatmap — which words trigger the model to reset its memory?
-3. **Character-level language model** — Train a character-level LSTM on a text corpus (Shakespeare or Tamil literature). Generate text by sampling from the output distribution at each step. Compare the generated text at epoch 1, epoch 10, and epoch 50.
-4. **GRU vs LSTM comparison** — Train both architectures on the IMDB dataset with identical hyperparameters. Compare training time, final accuracy, and number of trainable parameters.
-5. **Sequence-to-sequence translation** — Build a minimal Seq2Seq model on the Multi30k English-to-French dataset. Implement teacher forcing during training (feed the ground-truth target token as input to the decoder at each step). Compare output quality with and without teacher forcing.
+#### Step 2 — Manual unroll across a 5-word sequence
+- **What to do:** Initialize a random weight matrix and a zero hidden state. Process a 5-word sentence one word at a time: at each step multiply [word_vector; hidden_state] by the weight matrix and apply tanh. Print the hidden state after each word.
+- **Display in notebook:** Print the hidden state vector (first 5 values) after processing word 1, 2, 3, 4, 5.
+- **Infer from output:** Observe how the hidden state changes with each word. Now ask: how much of word 1's information survives in the hidden state after processing word 5? This motivates the gradient experiment next.
 
-### LinkedIn Post Angles
+---
 
-- "I drew the LSTM cell by hand to understand every gate. Here's my annotated diagram — the forget gate is the key insight that makes RNNs actually learn long-range dependencies."
-- "I measured the actual gradient norms across a 100-step sequence in a vanilla RNN. The graph makes the vanishing gradient problem impossible to ignore. This is why LSTM was invented."
-- "I trained a character-level LSTM and watched it learn to write sentences. Here's the output at epoch 1, epoch 20, and epoch 50 — the progression is remarkable."
+### Task 3 — The Vanishing Gradient Problem
 
-### Key Takeaways
+**Objective:** Demonstrate why vanilla RNNs fail to learn from long-range dependencies.
 
-- The vanishing gradient problem is not a hyperparameter tuning issue — it is a fundamental mathematical property of vanilla RNNs.
-- LSTM gates are not switches. They are continuous values between 0 and 1, and they are learned, not programmed.
-- Bidirectional RNNs are more powerful but cannot be used for generation (you cannot look at future tokens when generating left-to-right).
-- Seq2Seq architecture is the conceptual predecessor of the transformer — understanding it makes attention feel like a natural evolution.
+---
+
+#### Step 1 — Track gradient norms over a short sequence (length 5)
+- **What to do:** Build a simple 1-layer RNN. Pass a sequence of length 5. After the backward pass, extract and print the gradient of the loss with respect to the hidden state at each time step (t=5, t=4, t=3, t=2, t=1).
+- **Display in notebook:** Print the gradient norm at each time step as a table. Plot as a bar chart.
+- **Infer from output:** Gradient magnitude at t=5 is largest. At t=1 it should be smaller. Note the ratio (t=5 gradient) / (t=1 gradient).
+
+---
+
+#### Step 2 — Repeat for sequence lengths 25 and 100
+- **What to do:** Repeat the exact same experiment with sequences of length 25 and 100.
+- **Display in notebook:** Plot three bar charts side by side: one for each sequence length. Use the same y-axis scale.
+- **Infer from output:** For length 100, the gradient at t=1 should be near zero — often displayed as `1e-15` or smaller. This means the model learns nothing from the first word. Print the exact ratio of first/last gradients for all three experiments. This is the vanishing gradient problem.
+
+---
+
+### Task 4 — LSTM: Gate-by-Gate Breakdown
+
+**Objective:** Understand what each LSTM gate does and why it solves the vanishing gradient problem.
+
+---
+
+#### Step 1 — The forget gate
+- **What to do:** Write a markdown cell explaining the forget gate: a sigmoid function applied to [current input; previous hidden state]. Its output ranges from 0 (forget everything) to 1 (remember everything). It multiplies element-wise with the previous cell state.
+- **Display in notebook:** Compute the forget gate output manually for a toy example. Print the cell state before and after applying the forget gate. Highlight which memory dimensions were reduced.
+- **Infer from output:** The forget gate learns which information is irrelevant for the current context. When processing the word "but" in a sentiment sentence, the forget gate should activate strongly to reset earlier positive/negative signals.
+
+---
+
+#### Step 2 — The input gate and candidate values
+- **What to do:** Explain: the input gate (sigmoid) controls how much of the new information to write. The candidate vector (tanh) is the new information to potentially write. The actual update is their element-wise product.
+- **Display in notebook:** Compute input gate and candidate values for the same toy example. Print the element-wise product.
+- **Infer from output:** The cell state update is the sum of (forget gate × old cell state) + (input gate × candidate). Print the final updated cell state and compare to the input cell state.
+
+---
+
+#### Step 3 — The output gate
+- **What to do:** Explain: the output gate (sigmoid) controls what to expose from the cell state as the hidden state. The hidden state is (output gate × tanh(cell state)).
+- **Display in notebook:** Compute the output gate and final hidden state for the same toy example. Print all gate activations and the resulting hidden state.
+- **Infer from output:** Together the three gates give the LSTM full control over what to store, what to discard, and what to expose. This is what the vanilla RNN lacks — it has no mechanism to selectively preserve long-range information.
+
+---
+
+### Task 5 — LSTM Training for Sentiment Classification
+
+**Objective:** Train a full LSTM model and observe its learning dynamics.
+
+---
+
+#### Step 1 — Prepare the data pipeline
+- **What to do:** Load the IMDB dataset. Build a vocabulary from the training set. Map each word to an integer index. Pad all sequences to the same length. Create train and test dataloaders.
+- **Display in notebook:** Print vocabulary size. Print 5 sample sequences in their integer-encoded form. Print the maximum and average sequence length.
+- **Infer from output:** Long sequences (>500 tokens) may need truncation. The vocabulary size determines your embedding matrix size. Verify the dataset is balanced.
+
+---
+
+#### Step 2 — Define the model architecture
+- **What to do:** Build a model with: Embedding layer → LSTM layer (bidirectional, 2 layers) → Dropout → Linear classifier head.
+- **Display in notebook:** Print the model architecture summary including layer names, input/output shapes, and total trainable parameter count.
+- **Infer from output:** Count the parameters in each component. The embedding layer typically dominates. Understand why bidirectional means 2× the hidden dimensions.
+
+---
+
+#### Step 3 — Train and monitor
+- **What to do:** Train for 5–10 epochs. After every epoch, record train loss, validation loss, and validation accuracy.
+- **Display in notebook:** Plot train loss and validation loss on the same graph. Plot validation accuracy over epochs separately.
+- **Infer from output:** If validation loss starts increasing while training loss keeps decreasing — that is overfitting. Identify the epoch where validation loss is minimized. That is your best model.
+
+---
+
+#### Step 4 — Gate activation visualization
+- **What to do:** After training, pass a test sentence through the model and extract the forget gate activations at each time step.
+- **Display in notebook:** Plot the forget gate activations as a heatmap: x-axis is the word, y-axis is hidden units (or an averaged scalar). Color intensity represents how strongly the gate fired.
+- **Infer from output:** Words that trigger high forget gate values cause the model to reset its memory — typically words like "but", "however", "although". Identify these in your test sentence.
+
+---
+
+### Task 6 — GRU vs LSTM Comparison
+
+**Objective:** Understand GRU as a simplified LSTM and when to prefer it.
+
+---
+
+#### Step 1 — Train GRU with identical settings
+- **What to do:** Replace the LSTM layer with a GRU layer. Keep all other hyperparameters identical. Train for the same number of epochs.
+- **Display in notebook:** Print parameter counts for both models. Plot the training curves for both on the same axes (using different line colors).
+- **Infer from output:** GRU has fewer parameters (no cell state — only hidden state). Training is faster. Record the parameter count difference and the accuracy difference. Print your conclusion: when would you choose GRU over LSTM?
+
+---
+
+**LinkedIn Post Ideas for Phase 5**
+- "I plotted the gradient norms across a 100-step RNN. By step 1, the gradient is 10⁻¹⁵ — the model has completely forgotten the first word. This graph is why LSTM was invented."
+- "I visualized the LSTM forget gate across a sentiment sentence. The gate fired strongest on the word 'but' — that is the model resetting its sentiment memory mid-sentence."
 
 ---
 
@@ -393,64 +949,153 @@ For Seq2Seq, build a minimal encoder-decoder where the encoder is an LSTM that p
 
 **Duration:** Weeks 11–13 | **LinkedIn posts:** 4 | **Difficulty:** ⭐⭐⭐⭐⭐
 
-### What This Phase Is About
+### Overview
 
-Attention is the single most important idea in modern NLP. Instead of compressing an entire sequence into one fixed-size vector (the Seq2Seq bottleneck), attention lets the model look directly at any part of the input when producing each output. The Transformer architecture — built entirely from attention with no recurrence — replaced RNNs in nearly every state-of-the-art system and powers BERT, GPT, and every model in Phase 7 and beyond.
+Attention solves the Seq2Seq bottleneck where the entire input sequence was compressed into a single fixed vector. With attention, the model can look at any position in the input when producing each output. The Transformer — built entirely from attention — replaced RNNs and powers every model in Phase 7 and beyond.
 
-### Core Concepts to Master
+### Sequential Task Flow
 
-| Concept                           | What to Understand                                                                                                |
-| --------------------------------- | ----------------------------------------------------------------------------------------------------------------- |
-| Query, Key, Value                 | The three projections of the input that define what you are looking for, what is available, and what you retrieve |
-| Scaled dot-product attention      | How Q×Kᵀ scores are scaled by √d_k, passed through softmax, and used to weight the Values                      |
-| Why the scaling factor?           | How large dot products push softmax into saturation, killing gradients — and why √d_k fixes this                |
-| Multi-head attention              | How running attention in parallel with different learned projections captures different relationship types        |
-| Self-attention                    | How every token in a sequence attends to every other token in the same sequence                                   |
-| Cross-attention                   | How the decoder attends to encoder outputs in a full encoder-decoder transformer                                  |
-| Positional encoding               | Why positional information must be injected explicitly (transformers have no built-in sequence order)             |
-| Feed-forward sublayer             | The position-wise MLP that follows attention in each transformer layer                                            |
-| Add & Norm (Residual connections) | How skip connections prevent gradient vanishing in deep transformers                                              |
-| Causal masking                    | How the decoder prevents any position from attending to future positions during training                          |
+```
+Seq2Seq Bottleneck (motivation) → Attention Scores (Q×Kᵀ)
+→ Scaling (÷√d_k) → Softmax (attention weights)
+→ Weighted Sum (output) → Multi-Head Attention
+→ Positional Encoding → Transformer Encoder Layer
+→ Full Encoder Stack → Classification → LSTM Comparison
+```
 
-### How to Structure the From-Scratch Implementation
+---
 
-**Scaled dot-product attention:** Implement the core operation step by step. Take three matrices Q, K, and V. Compute the dot product of Q and K-transposed. Divide every element by the square root of the key dimension. Apply softmax row-wise to get the attention weight matrix. Multiply by V to get the output. Print and inspect the attention weight matrix for a toy example — it should be a probability distribution summing to 1 for each row.
+### Task 1 — Motivation: The Seq2Seq Bottleneck
 
-**Multi-head attention:** Instead of computing attention once, split the input into multiple smaller projections using learned weight matrices. Compute scaled dot-product attention independently on each projection (each "head"). Concatenate all the head outputs and project back to the original dimension with a final weight matrix. The key insight is that each head can learn to attend to a different type of relationship (syntactic, semantic, positional).
+**Objective:** Show the information compression problem that attention solves.
 
-**Positional encoding:** Implement sinusoidal positional encoding. For each position index and each dimension index, compute a sine or cosine value using a specific frequency formula. Add the resulting matrix to the word embedding matrix before feeding it into the transformer. Visualize the positional encoding matrix as a heatmap to understand what patterns the transformer uses to infer position.
+---
 
-**Full transformer encoder layer:** Stack multi-head self-attention, a residual connection, layer normalization, a two-layer feed-forward network, another residual connection, and another layer normalization — in exactly that order. Stack multiple encoder layers. Build a toy text classifier on top of the encoder by pooling the output and passing it through a linear head.
+#### Step 1 — Visualize the bottleneck
+- **What to do:** Draw and describe a Seq2Seq encoder-decoder. The encoder reads a 20-word sentence and compresses it into a single fixed-size vector (the context vector). The decoder must generate the output from only that vector.
+- **Display in notebook:** Show a diagram. Then create a table: sequence length (5, 10, 20, 50 words) vs information loss (conceptual — how much context can a single 128-dim vector hold?).
+- **Infer from output:** For long sequences, a single vector cannot encode everything. The decoder "forgets" early parts of the input. This is why attention was invented — instead of one fixed vector, the decoder gets to look at every encoder hidden state at each decoding step.
 
-**Causal mask:** Implement the triangular mask needed for the decoder. At each position, set the attention scores for all future positions to negative infinity before softmax. Verify that after softmax, each position can only attend to itself and past positions.
+---
 
-### How to Structure the Library Implementation
+### Task 2 — Scaled Dot-Product Attention
 
-Train your scratch transformer encoder on a text classification task (e.g., IMDB or AG News). This is important: use exactly the same dataset you used with the LSTM in Phase 5. Then compare accuracy, training time, and convergence speed between the two architectures. This direct comparison is one of the most instructive experiments in the entire roadmap.
+**Objective:** Implement attention step by step.
 
-Use PyTorch's built-in `nn.TransformerEncoder` as a validation check — your outputs should match when given the same inputs. Then explore the trained attention weights by hooking into intermediate layers. For a given input sentence, extract the attention weight matrix from each head and each layer and visualize them.
+---
 
-### Hands-On Exercises
+#### Step 1 — Compute Q, K, V matrices
+- **What to do:** Start with an input matrix of shape `(sequence_length × embedding_dim)`. Create three random weight matrices `W_Q`, `W_K`, `W_V`. Compute `Q = input × W_Q`, `K = input × W_K`, `V = input × W_V`.
+- **Display in notebook:** Print the shapes of Q, K, and V. Print the first row of each matrix.
+- **Infer from output:** Q, K, and V all have the same shape. They are three different linear projections of the same input. Intuitively: Q is "what am I looking for", K is "what do I have to offer", V is "what I will actually share if selected".
 
-1. **Attention weight heatmap** — After training, feed a sentence through your transformer and extract the self-attention weights from each layer. Create a heatmap where rows are the attending tokens and columns are the attended-to tokens. Identify which heads have learned interpretable patterns (e.g., one head attends to adjacent words, another to coreferent pronouns).
-2. **Positional encoding visualization** — Plot the sinusoidal positional encoding matrix as a heatmap with positions on one axis and dimensions on the other. Observe that nearby positions have similar encodings and that the patterns repeat at different frequencies across dimensions.
-3. **Transformer vs LSTM comparison** — Train both architectures on the same dataset with the same number of epochs. Compare: final accuracy, training time per epoch, number of parameters, and convergence speed. Document which wins and why.
-4. **Masking verification** — Implement the causal mask and write a test to verify it. After applying the mask and softmax, check that for every position `i`, the attention weight from token `i` to any token `j > i` is exactly zero.
-5. **Attention head specialization** — Visualize all 8 heads (if using 8) from the same sentence. Do any heads appear to specialize? Design experiments to test your hypothesis — does the pattern hold across different input sentences?
+---
 
-### LinkedIn Post Angles
+#### Step 2 — Compute raw attention scores
+- **What to do:** Compute `scores = Q × K^T`. This is a matrix multiplication giving shape `(seq_len × seq_len)`.
+- **Display in notebook:** Print the scores matrix for a toy sequence of length 5. Visualize it as a heatmap.
+- **Infer from output:** Each cell `[i, j]` represents how much position `i` should attend to position `j`. Higher = more attention. But the scores are unbounded — they need scaling and normalization.
 
-- "Attention is just asking: which other words should I look at when processing this word? I built it from scratch and here's the math, simplified to one diagram."
-- "I visualized the attention weights of my transformer on the sentence 'the animal didn't cross the street because it was tired.' See where 'it' attends — that's the model resolving a pronoun."
-- "Positional encoding is the transformer's way of knowing word order. Here's why sinusoidal functions were the original elegant solution."
-- "I replaced my LSTM with a Transformer on the same task. Here are the two training curves side by side. The transformer converged faster — but look at what happened in the first 2 epochs."
+---
 
-### Key Takeaways
+#### Step 3 — Apply scaling
+- **What to do:** Divide the scores matrix by the square root of the key dimension (`√d_k`).
+- **Display in notebook:** Print the scores before and after scaling. Compare the minimum and maximum values.
+- **Infer from output:** Scaling prevents scores from becoming extremely large in high dimensions. Large scores cause softmax to produce near-zero gradients — the model stops learning. The `√d_k` factor keeps scores in a range where softmax gradients are non-trivial.
 
-- Self-attention is O(n²) in sequence length — this is its fundamental scaling limitation.
-- The transformer has no recurrence and no convolution. It processes all positions simultaneously, which makes it easily parallelizable on modern GPUs.
-- Residual connections and layer normalization are not optional niceties — removing them makes deep transformers untrainable.
-- Everything in Phase 7 (BERT, GPT) is essentially a transformer with different pre-training objectives. Understanding the architecture here makes those models transparent.
+---
+
+#### Step 4 — Apply softmax row-wise
+- **What to do:** Apply softmax independently to each row of the scaled scores matrix.
+- **Display in notebook:** Print the resulting attention weight matrix. Verify that each row sums to exactly 1.0. Visualize as a heatmap.
+- **Infer from output:** The attention weight matrix is now a probability distribution per query position. Row `i` shows what percentage of attention position `i` pays to each other position. Look for which positions attend strongly to which others.
+
+---
+
+#### Step 5 — Compute the weighted sum output
+- **What to do:** Multiply the attention weight matrix by `V` (the values matrix).
+- **Display in notebook:** Print the output shape. Print the first output vector and compare it to the first V vector.
+- **Infer from output:** The output at each position is a weighted average of all value vectors, weighted by attention. Positions with high attention weight contribute more to the output. This is the core operation of the entire transformer.
+
+---
+
+### Task 3 — Multi-Head Attention
+
+**Objective:** Run attention in parallel across multiple learned subspaces.
+
+---
+
+#### Step 1 — Split into multiple heads
+- **What to do:** Take the embedding dimension (e.g., 64) and split it into 4 heads of dimension 16 each. Create separate `W_Q`, `W_K`, `W_V` for each head.
+- **Display in notebook:** Print the shapes of Q, K, V for one head. Print all 4 heads' Q shapes to confirm they are identical.
+- **Infer from output:** Each head attends to a different linear projection of the input. Different heads can learn to detect different relationship types — syntactic, semantic, positional.
+
+---
+
+#### Step 2 — Compute attention per head and concatenate
+- **What to do:** Run scaled dot-product attention separately for all 4 heads. Concatenate the outputs along the last dimension. Project back to the original dimension with `W_O`.
+- **Display in notebook:** Print the shapes at each step: per-head output, concatenated output, final projected output. Confirm the final shape matches the input shape.
+- **Infer from output:** The final output has the same shape as the input — multi-head attention is a shape-preserving transformation that enriches each position's representation with global context.
+
+---
+
+### Task 4 — Positional Encoding
+
+**Objective:** Inject position information since transformers have no built-in sequence order.
+
+---
+
+#### Step 1 — Demonstrate that transformers are order-blind without PE
+- **What to do:** Take the same set of words and pass them through your attention module in two different orders. Compare the output at position 1 in both cases.
+- **Display in notebook:** Print both outputs. Check whether they differ.
+- **Infer from output:** Without positional encoding, the output at position 1 is the same regardless of word order (the attention weights will differ but only because the input vectors differ — not because of position). The model has no way to know that word at position 3 comes before word at position 7.
+
+---
+
+#### Step 2 — Compute sinusoidal positional encoding
+- **What to do:** For each position (0 to max_len) and each dimension (0 to d_model), compute the sinusoidal encoding: sine for even dimensions, cosine for odd dimensions. The frequency decreases with dimension index.
+- **Display in notebook:** Print the positional encoding matrix as a table for the first 10 positions and first 10 dimensions. Visualize the full matrix as a heatmap.
+- **Infer from output:** Each position gets a unique "fingerprint" vector. Nearby positions have similar vectors (because the sinusoids change slowly at low frequencies). This encodes relative position naturally.
+
+---
+
+#### Step 3 — Add positional encoding to word embeddings
+- **What to do:** Add the positional encoding matrix to the word embedding matrix element-wise.
+- **Display in notebook:** Print a word's embedding vector before and after adding positional encoding. Compute the cosine similarity between the same word's embedding at position 1 vs position 10.
+- **Infer from output:** The same word now has a different vector depending on its position. Position 1 and position 10 versions of the same word are similar (high cosine similarity) but not identical — the positional signal is embedded.
+
+---
+
+### Task 5 — Full Transformer Encoder Layer
+
+**Objective:** Stack attention, normalization, and feed-forward into one complete encoder layer.
+
+---
+
+#### Step 1 — Build and describe the encoder layer components
+- **What to do:** Assemble: (1) Multi-Head Self-Attention, (2) Add & Norm (residual connection + layer norm), (3) Feed-Forward Network (two linear layers with ReLU), (4) Add & Norm again. This is one encoder layer.
+- **Display in notebook:** Print the complete architecture summary including every sublayer, its input/output shape, and its parameter count.
+- **Infer from output:** Identify the residual connections. These skip connections ensure gradients can flow directly to early layers without passing through the attention sublayer — this prevents the vanishing gradient problem at depth.
+
+---
+
+#### Step 2 — Train encoder on a classification task
+- **What to do:** Stack 2 encoder layers. Add a mean-pooling step followed by a linear classification head. Train on a text classification dataset (use the same dataset as Phase 5 LSTM).
+- **Display in notebook:** Plot training and validation curves. Print the final classification report.
+- **Infer from output:** Compare these curves to the LSTM curves from Phase 5. Does the transformer converge faster or slower? Does it achieve higher accuracy? Print both models' final test accuracy side by side.
+
+---
+
+#### Step 3 — Visualize attention weights
+- **What to do:** After training, pass a test sentence through the encoder and extract the attention weight matrix from the first layer. Visualize as a heatmap with word labels.
+- **Display in notebook:** Display the heatmap with words on both axes. Highlight cells with weight > 0.1.
+- **Infer from output:** Look for which words the model attends to most strongly. Are there interpretable patterns? Does the word "not" attend to the next word (as expected for negation handling)?
+
+---
+
+**LinkedIn Post Ideas for Phase 6**
+- "Attention is asking: which other words should I look at when processing this word? I built it from scratch and here's the step-by-step score matrix for a real sentence."
+- "I replaced my LSTM with a Transformer on the exact same task. Here are both training curves — and the specific point where the Transformer pulled ahead."
 
 ---
 
@@ -458,74 +1103,145 @@ Use PyTorch's built-in `nn.TransformerEncoder` as a validation check — your ou
 
 **Duration:** Weeks 14–17 | **LinkedIn posts:** 4–5 | **Difficulty:** ⭐⭐⭐⭐⭐
 
-### What This Phase Is About
+### Overview
 
-BERT and GPT are the two paradigms of modern NLP: encoder-only for understanding, decoder-only for generation. Both use the transformer architecture but differ in how they are pre-trained and what tasks they excel at. Fine-tuning these models with small amounts of labelled data achieves state-of-the-art results across virtually every NLP benchmark — and understanding why requires internalizing the concept of transfer learning.
+BERT and GPT are transformers pre-trained on massive text corpora. The key insight: instead of training a model from scratch on your task (which requires large labelled datasets), you start with a model that already understands language deeply, then fine-tune it for your specific task with a small labelled dataset.
 
-### Core Concepts to Master
+### Sequential Task Flow
 
-| Concept                           | What to Understand                                                                                        |
-| --------------------------------- | --------------------------------------------------------------------------------------------------------- |
-| Transfer learning in NLP          | How pre-training on large unlabelled corpora creates representations that transfer to downstream tasks    |
-| Masked Language Modeling (MLM)    | How BERT is trained to predict randomly masked tokens using bidirectional context                         |
-| Next Sentence Prediction (NSP)    | How BERT is additionally trained to classify whether two sentences follow each other                      |
-| Bidirectional vs causal attention | Why BERT can see the full sequence but GPT can only see past tokens                                       |
-| Causal Language Modeling (CLM)    | How GPT is trained to predict the next token given all previous tokens                                    |
-| WordPiece tokenization            | The subword algorithm used by BERT; how the `[CLS]`, `[SEP]`, and `[PAD]` special tokens work       |
-| Fine-tuning                       | How a pre-trained model is adapted to a specific task by adding a small task head and training end-to-end |
-| Zero-shot inference               | Using a pre-trained model for a task it was never explicitly trained on, via prompt design                |
-| Few-shot inference                | Providing a small number of demonstrations in the prompt as implicit task specification                   |
-| DistilBERT / RoBERTa / ALBERT     | Variants that improve on the original BERT through distillation, robustness, or parameter sharing         |
+```
+BERT Tokenizer Inspection → BERT Architecture Understanding
+→ Fine-tuning for Classification → Evaluation & Interpretation
+→ GPT-2 Text Generation → Zero-Shot Classification
+→ Few-Shot Prompting → Model Size Comparison
+```
 
-### How to Structure the Conceptual Understanding
+---
 
-Before writing any code, spend time understanding the difference between BERT and GPT at the architectural and objective level.
+### Task 1 — Understanding BERT's Tokenizer
 
-**BERT's perspective:** BERT sees the entire sequence at once (bidirectional). During pre-training, 15% of tokens are masked and the model must predict them using context from both sides. This makes BERT excellent at tasks that require understanding the full sentence — classification, NER, question answering. The `[CLS]` token's final representation aggregates the entire sequence and is used as input to the classification head during fine-tuning.
+**Objective:** See how BERT processes text before it enters the model.
 
-**GPT's perspective:** GPT generates text left to right (causal). During pre-training, it learns to predict the next token given all previous tokens. This makes GPT excellent at generation tasks — text completion, summarization, dialogue. It cannot look at future tokens, so its representation of each token depends only on what came before.
+---
 
-Understanding this distinction determines which model to reach for: BERT for understanding tasks, GPT-family for generation tasks.
+#### Step 1 — Load and inspect the BERT tokenizer
+- **What to do:** Load `bert-base-uncased` tokenizer. Tokenize 5 sample sentences. Print the raw tokens, input IDs, attention mask, and token type IDs for each.
+- **Display in notebook:** Print all four outputs in aligned columns. Note the `[CLS]` token at position 0 and `[SEP]` at the end.
+- **Infer from output:** `[CLS]` is a special token whose final hidden state is used as the sentence-level representation for classification. `[SEP]` separates sentences in tasks involving sentence pairs. The attention mask is 1 for real tokens and 0 for padding — the model ignores padded positions.
 
-### How to Structure the Fine-tuning Workflow
+---
 
-Use the Hugging Face `transformers` ecosystem. The workflow for every fine-tuning task follows the same three steps:
+#### Step 2 — Observe WordPiece subword splitting
+- **What to do:** Tokenize sentences containing rare words, technical terms, and deliberately misspelled words.
+- **Display in notebook:** Print the tokenized output for each. Highlight any token that starts with `##` (indicating a subword continuation).
+- **Infer from output:** Common words are one token. Rare or long words are split into multiple subword tokens — for example, `"tokenization"` → `["token", "##ization"]`. This is how BERT handles words it never saw during pre-training: it decomposes them into known subword units.
 
-**Step 1 — Data preparation:** Load your dataset using the `datasets` library. Apply the model's tokenizer to your raw text — this handles subword tokenization, adding special tokens (`[CLS]`, `[SEP]`), truncating to the model's max sequence length, and padding shorter sequences. Store the tokenized dataset in the format the trainer expects.
+---
 
-**Step 2 — Model setup:** Load a pre-trained model checkpoint using `AutoModel` with the appropriate head class (e.g., `AutoModelForSequenceClassification` for binary or multi-class classification, `AutoModelForTokenClassification` for NER). Set the number of output labels. The model's transformer weights are initialized from the pre-trained checkpoint; only the head is randomly initialized.
+### Task 2 — BERT Architecture and Pre-training Objectives
 
-**Step 3 — Training:** Use the `Trainer` API with a `TrainingArguments` config. Set meaningful values for batch size, number of epochs, learning rate (3e-5 to 5e-5 is typical for fine-tuning), weight decay, and warmup steps. Pass in a `compute_metrics` function that evaluates accuracy (and F1 for imbalanced classes) on the validation set at the end of each epoch.
+**Objective:** Understand what BERT learned during pre-training.
 
-### How to Structure the Generation and Zero-Shot Experiments
+---
 
-For GPT-style generation, load a pre-trained model and experiment with the generation hyperparameters: temperature (controls randomness), top-k sampling (limits the pool of next tokens), top-p / nucleus sampling (limits cumulative probability), and repetition penalty. Generate the same prompt 5 times with different temperature values and observe how output diversity changes.
+#### Step 1 — Masked Language Modeling (MLM)
+- **What to do:** Use the `fill-mask` pipeline to test BERT's masked language model. Mask different words in 5 sentences and observe BERT's top-5 predictions with confidence scores.
+- **Display in notebook:** Print the sentence with the `[MASK]`, then print the top-5 predicted words and their probabilities.
+- **Infer from output:** BERT predicts masked words using context from both sides simultaneously (bidirectional). Compare its predictions for a masked noun vs a masked adjective. Does it predict grammatically appropriate words? This is what 340M pre-training steps produced.
 
-For zero-shot classification, use a natural language inference model (such as `facebook/bart-large-mnli`) via the `pipeline` API. Pass your input text and a list of candidate labels. The model returns a probability score for each label without ever having seen labelled training examples for your specific task.
+---
 
-For few-shot prompting, write a prompt that includes 2–3 demonstrating examples before your actual query. Observe how the presence and quality of examples changes the model's output compared to zero-shot.
+#### Step 2 — Extract CLS token embeddings
+- **What to do:** Pass 10 sentences through BERT (without the classification head). Extract the `[CLS]` token's hidden state vector from the final layer for each sentence.
+- **Display in notebook:** Print the shape of each CLS vector. Compute pairwise cosine similarity between all 10 CLS vectors. Visualize as a heatmap.
+- **Infer from output:** Sentences with similar meaning should have high CLS cosine similarity. Verify this against your intuition for at least 3 pairs. This embedding can be used as a sentence representation for downstream tasks.
 
-### Hands-On Exercises
+---
 
-1. **Fine-tune DistilBERT on custom data** — Choose a domain-specific text classification dataset (e.g., medical abstracts, Tamil movie reviews, product feedback). Fine-tune DistilBERT. Plot the training and validation loss curves. Report precision, recall, and F1 on the test set.
-2. **BERT attention visualization** — Extract attention weights from BERT's 12 heads on a pronoun resolution example (e.g., "The trophy didn't fit in the suitcase because it was too big"). Visualize which heads correctly resolve the pronoun reference.
-3. **Model size vs accuracy benchmark** — Evaluate BERT-base, DistilBERT, RoBERTa-base, and ALBERT-base on the same classification task. Build a table comparing accuracy, inference latency, and parameter count. Identify the best accuracy-to-speed tradeoff.
-4. **CLS embedding clustering** — Extract the `[CLS]` token embedding from BERT for 100 sentences spanning 4 topic categories. Visualize with t-SNE. Measure whether the clusters separate correctly using a simple k-means cluster purity metric.
-5. **Prompt sensitivity experiment** — Feed the same 20 questions to GPT-2 using 5 differently phrased prompts for each. Document how dramatically the output changes. This is your first empirical lesson in prompt engineering.
+### Task 3 — Fine-tuning BERT for Classification
 
-### LinkedIn Post Angles
+**Objective:** Adapt a pre-trained BERT to a specific text classification task.
 
-- "BERT reads a sentence both ways at once. GPT predicts the next word. I fine-tuned both on the same sentiment dataset — here are the numbers and what surprised me."
-- "I visualized BERT's 12 attention heads on pronoun resolution. Head 8 clearly specializes in resolving what 'it' refers to. Here's the heatmap."
-- "I fine-tuned DistilBERT on Tamil movie reviews. 94% accuracy, 40% smaller than full BERT, 60% faster. Here's the training curve and what the model struggles with."
-- "Zero-shot classification blew my mind: I classified sentences into 5 categories I defined on the spot — no training data, no fine-tuning. Here's how it works."
+---
 
-### Key Takeaways
+#### Step 1 — Prepare and tokenize the dataset
+- **What to do:** Load your chosen classification dataset. Apply the BERT tokenizer with truncation and padding to a max length of 128 tokens. Inspect the tokenized batch.
+- **Display in notebook:** Print a sample tokenized example showing input IDs, attention mask, and true label. Print the distribution of sequence lengths as a histogram.
+- **Infer from output:** If most sequences are much shorter than 128 tokens, you can reduce `max_length` to speed up training. The histogram tells you the right truncation cutoff.
 
-- Fine-tuning a pre-trained model almost always outperforms training from scratch, even with very small labelled datasets.
-- The `[CLS]` token is a learned aggregation mechanism — it is not magic, it is just the position BERT consistently uses for classification during pre-training.
-- Zero-shot and few-shot capabilities emerge from scale and pre-training diversity — they are not explicitly programmed.
-- Model distillation (DistilBERT) sacrifices a small amount of accuracy for large gains in speed and memory — often the right trade-off in production.
+---
+
+#### Step 2 — Define and inspect the model
+- **What to do:** Load `AutoModelForSequenceClassification` with `num_labels` set to your task's class count. Print the model architecture, focusing on the classifier head that was randomly initialized.
+- **Display in notebook:** Print total parameters. Print trainable parameters. Print only the classifier head parameters separately.
+- **Infer from output:** The pre-trained transformer layers have millions of parameters already initialized with language knowledge. The randomly initialized head has only a few hundred or thousand parameters. Fine-tuning updates all of them together, but the transformer layers need very small learning rate updates.
+
+---
+
+#### Step 3 — Train and monitor
+- **What to do:** Train for 3 epochs using `Trainer` API. Log train loss, validation loss, and validation accuracy at each epoch.
+- **Display in notebook:** Plot training and validation loss curves. Print the best validation accuracy achieved and at which epoch.
+- **Infer from output:** BERT typically converges in 2–3 epochs on classification tasks. If validation loss plateaus or increases after epoch 1, you may be overfitting — BERT is very powerful and can memorize a small dataset quickly.
+
+---
+
+#### Step 4 — Evaluate and analyse errors
+- **What to do:** Generate predictions on the full test set. Print the classification report. Plot the confusion matrix.
+- **Display in notebook:** Show the classification report and confusion matrix.
+- **Infer from output:** Identify the class with the worst F1 score. Pull out 10 examples from that class that the model got wrong. Read them carefully — are they ambiguous? Are they a specific writing style? This error analysis guides what data to collect next.
+
+---
+
+### Task 4 — GPT-2 Text Generation
+
+**Objective:** Understand autoregressive (left-to-right) generation and its controls.
+
+---
+
+#### Step 1 — Greedy decoding
+- **What to do:** Load `GPT2LMHeadModel`. Generate text from a prompt using greedy decoding (always pick the highest probability next token).
+- **Display in notebook:** Print the generated text.
+- **Infer from output:** Greedy output is often repetitive or bland — once a common phrase starts, the greedy strategy gets trapped in loops. Note any repeated phrases.
+
+---
+
+#### Step 2 — Temperature sampling
+- **What to do:** Generate from the same prompt 5 times using temperature = 0.3, 0.7, 1.0, 1.5, 2.0.
+- **Display in notebook:** Print all 5 generated texts with their temperature label.
+- **Infer from output:** Temperature 0.3 is conservative and coherent but repetitive. Temperature 2.0 is creative but often nonsensical. Temperature 0.7–1.0 is the typical sweet spot. Record which temperature you subjectively prefer and why.
+
+---
+
+#### Step 3 — Top-k and nucleus (top-p) sampling
+- **What to do:** Generate with `top_k=50` (only sample from the top 50 tokens) and with `top_p=0.9` (sample from tokens that collectively account for 90% probability mass).
+- **Display in notebook:** Print outputs for each setting. Compare to the temperature sampling outputs.
+- **Infer from output:** Nucleus sampling adapts the vocabulary pool per step — when the model is confident it restricts options; when uncertain it broadens them. This produces more natural variation than fixed top-k.
+
+---
+
+### Task 5 — Zero-Shot and Few-Shot Inference
+
+**Objective:** Use pre-trained models for tasks they were never explicitly trained on.
+
+---
+
+#### Step 1 — Zero-shot classification
+- **What to do:** Use the `zero-shot-classification` pipeline with `facebook/bart-large-mnli`. Provide a sentence and 4–5 candidate labels. Print the scores.
+- **Display in notebook:** Print the sentence, each candidate label, and its confidence score. Sort by score descending.
+- **Infer from output:** The model was never trained on your specific labels. Yet it assigns meaningful probabilities. This works because NLI training (does hypothesis A follow from premise B?) generalises to classification. How close is the top score to 1.0? For unambiguous sentences, it should be high.
+
+---
+
+#### Step 2 — Few-shot prompting comparison
+- **What to do:** Test the same 10 classification queries with three prompt styles: zero-shot (just the query), one-shot (one example before the query), three-shot (three examples before the query).
+- **Display in notebook:** Print a table: query | zero-shot prediction | one-shot prediction | three-shot prediction.
+- **Infer from output:** Count how many predictions change between zero-shot, one-shot, and three-shot. For which query types do examples help most? This is your first structured prompt engineering experiment.
+
+---
+
+**LinkedIn Post Ideas for Phase 7**
+- "I masked different words in the same sentence and showed BERT's top-5 predictions for each. The difference between masking a noun vs a verb is remarkable."
+- "Fine-tuning DistilBERT took 3 epochs. Here's the training curve, the final accuracy, and the 5 test sentences it got most confidently wrong."
 
 ---
 
@@ -533,108 +1249,209 @@ For few-shot prompting, write a prompt that includes 2–3 demonstrating example
 
 **Duration:** Weeks 18–22 | **LinkedIn posts:** 5–6 | **Difficulty:** ⭐⭐⭐⭐⭐
 
-### What This Phase Is About
+### Overview
 
-The final phase brings everything together into production-ready NLP systems. Retrieval-Augmented Generation connects LLMs to private knowledge bases, solving the hallucination and staleness problems. Prompt engineering extracts maximum performance from a model without changing its weights. LoRA fine-tuning adapts billion-parameter models on consumer hardware by training less than 1% of parameters. This phase answers the question: how do you actually ship NLP systems in the real world?
+The final phase covers production NLP. RAG connects LLMs to private knowledge without retraining. Prompt engineering extracts maximum performance by crafting inputs carefully. LoRA fine-tuning adapts billion-parameter models by training less than 1% of their weights. This phase answers: how do you build real NLP systems?
 
-### Core Concepts to Master
+### Sequential Task Flow
 
-| Concept                              | What to Understand                                                                                                            |
-| ------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------- |
-| Retrieval-Augmented Generation (RAG) | How a retrieval step fetches relevant documents at query time and includes them in the LLM prompt                             |
-| Vector databases                     | How embeddings are stored and searched efficiently using approximate nearest-neighbour indices                                |
-| Semantic search vs keyword search    | How embedding-based similarity differs from TF-IDF; when each approach wins                                                   |
-| FAISS                                | How Facebook's Approximate Nearest Neighbour library enables fast similarity search at scale                                  |
-| Sentence transformers                | How models like `all-MiniLM-L6-v2` map whole sentences to single dense vectors                                              |
-| Prompt engineering                   | The systematic craft of writing input text that reliably steers model behaviour                                               |
-| Chain-of-Thought (CoT)               | How including step-by-step reasoning in a prompt improves accuracy on multi-step tasks                                        |
-| Role prompting                       | How framing the model as an expert persona changes output style and accuracy                                                  |
-| LoRA (Low-Rank Adaptation)           | How large weight matrices are approximated by the product of two smaller matrices, dramatically reducing trainable parameters |
-| PEFT                                 | The broader family of parameter-efficient fine-tuning methods                                                                 |
-| BLEU, ROUGE, BERTScore               | What each metric measures, what it misses, and when to use each                                                               |
+```
+Semantic Search (embedding → FAISS) → RAG Pipeline (chunk → embed → index → retrieve → generate)
+→ Prompt Engineering (zero-shot → few-shot → CoT → role)
+→ LoRA Fine-tuning (config → train → compare)
+→ Evaluation (BLEU → ROUGE → BERTScore → comparison)
+```
 
-### How to Structure the RAG Pipeline
+---
 
-A RAG system has five distinct components. Understand each one before wiring them together.
+### Task 1 — Semantic Search
 
-**Component 1 — Document chunking:** Split your knowledge base into chunks of 200–500 words with 50-word overlap between consecutive chunks. Overlap ensures that important information at chunk boundaries is not lost. Experiment with different chunk sizes — smaller chunks improve retrieval precision but lose cross-sentence context.
+**Objective:** Build a search system that understands meaning, not just keywords.
 
-**Component 2 — Embedding:** Use a sentence transformer model to embed each chunk into a dense vector. Every chunk becomes a single high-dimensional vector that captures its meaning. Use a model appropriate to your language — `all-MiniLM-L6-v2` is fast and English-only; use a multilingual model for Tamil or Hindi content.
+---
 
-**Component 3 — Index building:** Store all chunk embeddings in a FAISS index. The index enables approximate nearest-neighbour search — given a query vector, it returns the k most similar chunk vectors in milliseconds, even for millions of documents.
+#### Step 1 — Embed queries and documents
+- **What to do:** Load a `SentenceTransformer` model (`all-MiniLM-L6-v2`). Embed a collection of 20 short documents and 5 test queries.
+- **Display in notebook:** Print the shape of the document embedding matrix. Print the vector for one document (first 10 values).
+- **Infer from output:** Every document is now a fixed-size dense vector regardless of its length. The semantic meaning is compressed into this vector. Documents about the same topic should be near each other in this space.
 
-**Component 4 — Retrieval:** At query time, embed the user's question using the same model. Search the FAISS index for the top 3–5 most similar chunks. These are your retrieved context documents.
+---
 
-**Component 5 — Augmented generation:** Construct a prompt that includes the retrieved context, a clear instruction to answer based only on the provided context, and the user's question. Pass this prompt to a language model. The model's answer is grounded in your retrieved documents rather than in its (potentially outdated or hallucinated) training memory.
+#### Step 2 — Compute semantic similarity
+- **What to do:** Compute cosine similarity between each query vector and all document vectors. For each query, rank documents by similarity.
+- **Display in notebook:** For each query, print the top-3 most similar documents with their similarity scores.
+- **Infer from output:** Verify that the retrieved documents are semantically related to the query — not just sharing keywords. Test a paraphrase query (different words, same meaning) and verify the correct document is still retrieved.
 
-Build this pipeline end-to-end on a small personal knowledge base (your NLP notes from this roadmap work perfectly). Test it with 20 questions. Document the failure modes — when does retrieval fetch the wrong context? When does the model ignore the context it was given?
+---
 
-### How to Structure the Prompt Engineering Study
+#### Step 3 — Compare semantic search vs keyword search (TF-IDF)
+- **What to do:** Run the same 5 queries through TF-IDF cosine similarity. Compare the ranked results to semantic search.
+- **Display in notebook:** Print a side-by-side comparison table: query | TF-IDF top-1 result | Semantic top-1 result.
+- **Infer from output:** Find at least one query where semantic search retrieves a clearly better document. This is typically a paraphrase query where the query and document share no exact words. This is the fundamental advantage of embedding-based search.
 
-Prompt engineering is empirical. Design a structured ablation study:
+---
 
-Define a fixed evaluation set of 50 questions with known correct answers. For each question, test at least 4 prompt variants: zero-shot (question only), few-shot (2–3 examples before the question), chain-of-thought (add "let's think step by step"), and role-prompted (add "you are an expert in X"). Measure accuracy for each variant. Build a table showing how accuracy changes across variants and across question types.
+### Task 2 — Build a Full RAG Pipeline
 
-Key principles to test empirically:
+**Objective:** Combine retrieval and generation to answer questions grounded in a knowledge base.
 
-- Does adding more few-shot examples always help, or is there a point of diminishing returns?
-- Does chain-of-thought help on factual recall questions, or only on reasoning questions?
-- Does the order of few-shot examples matter?
-- How sensitive is output to minor rephrasing of the task instruction?
+---
 
-Document your findings as a personal prompt engineering guide.
+#### Step 1 — Chunk your knowledge base
+- **What to do:** Take a collection of documents (your NLP notes from Phases 1–7 work perfectly). Split each document into chunks of ~300 words with 50-word overlap between consecutive chunks.
+- **Display in notebook:** Print the first 3 chunks with their source document label. Print the total number of chunks created.
+- **Infer from output:** Smaller chunks improve retrieval precision but lose cross-sentence context. Larger chunks preserve context but reduce precision. The 50-word overlap ensures sentences at chunk boundaries are not lost.
 
-### How to Structure LoRA Fine-tuning
+---
 
-LoRA works by adding a small pair of matrices (A and B) alongside specific weight matrices in the transformer. Only A and B are trained — the original weights are frozen. The product A×B represents the weight update, and its low rank (controlled by the `r` hyperparameter) dramatically limits the number of trainable parameters.
+#### Step 2 — Embed all chunks and build FAISS index
+- **What to do:** Embed all chunks using the SentenceTransformer. Build a FAISS IndexFlatIP (inner product index) from the embeddings. Save the index to disk.
+- **Display in notebook:** Print the total number of vectors in the index. Print the index dimensionality.
+- **Infer from output:** The FAISS index enables sub-millisecond nearest-neighbour search even across millions of vectors. This is what makes RAG practical at scale.
 
-The fine-tuning workflow:
+---
 
-**Step 1 — Choose your base model:** Select a model small enough to run on your hardware. A 125M–1B parameter model is trainable on a laptop CPU or a free Colab GPU.
+#### Step 3 — Retrieve relevant chunks for a query
+- **What to do:** Take a test question. Embed it using the same SentenceTransformer. Search the FAISS index for the top 3 most similar chunks.
+- **Display in notebook:** Print the query. Print the 3 retrieved chunks with their similarity scores and source labels.
+- **Infer from output:** Are the retrieved chunks relevant to the query? If not, investigate why — is the query too vague? Is the correct information in the knowledge base? Retrieval quality is the most important determinant of RAG system quality.
 
-**Step 2 — Configure LoRA:** Decide which weight matrices to apply LoRA to (query and value projection matrices are the standard choice). Set the rank `r` (start with 4 or 8) and the scaling factor `lora_alpha` (typically 2× rank). A lower rank means fewer parameters but less expressive adaptation.
+---
 
-**Step 3 — Prepare your dataset:** Format it as instruction-response pairs. Each training example should have a clear instruction, optional context, and the desired response.
+#### Step 4 — Construct the augmented prompt
+- **What to do:** Format a prompt that includes: an instruction ("Answer the question using only the provided context"), the 3 retrieved chunks as numbered context passages, and the user's question.
+- **Display in notebook:** Print the full formatted prompt. Count the total token length.
+- **Infer from output:** The prompt must fit within the model's context window. For long retrieved chunks, you may need to truncate. Observe how the context is formatted — this formatting matters for the model's ability to use it.
 
-**Step 4 — Train and compare:** Before and after fine-tuning, prompt the model with the same 10 test queries and compare the outputs qualitatively. Also measure perplexity on a held-out validation set.
+---
 
-**Step 5 — Merge and save:** LoRA allows you to merge the trained A×B matrices back into the original weight matrices and save a single model file, making deployment identical to a standard model.
+#### Step 5 — Generate the answer
+- **What to do:** Pass the augmented prompt to a language model. Print the generated answer.
+- **Display in notebook:** Print the full prompt and the generated answer side by side.
+- **Infer from output:** Does the answer correctly use the retrieved context? Does it hallucinate information not in the context? Test 10 questions and categorize each: (1) correct and grounded, (2) correct but not grounded, (3) incorrect. The failure modes reveal system weaknesses.
 
-### How to Structure the Evaluation Framework
+---
 
-Build a proper evaluation pipeline before presenting results. For each metric, understand what it measures and what it misses:
+### Task 3 — Prompt Engineering
 
-**BLEU:** Measures n-gram overlap between generated text and reference text. Good for translation. Penalizes output that is too short. Fails to reward paraphrases that preserve meaning but use different words.
+**Objective:** Systematically test prompt strategies and measure their effect on output quality.
 
-**ROUGE:** Measures recall-oriented overlap — how much of the reference text is covered by the generated text. Variants: ROUGE-1 (unigrams), ROUGE-2 (bigrams), ROUGE-L (longest common subsequence). Primarily used for summarization.
+---
 
-**BERTScore:** Uses BERT embeddings to measure semantic similarity between generated and reference text. Captures meaning beyond surface n-gram overlap. More expensive to compute but more aligned with human judgement than BLEU or ROUGE.
+#### Step 1 — Zero-shot prompting
+- **What to do:** Construct a minimal prompt: task instruction + input, no examples.
+- **Display in notebook:** Print the prompt and the model output for 10 test queries.
+- **Infer from output:** Identify queries where the model clearly misunderstands the task. These become your test cases for improving the prompt.
 
-**Human evaluation:** For generation tasks, automated metrics only partially capture quality. Design a simple human evaluation rubric with dimensions like factual accuracy, fluency, and relevance. Score 50 outputs yourself before claiming a model is "good."
+---
 
-### Hands-On Exercises
+#### Step 2 — Few-shot prompting
+- **What to do:** Add 3 example (input, output) pairs before each query. Keep the examples diverse and representative of the task.
+- **Display in notebook:** Print the few-shot prompt for one query. Print outputs for all 10 test queries. Highlight cases that changed from zero-shot.
+- **Infer from output:** Count how many of the 10 queries improved, stayed the same, or got worse. Record the overall accuracy change.
 
-1. **Personal RAG chatbot** — Index your own NLP notes (from phases 1–7). Build a question-answering interface. Ask it 30 questions. Document at least 5 failure modes and explain why each failure occurs.
-2. **Prompt ablation study** — Test 5 prompt strategies on a fixed evaluation set of 50 questions. Build a results table. Write a 200-word summary of what you learned about prompting from the data.
-3. **LoRA fine-tuning** — Fine-tune a small instruction-tuned model on a domain-specific dataset you curate (NLP Q&A pairs, Tamil text, product reviews). Compare before/after outputs qualitatively and with BERTScore.
-4. **Chunking strategy comparison** — Build the same RAG pipeline with three different chunking strategies (fixed size, sentence boundary, paragraph boundary). Test retrieval accuracy with 20 queries and compare the strategies.
-5. **End-to-end NLP project** — Build a complete application combining techniques from at least 3 phases. Options: a domain-specific semantic search engine (TF-IDF + BERT embeddings + FAISS), a sentiment-aware document summarizer (LSTM classifier + T5 summarizer), or an auto-correction + classification pipeline for noisy social media text.
+---
 
-### LinkedIn Post Angles
+#### Step 3 — Chain-of-Thought prompting
+- **What to do:** Add "Let's think step by step" or include a worked-out reasoning chain in your examples. Apply this to 5 multi-step reasoning questions.
+- **Display in notebook:** Print the full chain-of-thought output for each question. Show whether the final answer improved compared to direct prompting.
+- **Infer from output:** Chain-of-thought helps on tasks that require multi-step logic. It typically hurts on tasks that need fast, direct recall. Identify which of your 5 questions benefited from CoT and which did not.
 
-- "RAG stopped my LLM from hallucinating. I connected it to my own knowledge base and the difference was immediate. Here's the full architecture — 5 components, each with a clear responsibility."
-- "I ran the same 50 questions through 5 different prompt templates. Chain-of-thought beat zero-shot by 18 accuracy points. Here's the breakdown by question type."
-- "LoRA fine-tuned a model by training only 0.42% of its weights. Here's the before/after output comparison and what the parameter math actually means."
-- "BLEU, ROUGE, BERTScore — three ways to measure generated text quality. Here's when each metric lies to you and when to trust it."
-- "I built a Q&A chatbot over my own 8-phase NLP notes. Ask it anything from Phase 1 to Phase 8. Here's the architecture, the most interesting failure I found, and what I would change next."
+---
 
-### Key Takeaways
+#### Step 4 — Role prompting
+- **What to do:** Prefix your prompt with "You are an expert NLP researcher..." or a domain-appropriate persona.
+- **Display in notebook:** Show output for the same query with and without the role prefix.
+- **Infer from output:** Role prompting often improves terminology accuracy and output structure. Note whether the improvement is in style (more professional language) or in substance (more accurate content).
 
-- RAG is the most practical way to connect LLMs to private, up-to-date, or domain-specific knowledge. It does not require any model training.
-- Prompting is engineering, not art — test variants systematically and measure results. Intuition alone will mislead you.
-- LoRA makes fine-tuning accessible: a 7B parameter model can be fine-tuned in hours on a single consumer GPU.
-- No automated metric fully captures generation quality. Human evaluation, even at small scale, is irreplaceable.
-- The biggest gains in production NLP often come from better data, not better models.
+---
+
+#### Step 5 — Ablation summary table
+- **What to do:** Collect all your prompt strategy results. Build a summary table: strategy | accuracy | avg response length | qualitative notes.
+- **Display in notebook:** Print the full comparison table. Plot a bar chart of accuracy by strategy.
+- **Infer from output:** Write a 5-line conclusion: which strategy worked best overall, which worked best for which task type, and which had unexpected negative effects. This becomes your personal prompt engineering guide.
+
+---
+
+### Task 4 — LoRA Fine-tuning
+
+**Objective:** Fine-tune a large language model efficiently by training only a tiny fraction of parameters.
+
+---
+
+#### Step 1 — Understand LoRA conceptually
+- **What to do:** Write a markdown cell explaining LoRA. A weight matrix `W` (large) is approximated by freezing `W` and adding a low-rank product `A × B` where `A` and `B` are much smaller matrices. Only `A` and `B` are trained.
+- **Display in notebook:** Draw a diagram showing the original weight matrix, the two LoRA matrices, and how they combine during the forward pass.
+- **Infer from output:** If `W` is 4096×4096 and rank `r=8`, then `A` is 4096×8 and `B` is 8×4096. Total parameters in `A+B`: 65,536. Parameters in `W`: 16,777,216. LoRA adds 0.39% extra parameters. Print these exact numbers.
+
+---
+
+#### Step 2 — Apply LoRA configuration and inspect trainable parameters
+- **What to do:** Load a small base model (125M–1B parameters). Apply `LoraConfig` targeting the query and value projection matrices with `r=8`, `lora_alpha=32`. Call `print_trainable_parameters()`.
+- **Display in notebook:** Print the number of trainable parameters, total parameters, and the percentage. Print which specific layer names have LoRA adapters attached.
+- **Infer from output:** Confirm the trainable parameter count is under 1% of total. Print a clear comparison: "Before LoRA: X trainable params. After LoRA: Y trainable params (Z% of total)."
+
+---
+
+#### Step 3 — Prepare the instruction-tuning dataset
+- **What to do:** Format your dataset as instruction-response pairs. Print 5 examples in the exact format the model will see during training: system instruction + user input + assistant response.
+- **Display in notebook:** Print the 5 formatted examples. Print the dataset size (train/validation split).
+- **Infer from output:** The formatting must be consistent. A single malformatted example can degrade the whole fine-tune. Verify every example follows the same template.
+
+---
+
+#### Step 4 — Train and monitor loss
+- **What to do:** Train for 1–3 epochs using `SFTTrainer`. Log training loss at every 10 steps.
+- **Display in notebook:** Plot the training loss curve. Mark the loss at the start and end of training.
+- **Infer from output:** Loss should decrease monotonically. If it plateaus early, the learning rate may be too low. If it oscillates wildly, it may be too high. Note the final loss value.
+
+---
+
+#### Step 5 — Before vs after comparison
+- **What to do:** Generate outputs for 10 test prompts from the base model (before fine-tuning) and the LoRA-adapted model (after fine-tuning). Print both outputs side by side.
+- **Display in notebook:** Print the 10 pairs in a before/after format. Highlight the most striking improvements.
+- **Infer from output:** Categorize the changes: Did the model's output format improve? Did it adopt domain-specific vocabulary? Did it become more concise or more detailed? This qualitative analysis is as important as any metric.
+
+---
+
+### Task 5 — Evaluation Metrics
+
+**Objective:** Measure generated text quality quantitatively and understand what each metric misses.
+
+---
+
+#### Step 1 — BLEU score
+- **What to do:** Compute BLEU-1, BLEU-2, BLEU-3, BLEU-4 for 10 (generated, reference) pairs using the `evaluate` library.
+- **Display in notebook:** Print the score for each test pair and the mean across all 10. Print one example where BLEU is high and one where it is low.
+- **Infer from output:** High BLEU means strong n-gram overlap. Low BLEU can mean a semantically correct answer phrased differently from the reference. Print a case where the generated text is clearly correct but BLEU is low — this shows BLEU's limitation.
+
+---
+
+#### Step 2 — ROUGE score
+- **What to do:** Compute ROUGE-1, ROUGE-2, and ROUGE-L for the same 10 pairs.
+- **Display in notebook:** Print a table: pair ID | ROUGE-1 | ROUGE-2 | ROUGE-L.
+- **Infer from output:** ROUGE-1 and ROUGE-2 measure unigram and bigram recall. ROUGE-L measures the longest common subsequence. A high ROUGE-L with low ROUGE-2 means the generated text preserves the broad sequence but not exact phrase matches.
+
+---
+
+#### Step 3 — BERTScore
+- **What to do:** Compute BERTScore precision, recall, and F1 for the same 10 pairs.
+- **Display in notebook:** Print P, R, F1 for each pair. Print the mean F1.
+- **Infer from output:** Find a case where BLEU is low but BERTScore F1 is high. This is a paraphrase — same meaning, different words. BERTScore captures semantic similarity that BLEU misses entirely.
+
+---
+
+#### Step 4 — Metrics comparison summary
+- **What to do:** Build a final summary table with all three metrics for all 10 pairs. Sort by BERTScore F1.
+- **Display in notebook:** Print the full table. Plot a bar chart comparing the three metrics' mean scores across all pairs.
+- **Infer from output:** Write a 3-line conclusion for each metric: what it measures, what it misses, and the task type it is best suited for. This becomes your reference guide for evaluating NLP systems.
+
+---
+
+**LinkedIn Post Ideas for Phase 8**
+- "RAG stopped my model from hallucinating. I connected it to my own knowledge base — here's the full pipeline with 5 components explained, and the failure modes I found."
+- "LoRA fine-tuned a 125M model by training only 0.42% of its weights. Here's the before vs after output comparison and why this changes everything for compute-constrained teams."
+- "BLEU gave a low score to a correct answer just because it used different words. Here's the concrete example that shows why BERTScore is a better metric for semantic tasks."
 
 ---
 
@@ -644,138 +1461,107 @@ Build a proper evaluation pipeline before presenting results. For each metric, u
 
 Every post should follow this five-part structure:
 
-1. **Hook** — a surprising finding, a counterintuitive result, a relatable failure, or a specific number that creates curiosity
-2. **Context** — what you were trying to do (1–2 sentences maximum)
-3. **Insight** — the thing you actually learned that others would benefit from knowing
-4. **Visual** — a screenshot, heatmap, chart, confusion matrix, annotated diagram, or side-by-side comparison
-5. **Question** — one specific question that invites your audience to engage from their own experience
+1. **Hook** — a surprising number, a counterintuitive result, or a specific failure that creates curiosity
+2. **Context** — what you were trying to do (1–2 sentences)
+3. **Insight** — the concrete thing you learned
+4. **Visual** — a screenshot of your notebook output, a plot, a heatmap, or a before/after table
+5. **Question** — one specific question that invites your audience to engage
 
-### Posting Cadence by Phase
+### Posting Cadence
 
-| Phase Range                | Total Posts | Recommended Frequency |
-| -------------------------- | ----------- | --------------------- |
-| Phases 1–3 (Weeks 1–4)   | 7–8 posts  | Every 3–4 days       |
-| Phases 4–5 (Weeks 5–10)  | 7–8 posts  | Every 3–4 days       |
-| Phases 6–7 (Weeks 11–17) | 8–9 posts  | Every 3 days          |
-| Phase 8 (Weeks 18–22)     | 5–6 posts  | Every 3–5 days       |
+| Phase Range | Total Posts | Frequency |
+|---|---|---|
+| Phases 1–3 (Weeks 1–4) | 7–8 posts | Every 3–4 days |
+| Phases 4–5 (Weeks 5–10) | 7–8 posts | Every 3–4 days |
+| Phases 6–7 (Weeks 11–17) | 8–9 posts | Every 3 days |
+| Phase 8 (Weeks 18–22) | 5–6 posts | Every 3–5 days |
 
-### Series Anchoring Posts
+### Anchor Posts
 
-Write these specific posts to frame the narrative of your public journey:
+- **Launch (Week 1):** "I am starting a public NLP learning journey — from tokenization to fine-tuning transformers, every step documented here. Follow along. Post 1 of ~30."
+- **Milestone (After Phase 3):** "I just trained Word2Vec from scratch and visualized the embedding space. Here is what the t-SNE cluster looks like — and what king − man + woman equals on my data."
+- **Midpoint (After Phase 6):** "I just implemented transformer attention line by line. Here are the 3 things I did not understand until I coded them myself."
+- **Completion (After Phase 8):** "22 weeks. 8 phases. 30+ posts. Here is every concept I built, every notebook I wrote, and the GitHub repo. NLP from scratch — done."
 
-- **Launch post (Week 1):** "I am starting a public NLP learning journey — from tokenization to fine-tuning transformers, with every step documented here. Follow along. Post 1 of ~30."
-- **Milestone post (After Phase 3):** "I just trained Word2Vec from scratch and visualized the embedding space. Here is what 300 word vectors look like in 2D — and what king − man + woman actually equals on my data."
-- **Midpoint post (After Phase 6):** "I just implemented the transformer attention mechanism line by line. Here are the 3 things I did not understand until I coded them myself."
-- **Completion post (After Phase 8):** "22 weeks. 8 phases. 30+ posts. Here is every concept I built, every visualization I created, and the GitHub repo with all the notebooks. NLP from scratch — done."
-
-### Hashtag Strategy
-
-Use `#NLPFromScratch` consistently on every post to build a discoverable series. Also use `#NLP`, `#MachineLearning`, `#DeepLearning`, and `#AILearning` for discovery. For India-specific reach, add `#TechIndia` and `#AIIndia`.
+Use `#NLPFromScratch` on every single post to build a discoverable series.
 
 ---
 
 ## Portfolio & GitHub Structure
 
-### Repository Name: `nlp-from-scratch`
-
-Each phase gets its own folder with a consistent internal structure:
+### Repository: `nlp-from-scratch`
 
 ```
 nlp-from-scratch/
-├── README.md                          ← Top-level overview of the entire journey
+├── README.md
 ├── phase-01-tokenization/
-│   ├── README.md                      ← Phase-specific concept explanation
-│   ├── 01_scratch_implementation.ipynb
-│   ├── 02_library_implementation.ipynb
-│   ├── 03_exercises.ipynb
-│   ├── data/
-│   └── outputs/                       ← Saved plots, figures, exported models
+│   ├── README.md
+│   ├── 01_data_cleaning.ipynb
+│   ├── 02_word_tokenization.ipynb
+│   ├── 03_sentence_tokenization.ipynb
+│   ├── 04_stopword_removal.ipynb
+│   ├── 05_stemming_lemmatization.ipynb
+│   ├── 06_full_pipeline.ipynb
+│   └── outputs/
 ├── phase-02-bow-tfidf/
+│   ├── 01_one_hot_encoding.ipynb
+│   ├── 02_bag_of_words.ipynb
+│   ├── 03_ngrams.ipynb
+│   ├── 04_tfidf.ipynb
+│   └── 05_cosine_similarity.ipynb
 ├── phase-03-word-embeddings/
 ├── phase-04-classical-nlp/
 ├── phase-05-rnn-lstm/
 ├── phase-06-attention-transformers/
 ├── phase-07-bert-gpt/
-├── phase-08-rag-prompting-finetuning/
+├── phase-08-rag-finetuning/
 └── datasets/
-    └── shared/                        ← Common datasets used across multiple phases
 ```
 
 ### Phase README Template
 
-Every phase folder's `README.md` should answer five questions:
-
-1. **What problem does this phase solve?** — One paragraph explaining the limitation of the previous phase that motivated this one.
-2. **What are the key concepts?** — A bullet list of 5–8 concepts, each with a one-sentence explanation in your own words.
-3. **How do I run the notebooks?** — Prerequisites, install commands, and the order in which to run the notebooks.
-4. **What did the exercises reveal?** — A brief summary of the most interesting finding from each exercise. This is the most valuable section — it should be updated after you complete the phase.
-5. **Where can I learn more?** — 2–3 links: one paper, one blog post or tutorial, and the link to your LinkedIn post(s) for this phase.
-
-### Top-Level README Structure
-
-The root `README.md` is your portfolio front page. It should contain:
-
-- A one-paragraph description of the project and its purpose
-- A visual timeline or progress table showing all 8 phases
-- A table linking each phase to its folder, its notebook, and its LinkedIn post
-- Your key results and visualizations (the best 4–6 plots from the journey)
-- Your setup instructions (one block of install commands)
-- A "What I learned" section written after completing the full roadmap
+Each phase folder's `README.md` answers five questions:
+1. What problem does this phase solve?
+2. What are the key concepts? (one sentence each)
+3. How do I run the notebooks? (order + install commands)
+4. What did each exercise reveal? (updated after completion)
+5. Where can I learn more? (one paper + one tutorial + LinkedIn link)
 
 ---
 
 ## Resources & References
 
-### Essential Books
+### Papers to Read (by phase)
 
-| Book                                         | Authors             | Best Used For                                                          |
-| -------------------------------------------- | ------------------- | ---------------------------------------------------------------------- |
-| Speech and Language Processing (3rd ed.)     | Jurafsky & Martin   | Comprehensive theoretical foundation — a reference, not a linear read |
-| Natural Language Processing with Python      | Bird, Klein & Loper | Hands-on NLTK work in Phases 1–4                                      |
-| Deep Learning for NLP                        | Palash Goyal et al. | Bridge from classical to deep methods                                  |
-| Transformers for Natural Language Processing | Denis Rothman       | Practical Hugging Face implementation in Phases 6–8                   |
-
-### Papers to Read in Order
-
-Read these papers at the phase they correspond to — not all at once at the start.
-
-1. **Phase 3** — Mikolov et al. (2013) — *Efficient Estimation of Word Representations in Vector Space* — the Word2Vec paper
-2. **Phase 5** — Hochreiter & Schmidhuber (1997) — *Long Short-Term Memory* — the original LSTM paper
-3. **Phase 6** — Vaswani et al. (2017) — *Attention Is All You Need* — the transformer paper
-4. **Phase 7** — Devlin et al. (2018) — *BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding*
-5. **Phase 7** — Radford et al. (2019) — *Language Models are Unsupervised Multitask Learners* — GPT-2
-6. **Phase 8** — Lewis et al. (2020) — *Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks*
-7. **Phase 8** — Hu et al. (2021) — *LoRA: Low-Rank Adaptation of Large Language Models*
-
-### Online Courses
-
-| Course                             | Platform              | Best For                             |
-| ---------------------------------- | --------------------- | ------------------------------------ |
-| Stanford CS224N                    | YouTube (free)        | Deep theoretical grounding in NLP    |
-| Hugging Face NLP Course            | huggingface.co (free) | Practical Phases 6–8 implementation |
-| fast.ai Practical Deep Learning    | fast.ai (free)        | Intuitive deep learning approach     |
-| deeplearning.ai NLP Specialization | Coursera (paid)       | Structured coverage of all phases    |
+| Phase | Paper |
+|---|---|
+| Phase 3 | Mikolov et al. (2013) — *Efficient Estimation of Word Representations in Vector Space* |
+| Phase 5 | Hochreiter & Schmidhuber (1997) — *Long Short-Term Memory* |
+| Phase 6 | Vaswani et al. (2017) — *Attention Is All You Need* |
+| Phase 7 | Devlin et al. (2018) — *BERT: Pre-training of Deep Bidirectional Transformers* |
+| Phase 7 | Radford et al. (2019) — *Language Models are Unsupervised Multitask Learners* (GPT-2) |
+| Phase 8 | Lewis et al. (2020) — *Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks* |
+| Phase 8 | Hu et al. (2021) — *LoRA: Low-Rank Adaptation of Large Language Models* |
 
 ### Datasets by Phase
 
-| Dataset             | Task                       | How to Load                             |
-| ------------------- | -------------------------- | --------------------------------------- |
-| SMS Spam Collection | Spam detection             | Kaggle / UCI repository                 |
-| IMDB Reviews        | Sentiment analysis         | `load_dataset("imdb")`                |
-| AG News             | Topic classification       | `load_dataset("ag_news")`             |
-| 20 Newsgroups       | Multi-class classification | `sklearn.datasets.fetch_20newsgroups` |
-| CoNLL-2003          | Named entity recognition   | `load_dataset("conll2003")`           |
-| Multi30k            | English-French translation | `load_dataset("bentrevett/multi30k")` |
-| SQuAD v1.1          | Question answering         | `load_dataset("rajpurkar/squad")`     |
-| Alpaca              | Instruction fine-tuning    | `load_dataset("tatsu-lab/alpaca")`    |
+| Phase | Dataset | Task |
+|---|---|---|
+| Phase 2 | 20 Newsgroups | TF-IDF + classification |
+| Phase 4 | SMS Spam Collection | Text classification |
+| Phase 4 | IMDB Reviews | Sentiment analysis |
+| Phase 4 | CoNLL-2003 | NER |
+| Phase 5 | IMDB Reviews | Sequence classification |
+| Phase 5 | Multi30k | Seq2Seq |
+| Phase 7 | IMDB / AG News | BERT fine-tuning |
+| Phase 8 | Alpaca | LoRA instruction tuning |
 
-### Useful Blogs and Websites
+### Essential Reading
 
-- **The Illustrated Transformer** by Jay Alammar — the best visual explanation of the transformer architecture
-- **The Illustrated BERT** by Jay Alammar — same treatment for BERT
-- **Lilian Weng's blog** (lilianweng.github.io) — deep, rigorous write-ups on attention, RLHF, RAG, and prompting
-- **Hugging Face blog** (huggingface.co/blog) — practical implementation guides for the latest models
-- **Sebastian Ruder's blog** (ruder.io) — NLP research overviews and transfer learning history
+- **The Illustrated Transformer** — Jay Alammar (best visual explanation of transformers)
+- **The Illustrated BERT** — Jay Alammar
+- **Lilian Weng's blog** (lilianweng.github.io) — deep write-ups on attention and RAG
+- **Hugging Face NLP Course** (huggingface.co/learn/nlp-course) — free, hands-on
 
 ---
 
