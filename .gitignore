@@ -21,3 +21,11 @@ desktop.ini
 !**/data/.gitkeep
 **/outputs/*
 !**/outputs/.gitkeep
+
+# Agents
+.agents/
+
+# Learning progress trackers and environment config
+POST_TRACKER.md
+PROJECT_TRACKER.md
+requirements.txt

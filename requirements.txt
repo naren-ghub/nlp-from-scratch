@@ -1,7 +1,0 @@
-nltk
-spacy
-regex
-pandas
-numpy
-jupyterlab
-scikit-learn
