@@ -15,8 +15,8 @@ For each phase in this roadmap, I follow a strict execution pattern:
 | Phase | Description | Focus Areas | Status | LinkedIn Post |
 | :--- | :--- | :--- | :---: | :---: |
 | **01** | [Tokenization & Preprocessing](./phase-01-tokenization/) | Whitespace vs. Regex, Sentence splitting, Porter & Snowball Stemmers, spaCy Lemmatization, Tokenizer comparisons | 🟢 Completed | *TBD* |
-| **02** | [Bag of Words & TF-IDF](./phase-02-bow-tfidf/) | One-Hot Encoding, Bag of Words, N-grams, TF-IDF from scratch, Cosine Similarity heatmap | 🟡 In Progress | — |
-| **03** | [Word Embeddings: CBOW & Skip-gram](./phase-03-word-embeddings/) | CBOW & Skip-gram from scratch, Analogy arithmetic, t-SNE & PCA visualization, Pre-trained GloVe comparison | ⚪ Not Started | — |
+| **02** | [Bag of Words & TF-IDF](./phase-02-bow-tfidf/) | One-Hot Encoding, Bag of Words, N-grams, TF-IDF from scratch, Cosine Similarity heatmap | 🟢 Completed | *TBD* |
+| **03** | [Word Embeddings: CBOW & Skip-gram](./phase-03-word-embeddings/) | CBOW & Skip-gram from scratch, Analogy arithmetic, t-SNE & PCA visualization, Pre-trained GloVe comparison | 🟢 Completed | *TBD* |
 | **04** | Classical NLP Tasks | Sentiment Analysis, Text Classification, Part-of-Speech tagging, Named Entity Recognition | ⚪ Not Started | — |
 | **05** | RNNs, LSTMs & Sequence Models | Recurrent units, Backpropagation through time (BPTT), LSTM gating, POS tagging with LSTMs | ⚪ Not Started | — |
 | **06** | Attention Mechanism & Transformers | Seq2Seq with attention, Self-attention, Multi-head attention, Positional encoding | ⚪ Not Started | — |
@@ -58,7 +58,7 @@ source .venv/bin/activate
 ```
 
 ### 3. Install dependencies
-Install dependencies for the active phase (Phase 1):
+Install dependencies for the active phases:
 ```bash
 pip install --upgrade pip
 pip install -r requirements.txt
@@ -69,4 +69,10 @@ pip install -r requirements.txt
 ## 📝 What I Learned (Key Takeaways)
 
 ### Phase 01: Tokenization & Preprocessing
-*In Progress...*
+Successfully set up the foundation of NLP text cleaning, identifying edge cases in stemmers and observing how lemmatization relies heavily on POS tagging.
+
+### Phase 02: Bag of Words & TF-IDF
+Implemented statistical vectorization methods from scratch. Explored the limitations of word order loss in BoW and how TF-IDF penalizes common filler words.
+
+### Phase 03: Word Embeddings (CBOW & Skip-gram)
+Trained dense vector representations of words. Visualized word clusters using t-SNE/PCA and tested semantic analogies using both custom and pre-trained GloVe vectors.
