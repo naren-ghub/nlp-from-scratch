@@ -278,12 +278,6 @@ Raw Text → Data Cleaning → Word Tokenization → Sentence Tokenization
 
 ---
 
-**LinkedIn Post Ideas for Phase 1**
-
-- "I ran the same 100 words through stemming and lemmatization. Here's the comparison table — and the cases where stemming produces non-words that would break a vocabulary."
-- "Removing stopwords deleted the word 'not' from my sentence and flipped its meaning. Here's why the default stopword list is dangerous for sentiment analysis."
-
----
 
 ## Phase 2 — Bag of Words & TF-IDF
 
@@ -445,12 +439,6 @@ Preprocessed Text → One-Hot Encoding → Bag of Words → N-grams
 
 ---
 
-**LinkedIn Post Ideas for Phase 2**
-
-- "BoW treats 'food was good not bad' and 'food was bad not good' as identical vectors. Here's the proof — and why this is the fundamental limitation of the most used text representation method."
-- "I built a TF-IDF heatmap of 20 news articles. The visualization shows topic clusters without any labels — just math."
-
----
 
 ## Phase 3 — Word Embeddings: CBOW & Skip-gram
 
@@ -641,231 +629,203 @@ Motivation (BoW limits) → Corpus Preparation → CBOW (concept + train)
 
 ---
 
-**LinkedIn Post Ideas for Phase 3**
-
-- "king − man + woman = queen. Here's the vector arithmetic on my trained model — and the 3 cases where the analogy completely broke down."
-- "I visualized 300 word vectors with t-SNE. Sports terms clustered together. Countries clustered together. Nobody told the model what a category was — it emerged from the training data."
-
----
 
 ## Phase 4 — Classical NLP Tasks
 
-**Duration:** Weeks 5–7 | **LinkedIn posts:** 4–5 | **Difficulty:** ⭐⭐⭐☆☆
+**Duration:** Weeks 5–7 | **Difficulty:** ⭐⭐⭐☆☆
 
 ### Overview
 
-With text representations available, you can now build real NLP applications. This phase covers the most common production NLP tasks: text classification, sentiment analysis, auto-correction, named entity recognition, and POS tagging. You will also learn how to properly evaluate a model and analyse its errors.
+With text representations available, you can now build real NLP applications. This phase covers the most common production NLP tasks: Part-of-Speech tagging, Named Entity Recognition, Extractive Summarization, Sentiment Analysis (Lexicon and ML-based), Spelling Auto-correction, Next Word Prediction, and Text Classification.
 
 ### Sequential Task Flow
 
 ```
-Text Classification (Naïve Bayes → SVM → Evaluation)
-→ Sentiment Analysis (Lexicon-based → ML-based → Comparison)
-→ Auto-correction (Edit Distance → Candidate Generation → Scoring)
-→ NER (spaCy pipeline → Visualization → Analysis)
-→ POS Tagging (Tagging → Dependency → Analysis)
+POS Tagging & Dependency Parsing (spaCy)
+→ Named Entity Recognition (spaCy displaCy)
+→ Extractive Summarization (Word-Frequency scoring from scratch)
+→ Lexicon-Based Sentiment Analysis (VADER)
+→ ML-Based Sentiment Analysis (TF-IDF + Logistic Regression 3-Class)
+→ Auto-Correction (DP Levenshtein edit distance & Candidate ranking)
+→ Next Word Prediction (Trigram LM transition probabilities)
+→ Text Classification (Naïve Bayes SMS Spam detector)
 ```
 
 ---
 
-### Task 1 — Text Classification with Naïve Bayes
+### Task 1 — POS Tagging & Dependency Parsing
 
-**Objective:** Build a classifier that assigns a category label to a text document.
-
----
-
-#### Step 1 — Load and inspect the dataset
-
-- **What to do:** Load the SMS Spam Collection dataset (or 20 Newsgroups). Print the first 10 samples with their labels.
-- **Display in notebook:** Print the class distribution as a bar chart. Print the average document length per class.
-- **Infer from output:** Check if classes are balanced. An imbalanced dataset means accuracy is a misleading metric — note this and plan to use F1.
+**Objective:** Parse a sentence to identify grammatical roles (POS tags) and syntactic relationships between words.
 
 ---
 
-#### Step 2 — Preprocess and vectorize
-
-- **What to do:** Apply your Phase 1 preprocessing pipeline to all documents. Then apply `TfidfVectorizer` with `max_features=5000`.
-- **Display in notebook:** Print the shape of the resulting feature matrix. Print the top 20 features by TF-IDF weight from each class (using class-wise average TF-IDF).
-- **Infer from output:** The top features per class should visually make sense — spam class should surface words like `free`, `win`, `prize`. This is a quick sanity check that vectorization is working.
-
----
-
-#### Step 3 — Train and predict with Naïve Bayes
-
-- **What to do:** Split data 80/20 train/test. Train `MultinomialNB`. Predict on the test set.
-- **Display in notebook:** Print 10 random test examples with their true label, predicted label, and the model's confidence score.
-- **Infer from output:** Look for cases where the model is confidently wrong (high confidence + wrong label). These are the most interesting failures. Note them.
-
----
-
-#### Step 4 — Evaluate with classification report
-
-- **What to do:** Print the full `classification_report` from scikit-learn. Plot the confusion matrix as a heatmap.
-- **Display in notebook:** Show both. Annotate the confusion matrix cells with counts.
-- **Infer from output:** For a spam classifier, focus on False Negatives (spam predicted as ham — spam gets through) vs False Positives (ham predicted as spam — important email deleted). Which error is more costly? Write this as a markdown conclusion.
-
----
-
-### Task 2 — Upgrade to SVM and Compare
-
-**Objective:** See how a different classifier changes results on the same features.
-
----
-
-#### Step 1 — Train Linear SVM
-
-- **What to do:** Train `LinearSVC` on the exact same train/test split and same TF-IDF features as the Naïve Bayes experiment.
-- **Display in notebook:** Print the classification report and confusion matrix for SVM.
-- **Infer from output:** Compare SVM vs Naïve Bayes accuracy and F1 side by side. SVM typically outperforms Naïve Bayes on text. Print the difference in F1 score and hypothesize why.
-
----
-
-#### Step 2 — Error analysis
-
-- **What to do:** Find the 10 test examples where SVM is wrong but Naïve Bayes was right, and vice versa. Print these examples with both predictions.
-- **Display in notebook:** Print the disagreement cases.
-- **Infer from output:** Are there patterns in which model fails where? This is called error analysis — it is the most valuable debugging step in any NLP project.
-
----
-
-### Task 3 — Sentiment Analysis: Lexicon-Based
-
-**Objective:** Classify text sentiment using a pre-scored word dictionary — no training data required.
-
----
-
-#### Step 1 — Load VADER and inspect its scores
-
-- **What to do:** Load `SentimentIntensityAnalyzer` from NLTK. Print the sentiment scores for the words `good`, `bad`, `excellent`, `terrible`, `not bad`, `not good`.
-- **Display in notebook:** Print the compound, positive, negative, and neutral scores for each.
-- **Infer from output:** Observe that VADER scores phrases, not just individual words. `"not bad"` should score differently from `"bad"`. This is how it handles negation.
-
----
-
-#### Step 2 — Score a diverse set of sentences
-
-- **What to do:** Run VADER on 20 sentences covering clear positive, clear negative, sarcastic, and mixed sentiment. Print the compound score and the derived label (positive if ≥ 0.05, negative if ≤ −0.05, neutral otherwise).
-- **Display in notebook:** Print a table: sentence | compound score | label.
-- **Infer from output:** Identify the sarcastic sentences. VADER typically fails on sarcasm. Record this as a known limitation.
-
----
-
-#### Step 3 — Test VADER on domain-specific text
-
-- **What to do:** Run VADER on 10 domain-specific sentences (e.g., cricket commentary, product reviews, Tamil-style English text).
-- **Display in notebook:** Print the results.
-- **Infer from output:** VADER is trained on social media English. It may fail on formal or domain-specific language. Document the failure cases and explain why.
-
----
-
-### Task 4 — Sentiment Analysis: ML-Based
-
-**Objective:** Compare a trained classifier against the lexicon approach.
-
----
-
-#### Step 1 — Train TF-IDF + Logistic Regression
-
-- **What to do:** Use the IMDB dataset. Apply TF-IDF vectorization. Train `LogisticRegression`. Evaluate on the test set.
-- **Display in notebook:** Print the classification report. Print the 10 most positive-leaning and 10 most negative-leaning words according to the model's learned coefficients.
-- **Infer from output:** The coefficients reveal what words the model associates with each sentiment class. Do these words align with your intuition? Are any surprising?
-
----
-
-#### Step 2 — Compare VADER vs ML classifier
-
-- **What to do:** Run both models on the same 50 test sentences. Mark each as agree or disagree.
-- **Display in notebook:** Print the agreement rate. Print the 10 sentences where they most strongly disagree.
-- **Infer from output:** The disagreements are the most instructive cases. For each disagreement, read the sentence and decide which model is right. This trains your intuition about when rule-based approaches outperform ML.
-
----
-
-### Task 5 — Auto-Correction
-
-**Objective:** Build a spell corrector that finds the most likely intended word for a misspelled input.
-
----
-
-#### Step 1 — Implement edit distance from scratch
-
-- **What to do:** Implement the Levenshtein edit distance algorithm using a 2D dynamic programming matrix. The matrix dimensions are `(len(word1)+1) × (len(word2)+1)`.
-- **Display in notebook:** Print the full DP matrix for the pair `("speling", "spelling")`. Annotate each cell with its value.
-- **Infer from output:** Read the final value (bottom-right cell) — this is the edit distance. Trace back through the matrix to identify exactly which operations were needed (insertion, deletion, substitution).
-
----
-
-#### Step 2 — Generate edit-distance-1 candidates
-
-- **What to do:** For a misspelled word, generate all strings reachable by one insertion, one deletion, one substitution, or one transposition.
-- **Display in notebook:** Print the count of candidates generated. Print 20 random examples from the candidate set.
-- **Infer from output:** There are typically hundreds of edit-distance-1 candidates. Most are not real words. The next step is to filter to known words.
-
----
-
-#### Step 3 — Filter to known words and score by frequency
-
-- **What to do:** Build a word frequency dictionary from a large corpus. Filter the candidates to only words that exist in the dictionary. Return the candidate with the highest frequency.
-- **Display in notebook:** Print the top 5 candidate words by frequency for each misspelled input.
-- **Infer from output:** Frequency-ranked candidates are usually correct because common words are misspelled more often than rare ones. Test on 20 misspellings and print a pass/fail column.
-
----
-
-### Task 6 — Named Entity Recognition (NER)
-
-**Objective:** Identify and classify proper names, organizations, and places in text.
-
----
-
-#### Step 1 — Run spaCy NER on a news article
-
-- **What to do:** Load a news article (at least 5 paragraphs). Run spaCy NER pipeline. Extract all entities with their labels and character positions.
-- **Display in notebook:** Print a table: entity text | entity label | explanation of label. Print the total entity count.
-- **Infer from output:** Read through the entities. Find at least 2 errors — cases where the model tagged something incorrectly or missed an obvious entity. Record the error type (wrong label vs missing entity).
-
----
-
-#### Step 2 — Visualize with displacy
-
-- **What to do:** Use `spacy.displacy.render` to render the entity visualization inline in the notebook.
-- **Display in notebook:** The inline HTML visualization showing color-coded entity spans in context.
-- **Infer from output:** Reading the entities in context makes it much easier to evaluate the model. Which color-coded label seems most prone to errors in this article?
-
----
-
-#### Step 3 — Frequency analysis across multiple articles
-
-- **What to do:** Run NER on 10 articles. Count total occurrences of each entity type (PERSON, ORG, GPE, DATE, MONEY).
-- **Display in notebook:** Plot a bar chart of entity type frequencies. Print the top 10 most mentioned entities by name (e.g., top 10 PERSON mentions).
-- **Infer from output:** Does the entity type distribution match the news domain (politics, sports, finance)? What does the distribution reveal about what the news corpus covers?
-
----
-
-### Task 7 — POS Tagging
-
-**Objective:** Assign a grammatical role to each token in a sentence.
-
----
-
-#### Step 1 — Tag a sentence
-
-- **What to do:** Run spaCy on 5 sentences and extract the `.text`, `.pos_`, and `.dep_` (dependency relation) for each token.
-- **Display in notebook:** Print a formatted table: token | POS tag | dependency | head word.
-- **Infer from output:** Find all nouns, all verbs, and all adjectives. Count each. Observe how POS changes meaning — `"book"` is a noun in one sentence and a verb in another.
+#### Step 1 — Tag parts of speech in sentences
+
+- **What to do:** Parse 5 diverse sentences containing words with ambiguous parts of speech (e.g. "book" as verb and noun) using the `en_core_web_sm` model in spaCy.
+- **Display in notebook:** Print a table showing: token | POS tag | dependency tag | head word.
+- **Infer from output:** Observe how POS tagging changes depending on context. Count nouns, verbs, and adjectives.
 
 ---
 
 #### Step 2 — Visualize the dependency tree
 
-- **What to do:** Use `spacy.displacy.render` with style `"dep"` to show the dependency parse tree.
-- **Display in notebook:** The inline dependency tree visualization.
-- **Infer from output:** Identify the root verb of the sentence (the top of the tree). Trace the subject → verb → object path. This is the backbone of the sentence's meaning.
+- **What to do:** Use `spacy.displacy.render(style="dep")` to show the dependency parse tree of a sentence.
+- **Display in notebook:** The rendered tree inline.
+- **Infer from output:** Trace subject -> verb -> object paths to isolate the syntactic hub of a sentence.
 
 ---
 
-**LinkedIn Post Ideas for Phase 4**
+### Task 2 — Named Entity Recognition (NER)
 
-- "I built a spell corrector from scratch using nothing but a frequency dictionary and edit distance. Here's the dynamic programming matrix visualized — and what the numbers mean."
-- "VADER and a trained classifier disagreed on 18% of my test sentences. Here are the 5 most interesting disagreements and what they reveal about both approaches."
+**Objective:** Identify and classify proper nouns representing people, places, dates, and organizations in text.
+
+---
+
+#### Step 1 — Run spaCy NER on a text snippet
+
+- **What to do:** Parse a news article containing organizations, dates, locations, and names using spaCy.
+- **Display in notebook:** Print a table showing entity text, label, and character offsets.
+- **Infer from output:** Evaluate the accuracy of the entity extraction. Spot any incorrect classifications.
+
+---
+
+#### Step 2 — Visualize entities with displaCy
+
+- **What to do:** Use `spacy.displacy.render(style="ent")` to highlight entities inline.
+- **Display in notebook:** Color-coded HTML markup in context.
+- **Infer from output:** Assess which labels (e.g., ORG, GPE, PERSON) are most reliable and which are error-prone.
+
+---
+
+### Task 3 — Extractive Summarization
+
+**Objective:** Build an extractive summarizer from scratch by scoring sentences using normalized word frequencies.
+
+---
+
+#### Step 1 — Implement word frequency scoring
+
+- **What to do:** Tokenize text, calculate word frequency dict (excluding stopwords), and normalize weights by dividing by maximum frequency.
+- **Display in notebook:** Print normalized frequency of top 10 content words.
+- **Infer from output:** Confirm that filler words are ignored and top words capture the main theme.
+
+---
+
+#### Step 2 — Score and rank sentences
+
+- **What to do:** Score sentences by summing normalized word frequencies and dividing by sentence length (optional). Extract the top N sentences as a summary.
+- **Display in notebook:** Print the original text, the generated summary, and the compression ratio.
+- **Infer from output:** Observe how frequency-based scoring selects representative sentences without risk of hallucination.
+
+---
+
+### Task 4 — Lexicon-Based Sentiment Analysis
+
+**Objective:** Use the VADER dictionary to score sentiment intensity, accounting for punctuation, capitalization, and negation.
+
+---
+
+#### Step 1 — Load VADER & test words/phrases
+
+- **What to do:** Score individual sentiment words (`good`, `bad`) and observe the compound score.
+- **Display in notebook:** Print compound, positive, negative, and neutral scores.
+- **Infer from output:** Observe how negation (`not good`) and intensifiers (`extremely good!`) affect VADER's compound scores.
+
+---
+
+#### Step 2 — Evaluate diverse inputs
+
+- **What to do:** Score 10 custom sentences including sarcasm, negations, and double negatives.
+- **Display in notebook:** Print sentence text, compound score, and mapped label (positive/negative/neutral).
+- **Infer from output:** Document limitations of dictionary approaches, especially when processing sarcasm.
+
+---
+
+### Task 5 — ML-Based Sentiment Analysis
+
+**Objective:** Train a 3-class Logistic Regression classifier on labeled sentences to classify sentiment.
+
+---
+
+#### Step 1 — Build and train the classifier
+
+- **What to do:** Extract sentences from `movie_reviews`, label them (positive/negative/neutral) using VADER, split 80/20, vectorize using `TfidfVectorizer`, and train `LogisticRegression`.
+- **Display in notebook:** Print classification report (Precision, Recall, F1) for all 3 classes.
+- **Infer from output:** Note performance across positive, negative, and neutral categories.
+
+---
+
+#### Step 2 — Extract coefficients & test custom inputs
+
+- **What to do:** Print the top 10 positive, negative, and neutral words according to the classifier's coefficients. Predict on custom test strings.
+- **Display in notebook:** Print top coefficients and test predictions with confidence probabilities.
+- **Infer from output:** Check if learned associations correspond to human intuition.
+
+---
+
+### Task 6 — Auto-Correction
+
+**Objective:** Build a spelling corrector from scratch using Levenshtein distance and word frequency lists.
+
+---
+
+#### Step 1 — Implement Levenshtein Distance from scratch
+
+- **What to do:** Write the 2D DP Levenshtein algorithm and calculate the distance matrix for `("speling", "spelling")`.
+- **Display in notebook:** Print the full annotated 2D DP matrix.
+- **Infer from output:** Trace the traceback path to find edit operations (insertions/deletions).
+
+---
+
+#### Step 2 — Generate candidates & score by frequency
+
+- **What to do:** Generate edit-distance 1 and 2 edits. Filter using a vocabulary frequency dict (using `nltk.corpus.words`).
+- **Display in notebook:** Print candidates and correction with the highest corpus frequency.
+- **Infer from output:** Evaluate spelling corrector on misspelled words.
+
+---
+
+### Task 7 — Next Word Prediction
+
+**Objective:** Train a Trigram language model to calculate transitional probabilities and predict the next word.
+
+---
+
+#### Step 1 — Build N-gram counts
+
+- **What to do:** Extract trigrams from a text corpus (e.g., `webtext`). Compute frequency counts of bigram contexts and transition words.
+- **Display in notebook:** Print top transition candidates and probabilities for a few bigram contexts (e.g., "of the").
+- **Infer from output:** Understand how statistical word transitions model language flow.
+
+---
+
+#### Step 2 — Interactive transition prediction
+
+- **What to do:** Write a function to predict the top 3 most likely next words for a user input.
+- **Display in notebook:** Print user input and transition probabilities.
+- **Infer from output:** Test multi-word generation by greedily appending predicted words.
+
+---
+
+### Task 8 — Text Classification
+
+**Objective:** Build an SMS Spam detector using Naïve Bayes and evaluate it using confusion heatmaps.
+
+---
+
+#### Step 1 — Build Naïve Bayes pipeline
+
+- **What to do:** Load a spam dataset, vectorize text with `TfidfVectorizer`, split 80/20, and train `MultinomialNB`.
+- **Display in notebook:** Print classification report (F1-score for spam/ham).
+- **Infer from output:** Evaluate the performance. Discuss why F1-score is more reliable than accuracy here.
+
+---
+
+#### Step 2 — Evaluate errors & confusion matrix
+
+- **What to do:** Compute the confusion matrix and plot as a Seaborn heatmap. Find examples of classification disagreements.
+- **Display in notebook:** Print Seaborn heatmap and sample error classifications.
+- **Infer from output:** Analyze False Positives vs False Negatives.
 
 ---
 
@@ -1028,12 +988,6 @@ Motivation (BoW vs Sequence) → RNN Cell (manual unroll)
 
 ---
 
-**LinkedIn Post Ideas for Phase 5**
-
-- "I plotted the gradient norms across a 100-step RNN. By step 1, the gradient is 10⁻¹⁵ — the model has completely forgotten the first word. This graph is why LSTM was invented."
-- "I visualized the LSTM forget gate across a sentiment sentence. The gate fired strongest on the word 'but' — that is the model resetting its sentiment memory mid-sentence."
-
----
 
 ## Phase 6 — Attention Mechanism & Transformers
 
@@ -1197,12 +1151,6 @@ Seq2Seq Bottleneck (motivation) → Attention Scores (Q×Kᵀ)
 
 ---
 
-**LinkedIn Post Ideas for Phase 6**
-
-- "Attention is asking: which other words should I look at when processing this word? I built it from scratch and here's the step-by-step score matrix for a real sentence."
-- "I replaced my LSTM with a Transformer on the exact same task. Here are both training curves — and the specific point where the Transformer pulled ahead."
-
----
 
 ## Phase 7 — BERT, GPT & Pre-trained Models
 
@@ -1357,12 +1305,6 @@ BERT Tokenizer Inspection → BERT Architecture Understanding
 
 ---
 
-**LinkedIn Post Ideas for Phase 7**
-
-- "I masked different words in the same sentence and showed BERT's top-5 predictions for each. The difference between masking a noun vs a verb is remarkable."
-- "Fine-tuning DistilBERT took 3 epochs. Here's the training curve, the final accuracy, and the 5 test sentences it got most confidently wrong."
-
----
 
 ## Phase 8 — RAG, Prompting & Fine-tuning
 
@@ -1589,13 +1531,6 @@ Semantic Search (embedding → FAISS) → RAG Pipeline (chunk → embed → inde
 
 ---
 
-**LinkedIn Post Ideas for Phase 8**
-
-- "RAG stopped my model from hallucinating. I connected it to my own knowledge base — here's the full pipeline with 5 components explained, and the failure modes I found."
-- "LoRA fine-tuned a 125M model by training only 0.42% of its weights. Here's the before vs after output comparison and why this changes everything for compute-constrained teams."
-- "BLEU gave a low score to a correct answer just because it used different words. Here's the concrete example that shows why BERTScore is a better metric for semantic tasks."
-
----
 
 ## LinkedIn Content Strategy
 

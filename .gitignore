@@ -29,3 +29,13 @@ desktop.ini
 POST_TRACKER.md
 PROJECT_TRACKER.md
 requirements.txt
+
+# Local Scratch directories
+**/scratch/
+
+# Docs
+*.ppt
+*.pptx
+*.pdf
+*.doc
+*.docx
