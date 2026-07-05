@@ -17,7 +17,7 @@ For each phase in this roadmap, I follow a strict execution pattern:
 | **01** | [Tokenization & Preprocessing](./phase-01-tokenization/) | Whitespace vs. Regex, Sentence splitting, Porter & Snowball Stemmers, spaCy Lemmatization, Tokenizer comparisons | 🟢 Completed | *TBD* |
 | **02** | [Bag of Words & TF-IDF](./phase-02-bow-tfidf/) | One-Hot Encoding, Bag of Words, N-grams, TF-IDF from scratch, Cosine Similarity heatmap | 🟢 Completed | *TBD* |
 | **03** | [Word Embeddings: CBOW & Skip-gram](./phase-03-word-embeddings/) | CBOW & Skip-gram from scratch, Analogy arithmetic, t-SNE & PCA visualization, Pre-trained GloVe comparison | 🟢 Completed | *TBD* |
-| **04** | Classical NLP Tasks | Sentiment Analysis, Text Classification, Part-of-Speech tagging, Named Entity Recognition | ⚪ Not Started | — |
+| **04** | [Classical NLP Tasks](./phase-04-classical-nlp/) | Sentiment Analysis, Text Classification, Part-of-Speech tagging, Named Entity Recognition | 🟡 In Progress | — |
 | **05** | RNNs, LSTMs & Sequence Models | Recurrent units, Backpropagation through time (BPTT), LSTM gating, POS tagging with LSTMs | ⚪ Not Started | — |
 | **06** | Attention Mechanism & Transformers | Seq2Seq with attention, Self-attention, Multi-head attention, Positional encoding | ⚪ Not Started | — |
 | **07** | BERT, GPT & Pre-trained Models | Encoder vs. Decoder, Masked Language Modeling (MLM), Causal LM, Hugging Face Hub | ⚪ Not Started | — |
