@@ -14,7 +14,7 @@ For each phase in this roadmap, I follow a strict execution pattern:
 
 | Phase | Description | Focus Areas | Status | LinkedIn Post |
 | :--- | :--- | :--- | :---: | :---: |
-| **01** | [Tokenization & Preprocessing](./phase-01-tokenization/) | Whitespace vs. Regex, Sentence splitting, Porter & Snowball Stemmers, spaCy Lemmatization, Tokenizer comparisons | 🟢 Completed | *TBD* |
+| **01** | [Tokenization & Preprocessing](./phase-01-tokenization/) | Whitespace vs. Regex, Sentence splitting, Porter & Snowball Stemmers, spaCy Lemmatization, Tokenizer comparisons | 🟢 Completed | [🔗 Link](https://www.linkedin.com/posts/narenkumar-n-42ba162b6_phase-1-text-preprocessing-tokenization-ugcPost-7479775514522476545-m9Ul/) |
 | **02** | [Bag of Words & TF-IDF](./phase-02-bow-tfidf/) | One-Hot Encoding, Bag of Words, N-grams, TF-IDF from scratch, Cosine Similarity heatmap | 🟢 Completed | *TBD* |
 | **03** | [Word Embeddings: CBOW & Skip-gram](./phase-03-word-embeddings/) | CBOW & Skip-gram from scratch, Analogy arithmetic, t-SNE & PCA visualization, Pre-trained GloVe comparison | 🟢 Completed | *TBD* |
 | **04** | [Classical NLP Tasks](./phase-04-classical-nlp/) | Sentiment Analysis, Text Classification, Part-of-Speech tagging, Named Entity Recognition | 🟡 In Progress | — |
