@@ -45,7 +45,7 @@ After installing `nltk`, run a one-time download of all NLTK data packages. Afte
 
 ## Phase 1 — Tokenization & Text Preprocessing
 
-**Duration:** Weeks 1–2 | **LinkedIn posts:** 2–3 | **Difficulty:** ⭐☆☆☆☆
+**Duration:** Weeks 1–2 | **LinkedIn posts:** 2–3
 
 ### Overview
 
@@ -281,7 +281,7 @@ Raw Text → Data Cleaning → Word Tokenization → Sentence Tokenization
 
 ## Phase 2 — Bag of Words & TF-IDF
 
-**Duration:** Weeks 2–3 | **LinkedIn posts:** 2 | **Difficulty:** ⭐⭐☆☆☆
+**Duration:** Weeks 2–3 | **LinkedIn posts:** 2
 
 ### Overview
 
@@ -442,7 +442,7 @@ Preprocessed Text → One-Hot Encoding → Bag of Words → N-grams
 
 ## Phase 3 — Word Embeddings: CBOW & Skip-gram
 
-**Duration:** Weeks 3–4 | **LinkedIn posts:** 3 | **Difficulty:** ⭐⭐⭐☆☆
+**Duration:** Weeks 3–4 | **LinkedIn posts:** 3
 
 ### Overview
 
@@ -771,10 +771,10 @@ Classical NLP treats every word as independent. RNNs process text as a sequence,
 ### Sequential Task Flow
 
 ```
-Motivation (BoW vs Sequence) → RNN Cell (manual unroll)
-→ Vanishing Gradient Demo → LSTM Architecture (gate by gate)
-→ LSTM Training (sentiment) → Gate Visualization
-→ GRU Comparison → Bidirectional LSTM
+Motivation (BoW vs Sequence) → RNN Cell (manual unroll & BPTT)
+→ Vanishing Gradient Demo → LSTM Gating Mechanics (visual gates)
+→ GRU vs LSTM Comparison (train & compare from scratch)
+→ LSTM Next-Word Prediction (language modeling)
 ```
 
 ---
@@ -787,135 +787,87 @@ Motivation (BoW vs Sequence) → RNN Cell (manual unroll)
 
 #### Step 1 — BoW failure on sequence-dependent examples
 
-- **What to do:** Create 5 pairs of sentences with identical word sets but different word order and different meanings (e.g., "dog bites man" / "man bites dog", "not good" / "good not").
+- **What to do:** Create 5 pairs of sentences with identical word sets but different word order and different meanings (e.g., "dog bites man" / "man bites dog", "not good, actually bad" / "not bad, actually good").
 - **Display in notebook:** Print both BoW vectors for each pair side by side. Compute cosine similarity within each pair.
-- **Infer from output:** The similarity for opposite-meaning sentence pairs is near 1.0. Print this as a markdown conclusion: BoW is blind to word order, and word order can completely reverse meaning.
+- **Infer from output:** The similarity for opposite-meaning sentence pairs is exactly 1.0. Acknowledge why this fails: Bag-of-Words reduces document representation to a simple unordered set of token frequencies, which maps reversed sentences to identical vectors, rendering them completely blind to grammatical structures and negations.
 
 ---
 
 ### Task 2 — The Recurrent Neural Network Cell
 
-**Objective:** Understand the RNN's hidden state mechanism by unrolling it manually.
+**Objective:** Understand the RNN's hidden state and BPTT mechanisms by unrolling it manually.
 
 ---
 
-#### Step 1 — Concept: the hidden state
+#### Step 1 — Concept: the hidden state & BPTT
 
-- **What to do:** Write a markdown cell explaining the hidden state. At each time step, the RNN takes two inputs: the current word embedding and the previous hidden state. It produces one output: a new hidden state. The hidden state carries memory across the sequence.
-- **Display in notebook:** Draw a diagram of one unrolled RNN step — input word + previous hidden state → weight matrix → tanh → new hidden state.
-- **Infer from output:** The hidden state at step T theoretically encodes everything the model has seen from step 1 to T. The next task shows why "theoretically" is the key word.
+- **What to do:** Write a markdown cell explaining the hidden state update equation $h_t = \tanh(W_{hh} h_{t-1} + W_{xh} x_t + b_h)$. Add a step-by-step conceptual walkthrough of Backpropagation Through Time (BPTT), showing how gradients flow backward through the unrolled sequence to update parameters.
+- **Display in notebook:** Display the unrolled RNN diagram (`RNN-unrolled.png`) and write a detailed visual explanation of how context flows from $h_{t-1}$ to $h_t$.
+- **Infer from output:** The hidden state at step T theoretically encodes the sequence memory. However, unrolling the computation graph in BPTT leads to repeated matrix multiplications of weights, which can cause gradients to decay or explode.
 
 ---
 
 #### Step 2 — Manual unroll across a 5-word sequence
 
-- **What to do:** Initialize a random weight matrix and a zero hidden state. Process a 5-word sentence one word at a time: at each step multiply [word_vector; hidden_state] by the weight matrix and apply tanh. Print the hidden state after each word.
-- **Display in notebook:** Print the hidden state vector (first 5 values) after processing word 1, 2, 3, 4, 5.
-- **Infer from output:** Observe how the hidden state changes with each word. Now ask: how much of word 1's information survives in the hidden state after processing word 5? This motivates the gradient experiment next.
+- **What to do:** Initialize a random weight matrix and a zero hidden state using NumPy. Process a 5-word sentence one word at a time: at each step multiply inputs and previous hidden state by the weight matrix, add bias, and apply tanh.
+- **Display in notebook:** Print the hidden state vector after processing word 1, 2, 3, 4, and 5.
+- **Infer from output:** Observe how the hidden state changes with each word. Note how early word inputs are continuously scaled down by subsequent tanh operations.
 
 ---
 
 ### Task 3 — The Vanishing Gradient Problem
 
-**Objective:** Demonstrate why vanilla RNNs fail to learn from long-range dependencies.
+**Objective:** Demonstrate why vanilla RNNs fail to learn from long-range dependencies due to vanishing gradients during BPTT.
 
 ---
 
-#### Step 1 — Track gradient norms over a short sequence (length 5)
+#### Step 1 — Track gradient norms over a sequence (lengths 5, 25, 100)
 
-- **What to do:** Build a simple 1-layer RNN. Pass a sequence of length 5. After the backward pass, extract and print the gradient of the loss with respect to the hidden state at each time step (t=5, t=4, t=3, t=2, t=1).
-- **Display in notebook:** Print the gradient norm at each time step as a table. Plot as a bar chart.
-- **Infer from output:** Gradient magnitude at t=5 is largest. At t=1 it should be smaller. Note the ratio (t=5 gradient) / (t=1 gradient).
-
----
-
-#### Step 2 — Repeat for sequence lengths 25 and 100
-
-- **What to do:** Repeat the exact same experiment with sequences of length 25 and 100.
-- **Display in notebook:** Plot three bar charts side by side: one for each sequence length. Use the same y-axis scale.
-- **Infer from output:** For length 100, the gradient at t=1 should be near zero — often displayed as `1e-15` or smaller. This means the model learns nothing from the first word. Print the exact ratio of first/last gradients for all three experiments. This is the vanishing gradient problem.
+- **What to do:** Build a simple 1-layer RNN in PyTorch. Pass sequences of lengths 5, 25, and 100. After the backward pass, extract the gradient of the loss with respect to the hidden state at each time step.
+- **Display in notebook:** Print gradient norm ratios ($t=1 / t=T$). Plot gradient decay curves for all sequence lengths side by side (with log scale for length 100).
+- **Infer from output:** For length 100, the gradient at $t=1$ vanishes exponentially to near-zero ($10^{-15}$). Connect this to the mathematical root cause: the tanh derivative is bounded between $[0, 1]$, and repeated multiplication by the weight matrix $W_{hh}^T$ during BPTT causes gradients to decay exponentially.
 
 ---
 
 ### Task 4 — LSTM: Gate-by-Gate Breakdown
 
-**Objective:** Understand what each LSTM gate does and why it solves the vanishing gradient problem.
+**Objective:** Understand what each LSTM gate does and how the cell state conveyor belt solves the vanishing gradient problem.
 
 ---
 
-#### Step 1 — The forget gate
+#### Step 1 — LSTM gating mechanics & scratch implementation
 
-- **What to do:** Write a markdown cell explaining the forget gate: a sigmoid function applied to [current input; previous hidden state]. Its output ranges from 0 (forget everything) to 1 (remember everything). It multiplies element-wise with the previous cell state.
-- **Display in notebook:** Compute the forget gate output manually for a toy example. Print the cell state before and after applying the forget gate. Highlight which memory dimensions were reduced.
-- **Infer from output:** The forget gate learns which information is irrelevant for the current context. When processing the word "but" in a sentiment sentence, the forget gate should activate strongly to reset earlier positive/negative signals.
-
----
-
-#### Step 2 — The input gate and candidate values
-
-- **What to do:** Explain: the input gate (sigmoid) controls how much of the new information to write. The candidate vector (tanh) is the new information to potentially write. The actual update is their element-wise product.
-- **Display in notebook:** Compute input gate and candidate values for the same toy example. Print the element-wise product.
-- **Infer from output:** The cell state update is the sum of (forget gate × old cell state) + (input gate × candidate). Print the final updated cell state and compare to the input cell state.
+- **What to do:** Write a markdown cell explaining the LSTM cell state conveyor belt $C_t$ and the three gates: Forget Gate ($f_t$), Input Gate ($i_t$) & Candidate State ($\tilde{C}_t$), and Output Gate ($o_t$).
+- **Display in notebook:** Display the gate diagrams (`LSTM-chain.png`, `LSTM-forget.png`, `LSTM-input.png`, `LSTM-output.png`). Write detailed callouts walking through the role of each gate.
+- **Infer from output:** The cell state conveyor belt allows gradients to flow backward with minimal multiplicative decay. Implement an LSTM cell from scratch in NumPy, pass custom inputs, and observe how gates selectively store, discard, and expose values.
 
 ---
 
-#### Step 3 — The output gate
+### Task 5 — GRU vs LSTM Comparison
 
-- **What to do:** Explain: the output gate (sigmoid) controls what to expose from the cell state as the hidden state. The hidden state is (output gate × tanh(cell state)).
-- **Display in notebook:** Compute the output gate and final hidden state for the same toy example. Print all gate activations and the resulting hidden state.
-- **Infer from output:** Together the three gates give the LSTM full control over what to store, what to discard, and what to expose. This is what the vanilla RNN lacks — it has no mechanism to selectively preserve long-range information.
+**Objective:** Train both GRU and LSTM models on sentiment classification and compare their parameters, speed, and accuracy.
 
 ---
 
-### Task 5 — LSTM Training for Sentiment Classification
+#### Step 1 — Train and compare models from scratch
 
-**Objective:** Train a full LSTM model and observe its learning dynamics.
-
----
-
-#### Step 1 — Prepare the data pipeline
-
-- **What to do:** Load the IMDB dataset. Build a vocabulary from the training set. Map each word to an integer index. Pad all sequences to the same length. Create train and test dataloaders.
-- **Display in notebook:** Print vocabulary size. Print 5 sample sequences in their integer-encoded form. Print the maximum and average sequence length.
-- **Infer from output:** Long sequences (>500 tokens) may need truncation. The vocabulary size determines your embedding matrix size. Verify the dataset is balanced.
+- **What to do:** Explain the GRU Update Gate ($z_t$) and Reset Gate ($r_t$) mechanisms, showing how it merges cell/hidden states. Display the cell diagram (`GRU-cell.png`) and explain how it operates. Load NLTK movie reviews (3000 reviews balanced subset). Train both an LSTM and a GRU model from scratch for 5 epochs.
+- **Display in notebook:** Plot training loss and test accuracy curves for both models on the same axes. Print a performance summary table comparing parameters count, training latency, and final test accuracy.
+- **Infer from output:** Observe that the GRU has ~25% fewer parameters and trains faster while maintaining similar test accuracy, making it ideal for low-latency tasks.
 
 ---
 
-#### Step 2 — Define the model architecture
+### Task 6 — LSTM Next-Word Prediction
 
-- **What to do:** Build a model with: Embedding layer → LSTM layer (bidirectional, 2 layers) → Dropout → Linear classifier head.
-- **Display in notebook:** Print the model architecture summary including layer names, input/output shapes, and total trainable parameter count.
-- **Infer from output:** Count the parameters in each component. The embedding layer typically dominates. Understand why bidirectional means 2× the hidden dimensions.
+**Objective:** Build a word-level language model to predict the next token in a sequence.
 
 ---
 
-#### Step 3 — Train and monitor
+#### Step 1 — Language modeling and next-word predictor training
 
-- **What to do:** Train for 5–10 epochs. After every epoch, record train loss, validation loss, and validation accuracy.
-- **Display in notebook:** Plot train loss and validation loss on the same graph. Plot validation accuracy over epochs separately.
-- **Infer from output:** If validation loss starts increasing while training loss keeps decreasing — that is overfitting. Identify the epoch where validation loss is minimized. That is your best model.
-
----
-
-#### Step 4 — Gate activation visualization
-
-- **What to do:** After training, pass a test sentence through the model and extract the forget gate activations at each time step.
-- **Display in notebook:** Plot the forget gate activations as a heatmap: x-axis is the word, y-axis is hidden units (or an averaged scalar). Color intensity represents how strongly the gate fired.
-- **Infer from output:** Words that trigger high forget gate values cause the model to reset its memory — typically words like "but", "however", "although". Identify these in your test sentence.
-
----
-
-### Task 6 — GRU vs LSTM Comparison
-
-**Objective:** Understand GRU as a simplified LSTM and when to prefer it.
-
----
-
-#### Step 1 — Train GRU with identical settings
-
-- **What to do:** Replace the LSTM layer with a GRU layer. Keep all other hyperparameters identical. Train for the same number of epochs.
-- **Display in notebook:** Print parameter counts for both models. Plot the training curves for both on the same axes (using different line colors).
-- **Infer from output:** GRU has fewer parameters (no cell state — only hidden state). Training is faster. Record the parameter count difference and the accuracy difference. Print your conclusion: when would you choose GRU over LSTM?
+- **What to do:** Explain how next-token probability $P(w_t \mid w_1, ..., w_{t-1})$ is modeled using recurrent hidden states projected onto the vocabulary dimension. Prepare a 300-word custom educational corpus, tokenize words using regex, build a vocabulary, and generate sliding window sequences of length 4. Train an LSTM language model for 80 epochs and plot the loss curve.
+- **Display in notebook:** Plot the training loss curve and display top next-word predictions.
+- **Infer from output:** Implement an interactive `predict_next_word(seed_text, top_k=3)` function. Test seed context queries such as `"long short term"` and `"gated recurrent"` to verify that the model correctly outputs the next word with highest probability.
 
 ---
 

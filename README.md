@@ -17,8 +17,8 @@ For each phase in this roadmap, I follow a strict execution pattern:
 | **01** | [Tokenization & Preprocessing](./phase-01-tokenization/) | Whitespace vs. Regex, Sentence splitting, Porter & Snowball Stemmers, spaCy Lemmatization, Tokenizer comparisons | 🟢 Completed | [🔗 Link](https://www.linkedin.com/posts/narenkumar-n-42ba162b6_phase-1-text-preprocessing-tokenization-ugcPost-7479775514522476545-m9Ul/) |
 | **02** | [Bag of Words & TF-IDF](./phase-02-bow-tfidf/) | One-Hot Encoding, Bag of Words, N-grams, TF-IDF from scratch, Cosine Similarity heatmap | 🟢 Completed | *TBD* |
 | **03** | [Word Embeddings: CBOW & Skip-gram](./phase-03-word-embeddings/) | CBOW & Skip-gram from scratch, Analogy arithmetic, t-SNE & PCA visualization, Pre-trained GloVe comparison | 🟢 Completed | *TBD* |
-| **04** | [Classical NLP Tasks](./phase-04-classical-nlp/) | Sentiment Analysis, Text Classification, Part-of-Speech tagging, Named Entity Recognition | 🟡 In Progress | — |
-| **05** | RNNs, LSTMs & Sequence Models | Recurrent units, Backpropagation through time (BPTT), LSTM gating, POS tagging with LSTMs | ⚪ Not Started | — |
+| **04** | [Classical NLP Tasks](./phase-04-classical-nlp/) | POS tagging, Dependency parsing, NER, Lexicon-based Sentiment, DP Levenshtein auto-correction, SMS spam Naïve Bayes classifier | 🟢 Completed | — |
+| **05** | [RNNs, LSTMs & Sequence Models](./phase-05-rnns-lstms/) | Sequence motivation (BoW limitations), RNN cell & Hidden State from scratch, Vanishing/Exploding Gradients, LSTM cell breakdown, GRU cell breakdown, LSTM next-word predictor | 🟡 In Progress | — |
 | **06** | Attention Mechanism & Transformers | Seq2Seq with attention, Self-attention, Multi-head attention, Positional encoding | ⚪ Not Started | — |
 | **07** | BERT, GPT & Pre-trained Models | Encoder vs. Decoder, Masked Language Modeling (MLM), Causal LM, Hugging Face Hub | ⚪ Not Started | — |
 | **08** | RAG, Prompting & Fine-tuning | Retrieval-Augmented Generation, Vector DBs (FAISS), PEFT/LoRA fine-tuning | ⚪ Not Started | — |
@@ -60,6 +60,7 @@ source .venv/bin/activate
 ### 3. Install dependencies
 Install dependencies for the active phases:
 ```bash
+# Windows
 pip install --upgrade pip
 pip install -r requirements.txt
 ```
@@ -76,3 +77,9 @@ Implemented statistical vectorization methods from scratch. Explored the limitat
 
 ### Phase 03: Word Embeddings (CBOW & Skip-gram)
 Trained dense vector representations of words. Visualized word clusters using t-SNE/PCA and tested semantic analogies using both custom and pre-trained GloVe vectors.
+
+### Phase 04: Classical NLP Tasks
+Built application pipelines including rule-based POS tagging and dependency trees, NER visualization using displaCy, lexicon-based VADER sentiment analysis, dynamic programming Levenshtein auto-correction, and Naïve Bayes SMS spam classification.
+
+### Phase 05: RNNs, LSTMs & Sequence Models
+Proved the sequence-blind spots of bag-of-words representation, implemented unrolled RNN cells from scratch, simulated vanishing/exploding gradients under recurrent weight constraints, broke down LSTM and GRU gating mechanisms step-by-step from scratch, and trained an LSTM language model to generate text on a creative story corpus.
