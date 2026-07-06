@@ -636,18 +636,15 @@ Motivation (BoW limits) → Corpus Preparation → CBOW (concept + train)
 
 ### Overview
 
-With text representations available, you can now build real NLP applications. This phase covers the most common production NLP tasks: Part-of-Speech tagging, Named Entity Recognition, Extractive Summarization, Sentiment Analysis (Lexicon and ML-based), Spelling Auto-correction, Next Word Prediction, and Text Classification.
+With text representations available, you can now build real NLP applications. This phase covers the most common production NLP tasks: Part-of-Speech tagging, Named Entity Recognition, Lexicon-Based Sentiment Analysis, Spelling Auto-correction, and Text Classification.
 
 ### Sequential Task Flow
 
 ```
 POS Tagging & Dependency Parsing (spaCy)
 → Named Entity Recognition (spaCy displaCy)
-→ Extractive Summarization (Word-Frequency scoring from scratch)
 → Lexicon-Based Sentiment Analysis (VADER)
-→ ML-Based Sentiment Analysis (TF-IDF + Logistic Regression 3-Class)
 → Auto-Correction (DP Levenshtein edit distance & Candidate ranking)
-→ Next Word Prediction (Trigram LM transition probabilities)
 → Text Classification (Naïve Bayes SMS Spam detector)
 ```
 
@@ -697,29 +694,7 @@ POS Tagging & Dependency Parsing (spaCy)
 
 ---
 
-### Task 3 — Extractive Summarization
-
-**Objective:** Build an extractive summarizer from scratch by scoring sentences using normalized word frequencies.
-
----
-
-#### Step 1 — Implement word frequency scoring
-
-- **What to do:** Tokenize text, calculate word frequency dict (excluding stopwords), and normalize weights by dividing by maximum frequency.
-- **Display in notebook:** Print normalized frequency of top 10 content words.
-- **Infer from output:** Confirm that filler words are ignored and top words capture the main theme.
-
----
-
-#### Step 2 — Score and rank sentences
-
-- **What to do:** Score sentences by summing normalized word frequencies and dividing by sentence length (optional). Extract the top N sentences as a summary.
-- **Display in notebook:** Print the original text, the generated summary, and the compression ratio.
-- **Infer from output:** Observe how frequency-based scoring selects representative sentences without risk of hallucination.
-
----
-
-### Task 4 — Lexicon-Based Sentiment Analysis
+### Task 3 — Lexicon-Based Sentiment Analysis
 
 **Objective:** Use the VADER dictionary to score sentiment intensity, accounting for punctuation, capitalization, and negation.
 
@@ -741,29 +716,7 @@ POS Tagging & Dependency Parsing (spaCy)
 
 ---
 
-### Task 5 — ML-Based Sentiment Analysis
-
-**Objective:** Train a 3-class Logistic Regression classifier on labeled sentences to classify sentiment.
-
----
-
-#### Step 1 — Build and train the classifier
-
-- **What to do:** Extract sentences from `movie_reviews`, label them (positive/negative/neutral) using VADER, split 80/20, vectorize using `TfidfVectorizer`, and train `LogisticRegression`.
-- **Display in notebook:** Print classification report (Precision, Recall, F1) for all 3 classes.
-- **Infer from output:** Note performance across positive, negative, and neutral categories.
-
----
-
-#### Step 2 — Extract coefficients & test custom inputs
-
-- **What to do:** Print the top 10 positive, negative, and neutral words according to the classifier's coefficients. Predict on custom test strings.
-- **Display in notebook:** Print top coefficients and test predictions with confidence probabilities.
-- **Infer from output:** Check if learned associations correspond to human intuition.
-
----
-
-### Task 6 — Auto-Correction
+### Task 4 — Auto-Correction
 
 **Objective:** Build a spelling corrector from scratch using Levenshtein distance and word frequency lists.
 
@@ -785,29 +738,7 @@ POS Tagging & Dependency Parsing (spaCy)
 
 ---
 
-### Task 7 — Next Word Prediction
-
-**Objective:** Train a Trigram language model to calculate transitional probabilities and predict the next word.
-
----
-
-#### Step 1 — Build N-gram counts
-
-- **What to do:** Extract trigrams from a text corpus (e.g., `webtext`). Compute frequency counts of bigram contexts and transition words.
-- **Display in notebook:** Print top transition candidates and probabilities for a few bigram contexts (e.g., "of the").
-- **Infer from output:** Understand how statistical word transitions model language flow.
-
----
-
-#### Step 2 — Interactive transition prediction
-
-- **What to do:** Write a function to predict the top 3 most likely next words for a user input.
-- **Display in notebook:** Print user input and transition probabilities.
-- **Infer from output:** Test multi-word generation by greedily appending predicted words.
-
----
-
-### Task 8 — Text Classification
+### Task 5 — Text Classification
 
 **Objective:** Build an SMS Spam detector using Naïve Bayes and evaluate it using confusion heatmaps.
 
