@@ -20,8 +20,8 @@ For each phase in this roadmap, I follow a strict execution pattern:
 | **04** | [Classical NLP Tasks](./phase-04-classical-nlp/) | POS tagging, Dependency parsing, NER, Lexicon-based Sentiment, DP Levenshtein auto-correction, SMS spam Naïve Bayes classifier | 🟢 Completed | — |
 | **05** | [RNNs, LSTMs & Sequence Models](./phase-05-rnns-lstms/) | Sequence motivation (BoW limitations), RNN cell & Hidden State from scratch, Vanishing/Exploding Gradients, LSTM cell breakdown, GRU cell breakdown | 🟢 Completed | — |
 | **06** | [Deep Learning NLP Tasks](./phase-06-deep-learning-nlp-tasks/) | Next-Word Prediction, Deep Sentiment Classification, Speech Recognition acoustic features | 🟢 Completed | — |
-| **07** | [Encoder-Decoder Architecture](./phase-07-encoder-decoder/) | Seq2Seq deep dive, Machine Translation, Teacher Forcing, Greedy vs Beam Search, Information Bottleneck | 🟡 In Progress | — |
-| **08** | Attention Mechanism & Transformers | Seq2Seq with attention, Self-attention, Multi-head attention, Positional encoding | ⚪ Not Started | — |
+| **07** | [Encoder-Decoder Architecture](./phase-07-encoder-decoder/) | Seq2Seq deep dive, Machine Translation, Teacher Forcing, Greedy vs Beam Search, Information Bottleneck | 🟢 Completed | — |
+| **08** | Attention Mechanism & Transformers | Seq2Seq with attention, Self-attention, Multi-head attention, Positional encoding | 🟡 In Progress | — |
 | **09** | BERT, GPT & Pre-trained Models | Encoder vs. Decoder, Masked Language Modeling (MLM), Causal LM, Hugging Face Hub | ⚪ Not Started | — |
 | **10** | RAG, Prompting & Fine-tuning | Retrieval-Augmented Generation, Vector DBs (FAISS), PEFT/LoRA fine-tuning | ⚪ Not Started | — |
 

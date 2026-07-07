@@ -43,10 +43,9 @@ Install libraries phase by phase as you reach them. Do not install everything up
 | Phases 1–2 | `nltk`, `spacy`, `scikit-learn`, `pandas`, `numpy`, `matplotlib`, `seaborn` |
 | Phase 3     | `gensim`, `plotly`                                                                    |
 | Phase 4     | `vaderSentiment`, `textblob`, `pyspellchecker`                                      |
-| Phases 5–6 | `torch`                                                                                 |
-| Phase 7     | `torch` (DL NLP Tasks)                                                                  |
+| Phases 5–7 | `torch`                                                                                 |
 | Phase 8     | `transformers`, `datasets`, `evaluate`                                              |
-| Phase 9     | `sentence-transformers`, `faiss-cpu`, `langchain`, `peft`, `trl`                |
+| Phases 9–10 | `sentence-transformers`, `faiss-cpu`, `langchain`, `peft`, `trl`                |
 
 After installing `nltk`, run a one-time download of all NLTK data packages. After installing `spacy`, download the English language model separately. Confirm both are working before starting Phase 1.
 
@@ -54,7 +53,6 @@ After installing `nltk`, run a one-time download of all NLTK data packages. Afte
 
 ## Phase 1 — Tokenization & Text Preprocessing
 
-**Duration:** Weeks 1–2 | **LinkedIn posts:** 2–3
 
 ### Overview
 
@@ -290,7 +288,6 @@ Raw Text → Data Cleaning → Word Tokenization → Sentence Tokenization
 
 ## Phase 2 — Bag of Words & TF-IDF
 
-**Duration:** Weeks 2–3 | **LinkedIn posts:** 2
 
 ### Overview
 
@@ -451,7 +448,6 @@ Preprocessed Text → One-Hot Encoding → Bag of Words → N-grams
 
 ## Phase 3 — Word Embeddings: CBOW & Skip-gram
 
-**Duration:** Weeks 3–4 | **LinkedIn posts:** 3
 
 ### Overview
 
@@ -641,7 +637,6 @@ Motivation (BoW limits) → Corpus Preparation → CBOW (concept + train)
 
 ## Phase 4 — Classical NLP Tasks
 
-**Duration:** Weeks 5–7 | **Difficulty:** ⭐⭐⭐☆☆
 
 ### Overview
 
@@ -771,7 +766,6 @@ POS Tagging & Dependency Parsing (spaCy)
 
 ## Phase 5 — RNNs, LSTMs & Sequence Models
 
-**Duration:** Weeks 8–10 | **LinkedIn posts:** 3–4 | **Difficulty:** ⭐⭐⭐⭐☆
 
 ### Overview
 
@@ -875,19 +869,15 @@ Motivation (BoW vs Sequence) → RNN Cell (manual unroll & BPTT)
 
 ## Phase 6 — Deep Learning NLP Tasks
 
-**Duration:** Weeks 11–12 | **LinkedIn posts:** 4 | **Difficulty:** ⭐⭐⭐⭐☆
-
 ### Overview
 
-Apply deep learning sequence models to essential NLP tasks including Language Modeling, Sentiment Classification, Machine Translation, and Speech Recognition audio pipelines.
+Apply deep learning sequence models to essential NLP tasks including Language Modeling, Sentiment Classification, and Speech Recognition audio pipelines.
 
 ### Sequential Task Flow
 
 ```
 LSTM Next-Word Prediction (ipywidgets interactive UI) 
 → Deep Sentiment Analysis (PyTorch LSTM movie reviews)
-→ Encoder-Decoder Seq2Seq Concept (Illustrations & Diagrams)
-→ Machine Translation (PyTorch French-to-English translation model)
 → Speech Recognition acoustic features (Spectrograms & CTC Loss)
 ```
 
@@ -921,35 +911,9 @@ LSTM Next-Word Prediction (ipywidgets interactive UI)
 
 ---
 
-### Task 3 — Encoder-Decoder Architecture Concept
 
-**Objective:** Understand the Seq2Seq encoder-decoder bottleneck.
 
----
-
-#### Step 1 — Conceptual walkthrough and illustrations
-
-- **What to do:** Write a detailed, blog-style markdown cell explaining the Seq2Seq encoder-decoder framework. Explain the Encoder, the Context Vector (bottleneck), and the Decoder phase, walking through the sequence of translation steps. Do not include any code implementations.
-- **Display in notebook:** Display the Encoder-Decoder diagram (`encoder-decoder.png`) and write detailed callouts explaining each stage.
-- **Infer from output:** Recognize the bottleneck constraint where the entire sentence semantic meaning is compressed into a single vector, leading to information decay over long sequences.
-
----
-
-### Task 4 — Machine Translation with Seq2Seq Models
-
-**Objective:** Train a sequence-to-sequence machine translation model in PyTorch.
-
----
-
-#### Step 1 — English-to-French translation Seq2Seq model
-
-- **What to do:** Prepare a tiny bilingual sentence pairs dataset. Build Encoder and Decoder GRU cells in PyTorch and wrap them in a Seq2Seq model supporting Teacher Forcing. Train for 100 epochs.
-- **Display in notebook:** Print loss progress. Evaluate the translation accuracy on a source sentence.
-- **Infer from output:** Verify that the decoder correctly maps source tokens to target translations step-by-step using context vectors.
-
----
-
-### Task 5 — Deep Learning Speech Recognition Audio Pipeline
+### Task 3 — Deep Learning Speech Recognition Audio Pipeline
 
 **Objective:** Process continuous audio signals into spectrograms and decode sequences using CTC Loss.
 
@@ -964,9 +928,132 @@ LSTM Next-Word Prediction (ipywidgets interactive UI)
 ---
 
 
-## Phase 7 — Attention Mechanism & Transformers
+---
 
-**Duration:** Weeks 11–13 | **LinkedIn posts:** 4 | **Difficulty:** ⭐⭐⭐⭐⭐
+
+## Phase 7 — Encoder-Decoder Architecture
+
+### Overview
+
+Sequence-to-Sequence (Seq2Seq) models break the length alignment constraint, enabling mapping of variable-length input sequences to variable-length outputs. We explore the core components, training strategies, decoding strategies, information bottleneck, and build an English-to-French machine translation system in PyTorch.
+
+### Sequential Task Flow
+
+```
+Seq2Seq Architecture Concept 
+→ Teacher Forcing & Compounding Errors 
+→ Decoding Strategies (Greedy vs. Beam Search)
+→ Information Bottleneck & Exponential Decay
+→ Machine Translation Implementation (NLTK ComTrans English-to-French)
+```
+
+---
+
+### Task 1 — Sequence-to-Sequence & Encoder-Decoder Architecture
+
+**Objective:** Understand the variable-length sequence mapping and the recurrent Seq2Seq model structure.
+
+---
+
+#### Step 1 — Architecture walkthrough
+
+- **What to do:** Explain Encoder recurrent updates, Context Vector pivot, and Decoder autoregressive generation. Include special tokens (<PAD>, <SOS>, <EOS>).
+- **Display in notebook:** Render the Seq2Seq architecture diagram (`outputs/encoder-decoder.png`).
+- **Infer from output:** The architecture decouples source sequence processing from target generation, enabling translation of dynamic lengths.
+
+---
+
+### Task 2 — Teacher Forcing & Training Strategies
+
+**Objective:** Contrast training with and without teacher forcing, identifying exposure bias.
+
+---
+
+#### Step 1 — Compounding errors vs. ground-truth prefixes
+
+- **What to do:** Trace the translation pair "je suis fatigué" -> "i am tired". Illustrate compounding errors under free-running mode and contrast with ground-truth forcing.
+- **Display in notebook:** Render the Teacher Forcing comparison diagram (`outputs/teacher-forcing.png`).
+- **Infer from output:** Teacher forcing speeds up training convergence but introduces exposure bias, which scheduled sampling mitigates.
+
+---
+
+### Task 3 — Decoding Strategies: Greedy vs. Beam Search
+
+**Objective:** Explore sequence generation search spaces.
+
+---
+
+#### Step 1 — Local paths vs. globally optimal trees
+
+- **What to do:** Tracing a translation search tree for "ils sont rapides" -> "they are fast", compare greedy choices vs. beam width k=2 candidate tracking.
+- **Display in notebook:** Render the Greedy vs. Beam Search diagram (`outputs/greedy-vs-beam-search.png`).
+- **Infer from output:** Greedy decoding gets trapped in local maximums, while Beam Search finds the globally optimal joint probability sequence.
+
+---
+
+### Task 4 — The Information Bottleneck Problem
+
+**Objective:** Identify the structural limit of a single context vector.
+
+---
+
+#### Step 1 — Information decay math
+
+- **What to do:** Mathematically expand recurrence updates of a 12-word French sentence to illustrate exponential information decay of early words.
+- **Display in notebook:** Render the Information Bottleneck diagram (`outputs/information-bottleneck.png`).
+- **Infer from output:** Fixed hidden sizes struggle to compress long sequence histories, motivating dynamic lookup mechanisms (Attention).
+
+---
+
+### Task 5 — End-to-End Seq2Seq Machine Translation
+
+**Objective:** Train an English-to-French GRU translator on the ComTrans parallel corpus.
+
+---
+
+#### Step 1 — Data Preparation & Vocabularies
+
+- **What to do:** Parse 500 clean sentence pairs from NLTK ComTrans. Build vocabularies for source (English) and target (French).
+- **Display in notebook:** Print vocabulary sizes and train/test pair counts.
+- **Infer from output:** Verify tokens are correctly cleaned and normalized.
+
+---
+
+#### Step 2 — Model Training & Curves
+
+- **What to do:** Train GRU models with/without teacher forcing for 120 epochs.
+- **Display in notebook:** Plot training loss curves.
+- **Infer from output:** Verify convergence latency under different training strategies.
+
+---
+
+#### Step 3 — Decoding Comparison
+
+- **What to do:** Evaluate the trained model on test pairs using Greedy and Beam Search ($k=3$) decoding.
+- **Display in notebook:** Print a table comparing Greedy and Beam translations with log scores.
+- **Infer from output:** Verify search optimization improvements (Beam wins count).
+
+---
+
+#### Step 4 — Information Bottleneck curve
+
+- **What to do:** Compute mean translation accuracy vs. input sentence lengths on training set.
+- **Display in notebook:** Plot translation accuracy decay curve.
+- **Infer from output:** Quantify performance decay as sequence length increases.
+
+---
+
+#### Step 5 — Interactive UI
+
+- **What to do:** Implement an interactive widgets text entry system.
+- **Display in notebook:** Render the live translation input box and output text labels.
+- **Infer from output:** Dynamically evaluate custom queries in real-time.
+
+---
+
+
+## Phase 8 — Attention Mechanism & Transformers
+
 
 ### Overview
 
@@ -1127,9 +1214,8 @@ Seq2Seq Bottleneck (motivation) → Attention Scores (Q×Kᵀ)
 ---
 
 
-## Phase 8 — BERT, GPT & Pre-trained Models
+## Phase 9 — BERT, GPT & Pre-trained Models
 
-**Duration:** Weeks 14–17 | **LinkedIn posts:** 4–5 | **Difficulty:** ⭐⭐⭐⭐⭐
 
 ### Overview
 
@@ -1281,9 +1367,8 @@ BERT Tokenizer Inspection → BERT Architecture Understanding
 ---
 
 
-## Phase 9 — RAG, Prompting & Fine-tuning
+## Phase 10 — RAG, Prompting & Fine-tuning
 
-**Duration:** Weeks 18–22 | **LinkedIn posts:** 5–6 | **Difficulty:** ⭐⭐⭐⭐⭐
 
 ### Overview
 
@@ -1531,10 +1616,12 @@ nlp-from-scratch/
 │   └── 05_cosine_similarity.ipynb
 ├── phase-03-word-embeddings/
 ├── phase-04-classical-nlp/
-├── phase-05-rnn-lstm/
-├── phase-06-attention-transformers/
-├── phase-07-bert-gpt/
-├── phase-08-rag-finetuning/
+├── phase-05-rnns-lstms/
+├── phase-06-deep-learning-nlp-tasks/
+├── phase-07-encoder-decoder/
+├── phase-08-attention-transformers/
+├── phase-09-bert-gpt/
+├── phase-10-rag-finetuning/
 └── datasets/
 ```
 
@@ -1558,11 +1645,11 @@ Each phase folder's `README.md` answers five questions:
 | ------- | ------------------------------------------------------------------------------------------ |
 | Phase 3 | Mikolov et al. (2013) —*Efficient Estimation of Word Representations in Vector Space*   |
 | Phase 5 | Hochreiter & Schmidhuber (1997) —*Long Short-Term Memory*                               |
-| Phase 7 | Vaswani et al. (2017) —*Attention Is All You Need*                                      |
-| Phase 8 | Devlin et al. (2018) —*BERT: Pre-training of Deep Bidirectional Transformers*           |
-| Phase 8 | Radford et al. (2019) —*Language Models are Unsupervised Multitask Learners* (GPT-2)    |
-| Phase 9 | Lewis et al. (2020) —*Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks* |
-| Phase 9 | Hu et al. (2021) —*LoRA: Low-Rank Adaptation of Large Language Models*                  |
+| Phase 8 | Vaswani et al. (2017) —*Attention Is All You Need*                                      |
+| Phase 9 | Devlin et al. (2018) —*BERT: Pre-training of Deep Bidirectional Transformers*           |
+| Phase 9 | Radford et al. (2019) —*Language Models are Unsupervised Multitask Learners* (GPT-2)    |
+| Phase 10 | Lewis et al. (2020) —*Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks* |
+| Phase 10 | Hu et al. (2021) —*LoRA: Low-Rank Adaptation of Large Language Models*                  |
 
 ### Datasets by Phase
 
@@ -1573,9 +1660,10 @@ Each phase folder's `README.md` answers five questions:
 | Phase 4 | IMDB Reviews        | Sentiment analysis      |
 | Phase 4 | CoNLL-2003          | NER                     |
 | Phase 5 | IMDB Reviews        | Sequence classification |
-| Phase 6 | Multi30k            | Seq2Seq                 |
-| Phase 8 | IMDB / AG News      | BERT fine-tuning        |
-| Phase 9 | Alpaca              | LoRA instruction tuning |
+| Phase 6 | NLTK Movie Reviews  | Deep Sentiment Classifier |
+| Phase 7 | NLTK ComTrans       | Machine Translation     |
+| Phase 9 | IMDB / AG News      | BERT fine-tuning        |
+| Phase 10 | Alpaca              | LoRA instruction tuning |
 
 ### Essential Reading
 
