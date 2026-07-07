@@ -25,11 +25,12 @@
 5. [Phase 4 — Classical NLP Tasks](#phase-4--classical-nlp-tasks)
 6. [Phase 5 — RNNs, LSTMs &amp; Sequence Models](#phase-5--rnns-lstms--sequence-models)
 7. [Phase 6 — Deep Learning NLP Tasks](#phase-6--deep-learning-nlp-tasks)
-8. [Phase 7 — Attention Mechanism &amp; Transformers](#phase-7--attention-mechanism--transformers)
-9. [Phase 8 — BERT, GPT &amp; Pre-trained Models](#phase-8--bert-gpt--pre-trained-models)
-10. [Phase 9 — RAG, Prompting &amp; Fine-tuning](#phase-9--rag-prompting--fine-tuning)
-11. [Portfolio &amp; GitHub Structure](#portfolio--github-structure)
-12. [Resources &amp; References](#resources--references)
+8. [Phase 7 — Encoder-Decoder Architecture](#phase-7--encoder-decoder-architecture)
+9. [Phase 8 — Attention Mechanism &amp; Transformers](#phase-8--attention-mechanism--transformers)
+10. [Phase 9 — BERT, GPT &amp; Pre-trained Models](#phase-9--bert-gpt--pre-trained-models)
+11. [Phase 10 — RAG, Prompting &amp; Fine-tuning](#phase-10--rag-prompting--fine-tuning)
+12. [Portfolio &amp; GitHub Structure](#portfolio--github-structure)
+13. [Resources &amp; References](#resources--references)
 
 ---
 
