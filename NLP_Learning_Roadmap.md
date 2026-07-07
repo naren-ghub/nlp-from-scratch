@@ -21,7 +21,6 @@
 8. [Phase 7 — Attention Mechanism &amp; Transformers](#phase-7--attention-mechanism--transformers)
 9. [Phase 8 — BERT, GPT &amp; Pre-trained Models](#phase-8--bert-gpt--pre-trained-models)
 10. [Phase 9 — RAG, Prompting &amp; Fine-tuning](#phase-9--rag-prompting--fine-tuning)
-10. [LinkedIn Content Strategy](#linkedin-content-strategy)
 11. [Portfolio &amp; GitHub Structure](#portfolio--github-structure)
 12. [Resources &amp; References](#resources--references)
 
@@ -1499,38 +1498,6 @@ Semantic Search (embedding → FAISS) → RAG Pipeline (chunk → embed → inde
 
 ---
 
-
-## LinkedIn Content Strategy
-
-### The Post Formula That Works
-
-Every post should follow this five-part structure:
-
-1. **Hook** — a surprising number, a counterintuitive result, or a specific failure that creates curiosity
-2. **Context** — what you were trying to do (1–2 sentences)
-3. **Insight** — the concrete thing you learned
-4. **Visual** — a screenshot of your notebook output, a plot, a heatmap, or a before/after table
-5. **Question** — one specific question that invites your audience to engage
-
-### Posting Cadence
-
-| Phase Range                | Total Posts | Frequency       |
-| -------------------------- | ----------- | --------------- |
-| Phases 1–3 (Weeks 1–4)   | 7–8 posts  | Every 3–4 days |
-| Phases 4–5 (Weeks 5–10)  | 7–8 posts  | Every 3–4 days |
-| Phases 6–7 (Weeks 11–17) | 8–9 posts  | Every 3 days    |
-| Phase 8 (Weeks 18–22)     | 5–6 posts  | Every 3–5 days |
-
-### Anchor Posts
-
-- **Launch (Week 1):** "I am starting a public NLP learning journey — from tokenization to fine-tuning transformers, every step documented here. Follow along. Post 1 of ~30."
-- **Milestone (After Phase 3):** "I just trained Word2Vec from scratch and visualized the embedding space. Here is what the t-SNE cluster looks like — and what king − man + woman equals on my data."
-- **Midpoint (After Phase 6):** "I just implemented transformer attention line by line. Here are the 3 things I did not understand until I coded them myself."
-- **Completion (After Phase 8):** "22 weeks. 8 phases. 30+ posts. Here is every concept I built, every notebook I wrote, and the GitHub repo. NLP from scratch — done."
-
-Use `#NLPFromScratch` on every single post to build a discoverable series.
-
----
 
 ## Portfolio & GitHub Structure
 
