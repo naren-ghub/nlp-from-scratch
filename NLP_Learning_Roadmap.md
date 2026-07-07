@@ -2,6 +2,13 @@
 
 ### A Beginner-Friendly, Step-by-Step Jupyter Notebook Journey
 
+[![GitHub Repository](https://img.shields.io/badge/GitHub-nlp--from--scratch-181717?logo=github&style=for-the-badge)](https://github.com/naren-ghub/nlp-from-scratch) [![Google Colab](https://img.shields.io/badge/Google_Colab-Notebooks-F9AB00?logo=googlecolab&style=for-the-badge)](https://drive.google.com/drive/folders/1DgID-UaNBH6mZqMOEXljE-krea4O0VZ7?usp=sharing)
+
+![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white) ![Jupyter Notebook](https://img.shields.io/badge/Jupyter-F37626?style=for-the-badge&logo=jupyter&logoColor=white) ![PyTorch](https://img.shields.io/badge/PyTorch-EE4C2C?style=for-the-badge&logo=pytorch&logoColor=white) ![spaCy](https://img.shields.io/badge/spaCy-09A3D5?style=for-the-badge&logo=spacy&logoColor=white) ![Hugging Face](https://img.shields.io/badge/Hugging_Face-FFD21E?style=for-the-badge&logo=huggingface&logoColor=black) ![NLP](https://img.shields.io/badge/NLP-8A2BE2?style=for-the-badge) ![Transformers](https://img.shields.io/badge/Transformers-FF4B4B?style=for-the-badge) ![RAG](https://img.shields.io/badge/RAG-4CAF50?style=for-the-badge) ![Fine-Tuning](https://img.shields.io/badge/Fine--Tuning-008080?style=for-the-badge) ![Deep Learning](https://img.shields.io/badge/Deep_Learning-FF9900?style=for-the-badge) ![NLP Engineering](https://img.shields.io/badge/NLP_Engineering-0052CC?style=for-the-badge)
+<br>
+
+> ⚡ **Access Notebooks on Google Colab:** [Click here to open the Google Drive folder](https://drive.google.com/drive/folders/1DgID-UaNBH6mZqMOEXljE-krea4O0VZ7?usp=sharing) and explore the notebooks directly in your browser.
+> 🐙 **Explore the Source Code:** [Visit the GitHub Repository](https://github.com/naren-ghub/nlp-from-scratch) to view the raw files, readmes, and clone the project locally.
 ---
 
 > **How to read this document**
@@ -1501,7 +1508,7 @@ Semantic Search (embedding → FAISS) → RAG Pipeline (chunk → embed → inde
 
 ## Portfolio & GitHub Structure
 
-### Repository: `nlp-from-scratch`
+### Repository: [nlp-from-scratch](https://github.com/naren-ghub/nlp-from-scratch)
 
 ```
 nlp-from-scratch/
