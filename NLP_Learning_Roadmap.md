@@ -17,9 +17,10 @@
 4. [Phase 3 — Word Embeddings: CBOW &amp; Skip-gram](#phase-3--word-embeddings-cbow--skip-gram)
 5. [Phase 4 — Classical NLP Tasks](#phase-4--classical-nlp-tasks)
 6. [Phase 5 — RNNs, LSTMs &amp; Sequence Models](#phase-5--rnns-lstms--sequence-models)
-7. [Phase 6 — Attention Mechanism &amp; Transformers](#phase-6--attention-mechanism--transformers)
-8. [Phase 7 — BERT, GPT &amp; Pre-trained Models](#phase-7--bert-gpt--pre-trained-models)
-9. [Phase 8 — RAG, Prompting &amp; Fine-tuning](#phase-8--rag-prompting--fine-tuning)
+7. [Phase 6 — Deep Learning NLP Tasks](#phase-6--deep-learning-nlp-tasks)
+8. [Phase 7 — Attention Mechanism &amp; Transformers](#phase-7--attention-mechanism--transformers)
+9. [Phase 8 — BERT, GPT &amp; Pre-trained Models](#phase-8--bert-gpt--pre-trained-models)
+10. [Phase 9 — RAG, Prompting &amp; Fine-tuning](#phase-9--rag-prompting--fine-tuning)
 10. [LinkedIn Content Strategy](#linkedin-content-strategy)
 11. [Portfolio &amp; GitHub Structure](#portfolio--github-structure)
 12. [Resources &amp; References](#resources--references)
@@ -36,8 +37,9 @@ Install libraries phase by phase as you reach them. Do not install everything up
 | Phase 3     | `gensim`, `plotly`                                                                    |
 | Phase 4     | `vaderSentiment`, `textblob`, `pyspellchecker`                                      |
 | Phases 5–6 | `torch`                                                                                 |
-| Phase 7     | `transformers`, `datasets`, `evaluate`                                              |
-| Phase 8     | `sentence-transformers`, `faiss-cpu`, `langchain`, `peft`, `trl`                |
+| Phase 7     | `torch` (DL NLP Tasks)                                                                  |
+| Phase 8     | `transformers`, `datasets`, `evaluate`                                              |
+| Phase 9     | `sentence-transformers`, `faiss-cpu`, `langchain`, `peft`, `trl`                |
 
 After installing `nltk`, run a one-time download of all NLTK data packages. After installing `spacy`, download the English language model separately. Confirm both are working before starting Phase 1.
 
@@ -772,9 +774,8 @@ Classical NLP treats every word as independent. RNNs process text as a sequence,
 
 ```
 Motivation (BoW vs Sequence) → RNN Cell (manual unroll & BPTT)
-→ Vanishing Gradient Demo → LSTM Gating Mechanics (visual gates)
-→ GRU vs LSTM Comparison (train & compare from scratch)
-→ LSTM Next-Word Prediction (language modeling)
+→ RNN Mappings (Types conceptually) → Vanishing Gradient Demo 
+→ LSTM Gating Mechanics (visual gates) → GRU vs LSTM Comparison (train & compare from scratch)
 ```
 
 ---
@@ -795,7 +796,7 @@ Motivation (BoW vs Sequence) → RNN Cell (manual unroll & BPTT)
 
 ### Task 2 — The Recurrent Neural Network Cell
 
-**Objective:** Understand the RNN's hidden state and BPTT mechanisms by unrolling it manually.
+**Objective:** Understand the RNN's hidden state, BPTT mechanisms, and mapping configurations.
 
 ---
 
@@ -807,7 +808,15 @@ Motivation (BoW vs Sequence) → RNN Cell (manual unroll & BPTT)
 
 ---
 
-#### Step 2 — Manual unroll across a 5-word sequence
+#### Step 2 — Recurrent Sequence Mappings (Types of RNNs conceptually)
+
+- **What to do:** Detail the 5 core types of RNN sequence configurations: One-to-One, One-to-Many, Many-to-One, Many-to-Many Synced, and Many-to-Many Un-synced (Seq2Seq). Explain their structures and example use cases. Do not include any code implementations.
+- **Display in notebook:** Write a conceptual markdown layout describing the five mappings and their real-world examples (e.g. Image Captioning, Sentiment Analysis, POS Tagging, Machine Translation).
+- **Infer from output:** Understand that sequence architectures can map static inputs to sequential outputs, or sequential inputs to static/sequential outputs.
+
+---
+
+#### Step 3 — Manual unroll across a 5-word sequence
 
 - **What to do:** Initialize a random weight matrix and a zero hidden state using NumPy. Process a 5-word sentence one word at a time: at each step multiply inputs and previous hidden state by the weight matrix, add bias, and apply tanh.
 - **Display in notebook:** Print the hidden state vector after processing word 1, 2, 3, 4, and 5.
@@ -857,22 +866,98 @@ Motivation (BoW vs Sequence) → RNN Cell (manual unroll & BPTT)
 
 ---
 
-### Task 6 — LSTM Next-Word Prediction
+## Phase 6 — Deep Learning NLP Tasks
 
-**Objective:** Build a word-level language model to predict the next token in a sequence.
+**Duration:** Weeks 11–12 | **LinkedIn posts:** 4 | **Difficulty:** ⭐⭐⭐⭐☆
+
+### Overview
+
+Apply deep learning sequence models to essential NLP tasks including Language Modeling, Sentiment Classification, Machine Translation, and Speech Recognition audio pipelines.
+
+### Sequential Task Flow
+
+```
+LSTM Next-Word Prediction (ipywidgets interactive UI) 
+→ Deep Sentiment Analysis (PyTorch LSTM movie reviews)
+→ Encoder-Decoder Seq2Seq Concept (Illustrations & Diagrams)
+→ Machine Translation (PyTorch French-to-English translation model)
+→ Speech Recognition acoustic features (Spectrograms & CTC Loss)
+```
 
 ---
 
-#### Step 1 — Language modeling and next-word predictor training
+### Task 1 — LSTM Next-Word Prediction
 
-- **What to do:** Explain how next-token probability $P(w_t \mid w_1, ..., w_{t-1})$ is modeled using recurrent hidden states projected onto the vocabulary dimension. Prepare a 300-word custom educational corpus, tokenize words using regex, build a vocabulary, and generate sliding window sequences of length 4. Train an LSTM language model for 80 epochs and plot the loss curve.
-- **Display in notebook:** Plot the training loss curve and display top next-word predictions.
-- **Infer from output:** Implement an interactive `predict_next_word(seed_text, top_k=3)` function. Test seed context queries such as `"long short term"` and `"gated recurrent"` to verify that the model correctly outputs the next word with highest probability.
+**Objective:** Train a word-level language model on a creative story and build an interactive auto-complete widget.
+
+---
+
+#### Step 1 — Language modeling and interactive UI
+
+- **What to do:** Train a word-level LSTM network on a creative sci-fi story about a robot named Sparky. Save the model weights and vocabulary index. Build a live, interactive `ipywidgets` auto-complete dashboard directly in the notebook allowing users to type and click suggestions to dynamically append predicted words.
+- **Display in notebook:** Render the live typing interface containing the text field, "Predict" button, top-3 suggestion pills, and raw text prediction logs.
+- **Infer from output:** The model successfully learns the sequence order. Test predictions for seed sentences like `"once upon a time"` or `"small robot named"` to verify they correctly suggest subsequent words with high confidence.
+
+---
+
+### Task 2 — Deep Sentiment Analysis with Recurrent Models
+
+**Objective:** Train an LSTM sentiment classifier in PyTorch.
+
+---
+
+#### Step 1 — Deep sequence classification
+
+- **What to do:** Build a sequence classification pipeline in PyTorch. Embed review tokens and feed them sequentially into an LSTM layer. Map the final hidden state output to a Sigmoid classification head.
+- **Display in notebook:** Print the model architecture summary. Plot training loss over 40 epochs. Evaluate and print the predicted sentiment score on a custom review string.
+- **Infer from output:** Compare to the bag-of-words baseline. Deep models capture word ordering and negations much more robustly.
+
+---
+
+### Task 3 — Encoder-Decoder Architecture Concept
+
+**Objective:** Understand the Seq2Seq encoder-decoder bottleneck.
+
+---
+
+#### Step 1 — Conceptual walkthrough and illustrations
+
+- **What to do:** Write a detailed, blog-style markdown cell explaining the Seq2Seq encoder-decoder framework. Explain the Encoder, the Context Vector (bottleneck), and the Decoder phase, walking through the sequence of translation steps. Do not include any code implementations.
+- **Display in notebook:** Display the Encoder-Decoder diagram (`encoder-decoder.png`) and write detailed callouts explaining each stage.
+- **Infer from output:** Recognize the bottleneck constraint where the entire sentence semantic meaning is compressed into a single vector, leading to information decay over long sequences.
+
+---
+
+### Task 4 — Machine Translation with Seq2Seq Models
+
+**Objective:** Train a sequence-to-sequence machine translation model in PyTorch.
+
+---
+
+#### Step 1 — English-to-French translation Seq2Seq model
+
+- **What to do:** Prepare a tiny bilingual sentence pairs dataset. Build Encoder and Decoder GRU cells in PyTorch and wrap them in a Seq2Seq model supporting Teacher Forcing. Train for 100 epochs.
+- **Display in notebook:** Print loss progress. Evaluate the translation accuracy on a source sentence.
+- **Infer from output:** Verify that the decoder correctly maps source tokens to target translations step-by-step using context vectors.
+
+---
+
+### Task 5 — Deep Learning Speech Recognition Audio Pipeline
+
+**Objective:** Process continuous audio signals into spectrograms and decode sequences using CTC Loss.
+
+---
+
+#### Step 1 — Spectrograms and CTC Loss
+
+- **What to do:** Synthesize a continuous audio wave containing frequency shifts. Extract and plot raw waveform slices and the corresponding 2D spectrogram features. Instantiate PyTorch CTCLoss and run a sample forward loss computation.
+- **Display in notebook:** Plot the continuous waveform amplitude and the frequency spectrogram. Print the computed CTC Loss value.
+- **Infer from output:** CTC loss resolves alignment-free decoding by introducing blank tokens, allowing sequence training without exact audio-to-text time alignments.
 
 ---
 
 
-## Phase 6 — Attention Mechanism & Transformers
+## Phase 7 — Attention Mechanism & Transformers
 
 **Duration:** Weeks 11–13 | **LinkedIn posts:** 4 | **Difficulty:** ⭐⭐⭐⭐⭐
 
@@ -1035,7 +1120,7 @@ Seq2Seq Bottleneck (motivation) → Attention Scores (Q×Kᵀ)
 ---
 
 
-## Phase 7 — BERT, GPT & Pre-trained Models
+## Phase 8 — BERT, GPT & Pre-trained Models
 
 **Duration:** Weeks 14–17 | **LinkedIn posts:** 4–5 | **Difficulty:** ⭐⭐⭐⭐⭐
 
@@ -1189,7 +1274,7 @@ BERT Tokenizer Inspection → BERT Architecture Understanding
 ---
 
 
-## Phase 8 — RAG, Prompting & Fine-tuning
+## Phase 9 — RAG, Prompting & Fine-tuning
 
 **Duration:** Weeks 18–22 | **LinkedIn posts:** 5–6 | **Difficulty:** ⭐⭐⭐⭐⭐
 
@@ -1498,11 +1583,11 @@ Each phase folder's `README.md` answers five questions:
 | ------- | ------------------------------------------------------------------------------------------ |
 | Phase 3 | Mikolov et al. (2013) —*Efficient Estimation of Word Representations in Vector Space*   |
 | Phase 5 | Hochreiter & Schmidhuber (1997) —*Long Short-Term Memory*                               |
-| Phase 6 | Vaswani et al. (2017) —*Attention Is All You Need*                                      |
-| Phase 7 | Devlin et al. (2018) —*BERT: Pre-training of Deep Bidirectional Transformers*           |
-| Phase 7 | Radford et al. (2019) —*Language Models are Unsupervised Multitask Learners* (GPT-2)    |
-| Phase 8 | Lewis et al. (2020) —*Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks* |
-| Phase 8 | Hu et al. (2021) —*LoRA: Low-Rank Adaptation of Large Language Models*                  |
+| Phase 7 | Vaswani et al. (2017) —*Attention Is All You Need*                                      |
+| Phase 8 | Devlin et al. (2018) —*BERT: Pre-training of Deep Bidirectional Transformers*           |
+| Phase 8 | Radford et al. (2019) —*Language Models are Unsupervised Multitask Learners* (GPT-2)    |
+| Phase 9 | Lewis et al. (2020) —*Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks* |
+| Phase 9 | Hu et al. (2021) —*LoRA: Low-Rank Adaptation of Large Language Models*                  |
 
 ### Datasets by Phase
 
@@ -1513,9 +1598,9 @@ Each phase folder's `README.md` answers five questions:
 | Phase 4 | IMDB Reviews        | Sentiment analysis      |
 | Phase 4 | CoNLL-2003          | NER                     |
 | Phase 5 | IMDB Reviews        | Sequence classification |
-| Phase 5 | Multi30k            | Seq2Seq                 |
-| Phase 7 | IMDB / AG News      | BERT fine-tuning        |
-| Phase 8 | Alpaca              | LoRA instruction tuning |
+| Phase 6 | Multi30k            | Seq2Seq                 |
+| Phase 8 | IMDB / AG News      | BERT fine-tuning        |
+| Phase 9 | Alpaca              | LoRA instruction tuning |
 
 ### Essential Reading
 

@@ -15,13 +15,14 @@ For each phase in this roadmap, I follow a strict execution pattern:
 | Phase | Description | Focus Areas | Status | LinkedIn Post |
 | :--- | :--- | :--- | :---: | :---: |
 | **01** | [Tokenization & Preprocessing](./phase-01-tokenization/) | Whitespace vs. Regex, Sentence splitting, Porter & Snowball Stemmers, spaCy Lemmatization, Tokenizer comparisons | 🟢 Completed | [🔗 Link](https://www.linkedin.com/posts/narenkumar-n-42ba162b6_phase-1-text-preprocessing-tokenization-ugcPost-7479775514522476545-m9Ul/) |
-| **02** | [Bag of Words & TF-IDF](./phase-02-bow-tfidf/) | One-Hot Encoding, Bag of Words, N-grams, TF-IDF from scratch, Cosine Similarity heatmap | 🟢 Completed | *TBD* |
+| **02** | [Bag of Words & TF-IDF](./phase-02-bow-tfidf/) | One-Hot Encoding, Bag of Words, N-grams, TF-IDF from scratch, Cosine Similarity heatmap | 🟢 Completed | [🔗 Link](https://www.linkedin.com/embed/feed/update/urn:li:share:7480138268760567809) |
 | **03** | [Word Embeddings: CBOW & Skip-gram](./phase-03-word-embeddings/) | CBOW & Skip-gram from scratch, Analogy arithmetic, t-SNE & PCA visualization, Pre-trained GloVe comparison | 🟢 Completed | *TBD* |
 | **04** | [Classical NLP Tasks](./phase-04-classical-nlp/) | POS tagging, Dependency parsing, NER, Lexicon-based Sentiment, DP Levenshtein auto-correction, SMS spam Naïve Bayes classifier | 🟢 Completed | — |
-| **05** | [RNNs, LSTMs & Sequence Models](./phase-05-rnns-lstms/) | Sequence motivation (BoW limitations), RNN cell & Hidden State from scratch, Vanishing/Exploding Gradients, LSTM cell breakdown, GRU cell breakdown, LSTM next-word predictor | 🟡 In Progress | — |
-| **06** | Attention Mechanism & Transformers | Seq2Seq with attention, Self-attention, Multi-head attention, Positional encoding | ⚪ Not Started | — |
-| **07** | BERT, GPT & Pre-trained Models | Encoder vs. Decoder, Masked Language Modeling (MLM), Causal LM, Hugging Face Hub | ⚪ Not Started | — |
-| **08** | RAG, Prompting & Fine-tuning | Retrieval-Augmented Generation, Vector DBs (FAISS), PEFT/LoRA fine-tuning | ⚪ Not Started | — |
+| **05** | [RNNs, LSTMs & Sequence Models](./phase-05-rnns-lstms/) | Sequence motivation (BoW limitations), RNN cell & Hidden State from scratch, Vanishing/Exploding Gradients, LSTM cell breakdown, GRU cell breakdown | 🟢 Completed | — |
+| **06** | [Deep Learning NLP Tasks](./phase-06-deep-learning-nlp-tasks/) | Next-Word Prediction, Deep Sentiment Classification, Encoder-Decoder architecture, Seq2Seq Machine Translation, Speech Recognition acoustic features | 🟢 Completed | — |
+| **07** | Attention Mechanism & Transformers | Seq2Seq with attention, Self-attention, Multi-head attention, Positional encoding | ⚪ Not Started | — |
+| **08** | BERT, GPT & Pre-trained Models | Encoder vs. Decoder, Masked Language Modeling (MLM), Causal LM, Hugging Face Hub | ⚪ Not Started | — |
+| **09** | RAG, Prompting & Fine-tuning | Retrieval-Augmented Generation, Vector DBs (FAISS), PEFT/LoRA fine-tuning | ⚪ Not Started | — |
 
 *Status key: ⚪ Not Started | 🟡 In Progress | 🟢 Completed*
 
@@ -82,4 +83,7 @@ Trained dense vector representations of words. Visualized word clusters using t-
 Built application pipelines including rule-based POS tagging and dependency trees, NER visualization using displaCy, lexicon-based VADER sentiment analysis, dynamic programming Levenshtein auto-correction, and Naïve Bayes SMS spam classification.
 
 ### Phase 05: RNNs, LSTMs & Sequence Models
-Proved the sequence-blind spots of bag-of-words representation, implemented unrolled RNN cells from scratch, simulated vanishing/exploding gradients under recurrent weight constraints, broke down LSTM and GRU gating mechanisms step-by-step from scratch, and trained an LSTM language model to generate text on a creative story corpus.
+Proved the sequence-blind spots of bag-of-words representation, implemented unrolled RNN cells from scratch (detailing mapping types conceptually), simulated vanishing/exploding gradients under recurrent weight constraints, and broke down LSTM and GRU gating mechanisms step-by-step from scratch.
+
+### Phase 06: Deep Learning NLP Tasks
+Trained an LSTM word-level language model with a dynamic in-notebook widget typing suggestions interface, built a PyTorch LSTM movie review sentiment classifier, conceptually mapped Seq2Seq Encoder-Decoder architectures, built a PyTorch French-to-English machine translation system, and extracted waveform spectrogram acoustic features alongside Connectionist Temporal Classification (CTC) sequence loss.
