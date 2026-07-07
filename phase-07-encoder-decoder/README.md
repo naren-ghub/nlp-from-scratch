@@ -6,11 +6,11 @@ Understanding the encoder-decoder framework deeply — including its training te
 
 ## 📁 Folder Structure & Separate Notebooks
 
-1.  **[01_seq2seq_deep_dive.ipynb](01_seq2seq_deep_dive.ipynb)**: A conceptual, highly visual exploration of the Encoder-Decoder Seq2Seq architecture. Details the flow from encoder hidden states through the context vector to the decoder's autoregressive generation.
-2.  **[02_machine_translation.ipynb](02_machine_translation.ipynb)**: Implements a full Seq2Seq Encoder-Decoder in PyTorch from scratch. Trains a model to translate short French sentences into English, demonstrating vocabulary building, sequence padding, and teacher forcing.
-3.  **[03_teacher_forcing.ipynb](03_teacher_forcing.ipynb)**: Compares training with and without teacher forcing. Demonstrates convergence speed differences, the exposure bias problem, and introduces scheduled sampling as a solution.
-4.  **[04_decoding_strategies.ipynb](04_decoding_strategies.ipynb)**: Implements both Greedy Decoding and Beam Search from scratch. Compares their outputs and visualizes the quality-vs-speed trade-off across different beam widths.
-5.  **[05_information_bottleneck.ipynb](05_information_bottleneck.ipynb)**: Measures how translation quality degrades as input sentence length increases, proving the fixed-size context vector is an information bottleneck. Teases the Attention Mechanism as the solution.
+1.  **[01_seq2seq_architecture.ipynb](01_seq2seq_architecture.ipynb)**: A conceptual, highly visual explanation of the Sequence-to-Sequence Encoder-Decoder architecture.
+2.  **[02_teacher_forcing.ipynb](02_teacher_forcing.ipynb)**: A conceptual exploration of training Seq2Seq models, including Teacher Forcing, Exposure Bias, and Scheduled Sampling.
+3.  **[03_decoding_strategies.ipynb](03_decoding_strategies.ipynb)**: A conceptual breakdown of search strategies during inference generation, comparing Greedy decoding and Beam Search.
+4.  **[04_information_bottleneck.ipynb](04_information_bottleneck.ipynb)**: A conceptual explanation of why compressing variable-length sequences creates a bottleneck, transitioning to Attention.
+5.  **[05_machine_translation_implementation.ipynb](05_machine_translation_implementation.ipynb)**: Complete end-to-end PyTorch implementation of French-to-English translation from scratch. Practically demonstrates training curves, a clear Greedy vs. Beam Search case study, and length-based accuracy degradation.
 
 ---
 
