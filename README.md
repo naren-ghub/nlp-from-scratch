@@ -20,7 +20,7 @@ For each phase in this roadmap, I follow a strict execution pattern:
 | **04** | [Classical NLP Tasks](./phase-04-classical-nlp/) | POS tagging, Dependency parsing, NER, Lexicon-based Sentiment, DP Levenshtein auto-correction, SMS spam Naïve Bayes classifier | 🟢 Completed | — |
 | **05** | [RNNs, LSTMs & Sequence Models](./phase-05-rnns-lstms-sequence-models/) | Sequence motivation, RNN from scratch, Vanishing Gradients, LSTM/GRU breakdown, Next-Word Prediction widget, Deep Sentiment Classifier, CTC Speech Loss | 🟢 Completed | — |
 | **06** | [Encoder-Decoder Architecture](./phase-06-encoder-decoder/) | Seq2Seq deep dive, Machine Translation, Teacher Forcing, Greedy vs Beam Search, Information Bottleneck | 🟢 Completed | — |
-| **07** | Attention Mechanism & Transformers | Seq2Seq with attention, Self-attention, Multi-head attention, Positional encoding | 🟡 In Progress | — |
+| **07** | [Attention Mechanism & Transformers](./phase-07-attention-transformers/) | Seq2Seq with attention, Self-attention, Multi-head attention, Positional encoding | 🟢 Completed | — |
 | **08** | BERT, GPT & Pre-trained Models | Encoder vs. Decoder, Masked Language Modeling (MLM), Causal LM, Hugging Face Hub | ⚪ Not Started | — |
 | **09** | RAG, Prompting & Fine-tuning | Retrieval-Augmented Generation, Vector DBs (FAISS), PEFT/LoRA fine-tuning | ⚪ Not Started | — |
 
@@ -87,4 +87,8 @@ Proved the sequence-blind spots of bag-of-words representation, implemented unro
 
 ### Phase 06: Encoder-Decoder Architecture
 Mapped Seq2Seq frameworks conceptually, traced Teacher Forcing training vs compounding errors, contrasted Greedy vs. Beam Search decoding with trace examples, analyzed the context vector information bottleneck, and implemented a PyTorch English-to-French machine translation system on the real NLTK ComTrans corpus.
+
+### Phase 07: Attention Mechanism & Transformers
+Detailed the transition from sequential RNN limits to attention-driven parallel processing. Walked through the Query-Key-Value similarity lookup, built a custom PyTorch Multi-Head Self-Attention block from scratch, and mapped BERT vs GPT vs T5 variants along with the timeline of transfer learning milestones.
+
 
