@@ -18,12 +18,11 @@ For each phase in this roadmap, I follow a strict execution pattern:
 | **02** | [Bag of Words & TF-IDF](./phase-02-bow-tfidf/) | One-Hot Encoding, Bag of Words, N-grams, TF-IDF from scratch, Cosine Similarity heatmap | 🟢 Completed | [🔗 Link](https://www.linkedin.com/embed/feed/update/urn:li:share:7480138268760567809) |
 | **03** | [Word Embeddings: CBOW & Skip-gram](./phase-03-word-embeddings/) | CBOW & Skip-gram from scratch, Analogy arithmetic, t-SNE & PCA visualization, Pre-trained GloVe comparison | 🟢 Completed | *TBD* |
 | **04** | [Classical NLP Tasks](./phase-04-classical-nlp/) | POS tagging, Dependency parsing, NER, Lexicon-based Sentiment, DP Levenshtein auto-correction, SMS spam Naïve Bayes classifier | 🟢 Completed | — |
-| **05** | [RNNs, LSTMs & Sequence Models](./phase-05-rnns-lstms/) | Sequence motivation (BoW limitations), RNN cell & Hidden State from scratch, Vanishing/Exploding Gradients, LSTM cell breakdown, GRU cell breakdown | 🟢 Completed | — |
-| **06** | [Deep Learning NLP Tasks](./phase-06-deep-learning-nlp-tasks/) | Next-Word Prediction, Deep Sentiment Classification, Speech Recognition acoustic features | 🟢 Completed | — |
-| **07** | [Encoder-Decoder Architecture](./phase-07-encoder-decoder/) | Seq2Seq deep dive, Machine Translation, Teacher Forcing, Greedy vs Beam Search, Information Bottleneck | 🟢 Completed | — |
-| **08** | Attention Mechanism & Transformers | Seq2Seq with attention, Self-attention, Multi-head attention, Positional encoding | 🟡 In Progress | — |
-| **09** | BERT, GPT & Pre-trained Models | Encoder vs. Decoder, Masked Language Modeling (MLM), Causal LM, Hugging Face Hub | ⚪ Not Started | — |
-| **10** | RAG, Prompting & Fine-tuning | Retrieval-Augmented Generation, Vector DBs (FAISS), PEFT/LoRA fine-tuning | ⚪ Not Started | — |
+| **05** | [RNNs, LSTMs & Sequence Models](./phase-05-rnns-lstms-sequence-models/) | Sequence motivation, RNN from scratch, Vanishing Gradients, LSTM/GRU breakdown, Next-Word Prediction widget, Deep Sentiment Classifier, CTC Speech Loss | 🟢 Completed | — |
+| **06** | [Encoder-Decoder Architecture](./phase-06-encoder-decoder/) | Seq2Seq deep dive, Machine Translation, Teacher Forcing, Greedy vs Beam Search, Information Bottleneck | 🟢 Completed | — |
+| **07** | Attention Mechanism & Transformers | Seq2Seq with attention, Self-attention, Multi-head attention, Positional encoding | 🟡 In Progress | — |
+| **08** | BERT, GPT & Pre-trained Models | Encoder vs. Decoder, Masked Language Modeling (MLM), Causal LM, Hugging Face Hub | ⚪ Not Started | — |
+| **09** | RAG, Prompting & Fine-tuning | Retrieval-Augmented Generation, Vector DBs (FAISS), PEFT/LoRA fine-tuning | ⚪ Not Started | — |
 
 *Status key: ⚪ Not Started | 🟡 In Progress | 🟢 Completed*
 
@@ -84,7 +83,8 @@ Trained dense vector representations of words. Visualized word clusters using t-
 Built application pipelines including rule-based POS tagging and dependency trees, NER visualization using displaCy, lexicon-based VADER sentiment analysis, dynamic programming Levenshtein auto-correction, and Naïve Bayes SMS spam classification.
 
 ### Phase 05: RNNs, LSTMs & Sequence Models
-Proved the sequence-blind spots of bag-of-words representation, implemented unrolled RNN cells from scratch (detailing mapping types conceptually), simulated vanishing/exploding gradients under recurrent weight constraints, and broke down LSTM and GRU gating mechanisms step-by-step from scratch.
+Proved the sequence-blind spots of bag-of-words representation, implemented unrolled RNN cells from scratch, simulated vanishing/exploding gradients, and broke down LSTM/GRU gating mechanisms. Trained an LSTM language model with a live autocomplete widget, built a PyTorch movie review sentiment classifier, and simulated acoustic spectrograms with CTC loss.
 
-### Phase 06: Deep Learning NLP Tasks
-Trained an LSTM word-level language model with a dynamic in-notebook widget typing suggestions interface, built a PyTorch LSTM movie review sentiment classifier, conceptually mapped Seq2Seq Encoder-Decoder architectures, built a PyTorch French-to-English machine translation system, and extracted waveform spectrogram acoustic features alongside Connectionist Temporal Classification (CTC) sequence loss.
+### Phase 06: Encoder-Decoder Architecture
+Mapped Seq2Seq frameworks conceptually, traced Teacher Forcing training vs compounding errors, contrasted Greedy vs. Beam Search decoding with trace examples, analyzed the context vector information bottleneck, and implemented a PyTorch English-to-French machine translation system on the real NLTK ComTrans corpus.
+

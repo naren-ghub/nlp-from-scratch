@@ -1,6 +1,6 @@
-# Phase 7 — Encoder-Decoder Architecture
+# Phase 6 — Encoder-Decoder Architecture
 
-Welcome to Phase 7 of your NLP learning journey! This phase is entirely dedicated to the **Encoder-Decoder (Seq2Seq)** paradigm — the critical architectural bridge between simple recurrent models and the Transformer revolution.
+Welcome to Phase 6 of your NLP learning journey! This phase is entirely dedicated to the **Encoder-Decoder (Seq2Seq)** paradigm — the critical architectural bridge between simple recurrent models and the Transformer revolution.
 
 Understanding the encoder-decoder framework deeply — including its training techniques, decoding strategies, and fundamental limitations — provides the essential context for why the Attention Mechanism was invented.
 

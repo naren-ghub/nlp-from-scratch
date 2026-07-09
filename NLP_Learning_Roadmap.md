@@ -24,13 +24,12 @@
 4. [Phase 3 — Word Embeddings: CBOW &amp; Skip-gram](#phase-3--word-embeddings-cbow--skip-gram)
 5. [Phase 4 — Classical NLP Tasks](#phase-4--classical-nlp-tasks)
 6. [Phase 5 — RNNs, LSTMs &amp; Sequence Models](#phase-5--rnns-lstms--sequence-models)
-7. [Phase 6 — Deep Learning NLP Tasks](#phase-6--deep-learning-nlp-tasks)
-8. [Phase 7 — Encoder-Decoder Architecture](#phase-7--encoder-decoder-architecture)
-9. [Phase 8 — Attention Mechanism &amp; Transformers](#phase-8--attention-mechanism--transformers)
-10. [Phase 9 — BERT, GPT &amp; Pre-trained Models](#phase-9--bert-gpt--pre-trained-models)
-11. [Phase 10 — RAG, Prompting &amp; Fine-tuning](#phase-10--rag-prompting--fine-tuning)
-12. [Portfolio &amp; GitHub Structure](#portfolio--github-structure)
-13. [Resources &amp; References](#resources--references)
+7. [Phase 6 — Encoder-Decoder Architecture](#phase-6--encoder-decoder-architecture)
+8. [Phase 7 — Attention Mechanism &amp; Transformers](#phase-7--attention-mechanism--transformers)
+9. [Phase 8 — BERT, GPT &amp; Pre-trained Models](#phase-8--bert-gpt--pre-trained-models)
+10. [Phase 9 — RAG, Prompting &amp; Fine-tuning](#phase-9--rag-prompting--fine-tuning)
+11. [Portfolio &amp; GitHub Structure](#portfolio--github-structure)
+12. [Resources &amp; References](#resources--references)
 
 ---
 
@@ -43,9 +42,9 @@ Install libraries phase by phase as you reach them. Do not install everything up
 | Phases 1–2 | `nltk`, `spacy`, `scikit-learn`, `pandas`, `numpy`, `matplotlib`, `seaborn` |
 | Phase 3     | `gensim`, `plotly`                                                                    |
 | Phase 4     | `vaderSentiment`, `textblob`, `pyspellchecker`                                      |
-| Phases 5–7 | `torch`                                                                                 |
-| Phase 8     | `transformers`, `datasets`, `evaluate`                                              |
-| Phases 9–10 | `sentence-transformers`, `faiss-cpu`, `langchain`, `peft`, `trl`                |
+| Phases 5–6 | `torch`                                                                                 |
+| Phase 7     | `transformers`, `datasets`, `evaluate`                                              |
+| Phases 8–9 | `sentence-transformers`, `faiss-cpu`, `langchain`, `peft`, `trl`                |
 
 After installing `nltk`, run a one-time download of all NLTK data packages. After installing `spacy`, download the English language model separately. Confirm both are working before starting Phase 1.
 
@@ -867,23 +866,7 @@ Motivation (BoW vs Sequence) → RNN Cell (manual unroll & BPTT)
 
 ---
 
-## Phase 6 — Deep Learning NLP Tasks
-
-### Overview
-
-Apply deep learning sequence models to essential NLP tasks including Language Modeling, Sentiment Classification, and Speech Recognition audio pipelines.
-
-### Sequential Task Flow
-
-```
-LSTM Next-Word Prediction (ipywidgets interactive UI) 
-→ Deep Sentiment Analysis (PyTorch LSTM movie reviews)
-→ Speech Recognition acoustic features (Spectrograms & CTC Loss)
-```
-
----
-
-### Task 1 — LSTM Next-Word Prediction
+### Task 6 — LSTM Next-Word Prediction
 
 **Objective:** Train a word-level language model on a creative story and build an interactive auto-complete widget.
 
@@ -897,7 +880,7 @@ LSTM Next-Word Prediction (ipywidgets interactive UI)
 
 ---
 
-### Task 2 — Deep Sentiment Analysis with Recurrent Models
+### Task 7 — Deep Sentiment Analysis with Recurrent Models
 
 **Objective:** Train an LSTM sentiment classifier in PyTorch.
 
@@ -913,7 +896,7 @@ LSTM Next-Word Prediction (ipywidgets interactive UI)
 
 
 
-### Task 3 — Deep Learning Speech Recognition Audio Pipeline
+### Task 8 — Deep Learning Speech Recognition Audio Pipeline
 
 **Objective:** Process continuous audio signals into spectrograms and decode sequences using CTC Loss.
 
@@ -930,8 +913,9 @@ LSTM Next-Word Prediction (ipywidgets interactive UI)
 
 ---
 
+---
 
-## Phase 7 — Encoder-Decoder Architecture
+## Phase 6 — Encoder-Decoder Architecture
 
 ### Overview
 
@@ -1052,7 +1036,7 @@ Seq2Seq Architecture Concept
 ---
 
 
-## Phase 8 — Attention Mechanism & Transformers
+## Phase 7 — Attention Mechanism & Transformers
 
 
 ### Overview
@@ -1214,7 +1198,7 @@ Seq2Seq Bottleneck (motivation) → Attention Scores (Q×Kᵀ)
 ---
 
 
-## Phase 9 — BERT, GPT & Pre-trained Models
+## Phase 8 — BERT, GPT & Pre-trained Models
 
 
 ### Overview
@@ -1367,7 +1351,7 @@ BERT Tokenizer Inspection → BERT Architecture Understanding
 ---
 
 
-## Phase 10 — RAG, Prompting & Fine-tuning
+## Phase 9 — RAG, Prompting & Fine-tuning
 
 
 ### Overview
@@ -1616,12 +1600,11 @@ nlp-from-scratch/
 │   └── 05_cosine_similarity.ipynb
 ├── phase-03-word-embeddings/
 ├── phase-04-classical-nlp/
-├── phase-05-rnns-lstms/
-├── phase-06-deep-learning-nlp-tasks/
-├── phase-07-encoder-decoder/
-├── phase-08-attention-transformers/
-├── phase-09-bert-gpt/
-├── phase-10-rag-finetuning/
+├── phase-05-rnns-lstms-sequence-models/
+├── phase-06-encoder-decoder/
+├── phase-07-attention-transformers/
+├── phase-08-bert-gpt/
+├── phase-09-rag-finetuning/
 └── datasets/
 ```
 
@@ -1645,11 +1628,11 @@ Each phase folder's `README.md` answers five questions:
 | ------- | ------------------------------------------------------------------------------------------ |
 | Phase 3 | Mikolov et al. (2013) —*Efficient Estimation of Word Representations in Vector Space*   |
 | Phase 5 | Hochreiter & Schmidhuber (1997) —*Long Short-Term Memory*                               |
-| Phase 8 | Vaswani et al. (2017) —*Attention Is All You Need*                                      |
-| Phase 9 | Devlin et al. (2018) —*BERT: Pre-training of Deep Bidirectional Transformers*           |
-| Phase 9 | Radford et al. (2019) —*Language Models are Unsupervised Multitask Learners* (GPT-2)    |
-| Phase 10 | Lewis et al. (2020) —*Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks* |
-| Phase 10 | Hu et al. (2021) —*LoRA: Low-Rank Adaptation of Large Language Models*                  |
+| Phase 7 | Vaswani et al. (2017) —*Attention Is All You Need*                                      |
+| Phase 8 | Devlin et al. (2018) —*BERT: Pre-training of Deep Bidirectional Transformers*           |
+| Phase 8 | Radford et al. (2019) —*Language Models are Unsupervised Multitask Learners* (GPT-2)    |
+| Phase 9 | Lewis et al. (2020) —*Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks* |
+| Phase 9 | Hu et al. (2021) —*LoRA: Low-Rank Adaptation of Large Language Models*                  |
 
 ### Datasets by Phase
 
@@ -1660,10 +1643,10 @@ Each phase folder's `README.md` answers five questions:
 | Phase 4 | IMDB Reviews        | Sentiment analysis      |
 | Phase 4 | CoNLL-2003          | NER                     |
 | Phase 5 | IMDB Reviews        | Sequence classification |
-| Phase 6 | NLTK Movie Reviews  | Deep Sentiment Classifier |
-| Phase 7 | NLTK ComTrans       | Machine Translation     |
-| Phase 9 | IMDB / AG News      | BERT fine-tuning        |
-| Phase 10 | Alpaca              | LoRA instruction tuning |
+| Phase 5 | NLTK Movie Reviews  | Deep Sentiment Classifier |
+| Phase 6 | NLTK ComTrans       | Machine Translation     |
+| Phase 8 | IMDB / AG News      | BERT fine-tuning        |
+| Phase 9 | Alpaca              | LoRA instruction tuning |
 
 ### Essential Reading
 
